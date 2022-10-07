@@ -1,0 +1,13 @@
+{
+  "PizzaOrderingSystem.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\PTO\\Desktop\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\PizzaOrderingSystem.Common",
+  "PizzaOrderingSystem.Data.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\PTO\\Desktop\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Common",
+  "PizzaOrderingSystem.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\PTO\\Desktop\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data",
+  "PizzaOrderingSystem.Data.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\PTO\\Desktop\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Models",
+  "PizzaOrderingSystem.Services.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\PTO\\Desktop\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Data",
+  "PizzaOrderingSystem.Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\PTO\\Desktop\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services",
+  "PizzaOrderingSystem.Services.Mapping, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\PTO\\Desktop\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Mapping",
+  "PizzaOrderingSystem.Services.Messaging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\PTO\\Desktop\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Messaging",
+  "PizzaOrderingSystem.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\PTO\\Desktop\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Web\\PizzaOrderingSystem.Web",
+  "PizzaOrderingSystem.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\PTO\\Desktop\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Web\\PizzaOrderingSystem.Web.Infrastructure",
+  "PizzaOrderingSystem.Web.ViewModels, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\PTO\\Desktop\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Web\\PizzaOrderingSystem.Web.ViewModels"
+}

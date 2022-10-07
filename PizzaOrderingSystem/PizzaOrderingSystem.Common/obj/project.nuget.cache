@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "ZAvh7wtFdAXrYLjksgwU15QhcBqDDG60Mchy66fq1rhrBBVCPwZnhKjbAzJd3ZrtzW1/5ZdWW7CIdEOr2w9LpA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\PizzaOrderingSystem.Common\\PizzaOrderingSystem.Common.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\PTO\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.435\\stylecop.analyzers.1.2.0-beta.435.nupkg.sha512",
+    "C:\\Users\\PTO\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.435\\stylecop.analyzers.unstable.1.2.0.435.nupkg.sha512"
+  ],
+  "logs": []
+}

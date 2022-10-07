@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "2uy8yfPCjcQy8cueR7l1mG+P1wn2HW89on3xN4RYLx3v98SF1Oa2/5u+093JwR9ZFKj0a0sL6GFqYzK21ta5/w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Mapping\\PizzaOrderingSystem.Services.Mapping.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\PTO\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
+    "C:\\Users\\PTO\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\PTO\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.435\\stylecop.analyzers.1.2.0-beta.435.nupkg.sha512",
+    "C:\\Users\\PTO\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.435\\stylecop.analyzers.unstable.1.2.0.435.nupkg.sha512"
+  ],
+  "logs": []
+}
