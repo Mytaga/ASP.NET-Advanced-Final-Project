@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace PizzaOrderingSystem.Web.Controllers
 {
     public class AccountController : Controller
-    { 
+    {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
 
@@ -39,7 +39,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 EmailConfirmed = true,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                Username = model.UserName,
+                UserName = model.Email,
             };
 
             var result = await this.userManager.CreateAsync(user, model.Password);
@@ -50,21 +50,61 @@ namespace PizzaOrderingSystem.Web.Controllers
                 return this.RedirectToAction("Index", "Home");
             }
 
-            this.ModelState.AddModelError(null, "Something went wrong");
+            foreach (var item in result.Errors)
+            {
+                this.ModelState.AddModelError(" ", item.Description);
+            }
 
             return this.View(model);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Login(string returnUrl = null)
+        public IActionResult Login(string returnUrl = null)
         {
-            return this.Ok();
+            var model = new LoginViewModel()
+            {
+                ReturnUrl = returnUrl,
+            };
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            var user = await this.userManager.FindByEmailAsync(model.Email);
+
+            if (user != null)
+            {
+                var result = await this.signInManager.PasswordSignInAsync(user, model.Password, true, false);
+
+                if (result.Succeeded)
+                {
+                    if (model.ReturnUrl != null)
+                    {
+                        return this.Redirect(model.ReturnUrl);
+                    }
+
+                    return this.RedirectToAction("Index", "Home");
+                }
+            }
+
+            this.ModelState.AddModelError(" ", "Invalid login");
+
+            return this.View(model);
         }
 
         [HttpGet]
         public async Task<IActionResult> Logout(string returnUrl = null)
         {
-            return this.Ok();
+            await this.signInManager.SignOutAsync();
+
+            return this.RedirectToAction("Index", "Home");
         }
     }
 }
