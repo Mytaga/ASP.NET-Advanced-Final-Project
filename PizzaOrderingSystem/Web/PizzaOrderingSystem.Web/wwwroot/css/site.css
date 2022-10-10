@@ -63,8 +63,8 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background-color: brown;
-    font-family:'Comic Sans MS';
+    background-color: navajowhite;
+    font-family: Tahoma;
 }
 
 .footer {
