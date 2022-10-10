@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,16 @@ namespace PizzaOrderingSystem.Common
             public const int LastNameMaxLength = 30;
             public const int UsernameMinLength = 1;
             public const int UsernameMaxLength = 30;
+
+            public const string FirstNameRequired = "First name is required";
+            public const string LastNameRequired = "Last name is required";
+            public const string FirstNameMinLengthError = "First name must be at least 2 letters";
+            public const string FirstNameMaxLengthError = "First name must be at no more than 30 letters";
+            public const string LastNameMinLengthError = "Last name must be at least 2 letters";
+            public const string LastNameMaxLengthError = "Last name must be at no more than 30 letters";
+            public const string UsernameRequired = "Username is required";
+            public const string UserNameMinLengthError = "Username must be at least 1 letters";
+            public const string UserNameMaxLengthError = "Username must be at no more than 30 letters";
         }
 
         public static class PizzaVadidation
