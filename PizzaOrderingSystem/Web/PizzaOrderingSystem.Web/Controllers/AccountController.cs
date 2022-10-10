@@ -52,7 +52,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             foreach (var item in result.Errors)
             {
-                this.ModelState.AddModelError(" ", item.Description);
+                this.ModelState.AddModelError(string.Empty, item.Description);
             }
 
             return this.View(model);
@@ -94,7 +94,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 }
             }
 
-            this.ModelState.AddModelError(" ", "Invalid login");
+            this.ModelState.AddModelError(string.Empty, "Invalid login");
 
             return this.View(model);
         }
