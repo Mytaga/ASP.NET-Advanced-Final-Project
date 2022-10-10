@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using static PizzaOrderingSystem.Common.ModelValidationConstants;
 
 namespace PizzaOrderingSystem.Web.ViewModels.Account
@@ -11,9 +12,11 @@ namespace PizzaOrderingSystem.Web.ViewModels.Account
 
         [Required]
         [Compare(nameof(ConfirmPassword))]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required]
+        [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = UserValidation.UsernameRequired)]
