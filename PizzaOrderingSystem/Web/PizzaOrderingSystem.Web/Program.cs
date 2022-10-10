@@ -49,7 +49,7 @@
 
             services.ConfigureApplicationCookie(options =>
             {
-                options.LogoutPath = "/Account/Login";
+                options.LoginPath = "/Account/Login";
             });
 
             services.AddControllersWithViews(
