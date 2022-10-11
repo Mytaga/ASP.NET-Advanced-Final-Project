@@ -19,10 +19,10 @@ namespace PizzaOrderingSystem.Web.ViewModels.Account
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
-        //[Required(ErrorMessage = UserValidation.UsernameRequired)]
-        //[MinLength(UserValidation.UsernameMinLength, ErrorMessage = UserValidation.UserNameMinLengthError)]
-        //[MaxLength(UserValidation.UsernameMaxLength, ErrorMessage = UserValidation.UserNameMaxLengthError)]
-        //public string UserName { get; set; }
+        [Required(ErrorMessage = UserValidation.UsernameRequired)]
+        [MinLength(UserValidation.UsernameMinLength, ErrorMessage = UserValidation.UserNameMinLengthError)]
+        [MaxLength(UserValidation.UsernameMaxLength, ErrorMessage = UserValidation.UserNameMaxLengthError)]
+        public string Username { get; set; }
 
         [Required(ErrorMessage = UserValidation.FirstNameRequired)]
         [MinLength(UserValidation.FirstNameMinLength, ErrorMessage = UserValidation.FirstNameMinLengthError)]
