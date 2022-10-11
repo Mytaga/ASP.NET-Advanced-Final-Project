@@ -1,5 +1,6 @@
 ﻿using PizzaOrderingSystem.Data.Common.Models;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PizzaOrderingSystem.Data.Models
@@ -13,19 +14,16 @@ namespace PizzaOrderingSystem.Data.Models
 
         public int Quantity { get; set; }
 
-        [ForeignKey(nameof(Pizza))]
-        public string PizzaId { get; set; }
+        [Required]
+        [ForeignKey(nameof(Product))]
+        public string ProductId { get; set; }
 
-        public virtual Pizza Pizza { get; set; }
+        public virtual Product Product { get; set; }
 
-        [ForeignKey(nameof(Dessert))]
-        public string DessertId { get; set; }
+        [Required]
+        [ForeignKey(nameof(Cart))]
+        public string ShoppingCartId { get; set; }
 
-        public virtual Dessert Dessert { get; set; }
-
-        [ForeignKey(nameof(Beverage))]
-        public string BeverageId { get; set; }
-
-        public virtual Beverage Beverage { get; set; }
+        public virtual ShoppingCart Cart { get; set; }
     }
 }

@@ -9,19 +9,13 @@ namespace PizzaOrderingSystem.Data.Models
     {
         public Category()
         {
-            this.Pizzas = new HashSet<Pizza>();
-            this.Beverages = new HashSet<Beverage>();
-            this.Desserts = new HashSet<Dessert>();
+            this.Products = new HashSet<Product>();
         }
 
         [Required]
         [MaxLength(CategoryValidation.NameMaxLength)]
         public string Name { get; set; }
 
-        public virtual ICollection<Pizza> Pizzas { get; set; }
-
-        public virtual ICollection<Beverage> Beverages { get; set; }
-
-        public virtual ICollection<Dessert> Desserts { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

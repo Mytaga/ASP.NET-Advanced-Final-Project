@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PizzaOrderingSystem.Data.Common.Models;
+using System;
 
 namespace PizzaOrderingSystem.Data.Models
 {
-    public class ShoppingCart
+    public class ShoppingCart : BaseDeletableModel<string>
     {
-
+        public ShoppingCart()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
     }
 }

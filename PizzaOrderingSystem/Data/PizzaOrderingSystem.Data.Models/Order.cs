@@ -1,6 +1,7 @@
 ﻿using PizzaOrderingSystem.Data.Common.Models;
 using PizzaOrderingSystem.Data.Models.Enums;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PizzaOrderingSystem.Data.Models
@@ -20,6 +21,7 @@ namespace PizzaOrderingSystem.Data.Models
 
         public OrderStatus Status { get; set; }
 
+        [Required]
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
 

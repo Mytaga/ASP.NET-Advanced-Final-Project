@@ -1,12 +1,7 @@
 ﻿using PizzaOrderingSystem.Data.Common.Models;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using static PizzaOrderingSystem.Common.ModelValidationConstants;
 
 namespace PizzaOrderingSystem.Data.Models
@@ -26,6 +21,7 @@ namespace PizzaOrderingSystem.Data.Models
         [MaxLength(ReviewValidation.ContentMaxLength)]
         public string Content { get; set; }
 
+        [Required]
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
 
