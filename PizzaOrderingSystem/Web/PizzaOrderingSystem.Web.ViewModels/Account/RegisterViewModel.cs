@@ -17,6 +17,7 @@ namespace PizzaOrderingSystem.Web.ViewModels.Account
 
         [Required]
         [DataType(DataType.Password)]
+        [Display(Name = "Confirm Password")]
         public string ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = UserValidation.UsernameRequired)]
@@ -27,11 +28,13 @@ namespace PizzaOrderingSystem.Web.ViewModels.Account
         [Required(ErrorMessage = UserValidation.FirstNameRequired)]
         [MinLength(UserValidation.FirstNameMinLength, ErrorMessage = UserValidation.FirstNameMinLengthError)]
         [MaxLength(UserValidation.FirstNameMaxLength, ErrorMessage = UserValidation.FirstNameMaxLengthError)]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = UserValidation.LastNameRequired)]
         [MinLength(UserValidation.LastNameMinLength, ErrorMessage = UserValidation.LastNameMinLengthError)]
         [MaxLength(UserValidation.LastNameMaxLength, ErrorMessage = UserValidation.LastNameMaxLengthError)]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
     }
