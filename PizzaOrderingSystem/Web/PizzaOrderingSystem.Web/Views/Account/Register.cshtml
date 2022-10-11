@@ -18,12 +18,17 @@
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-floating">
-                <input asp-for="LastName" class="form-control" autocomplete="username" aria-activedescendantaria-required="true" />
+                <input asp-for="LastName" class="form-control" autocomplete="lastname" aria-activedescendantaria-required="true" />
                 <label asp-for="LastName"></label>
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="form-floating">
-                <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" />
+                <input asp-for="Username" class="form-control" autocomplete="username" aria-activedescendantaria-required="true" />
+                <label asp-for="Username"></label>
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Email" class="form-control" autocomplete="email" aria-required="true" />
                 <label asp-for="Email"></label>
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
