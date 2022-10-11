@@ -39,7 +39,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 EmailConfirmed = true,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                UserName = model.Email,
+                UserName = model.Username,
             };
 
             var result = await this.userManager.CreateAsync(user, model.Password);
