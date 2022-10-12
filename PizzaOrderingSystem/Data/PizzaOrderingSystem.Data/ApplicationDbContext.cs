@@ -26,6 +26,24 @@
 
         public DbSet<Setting> Settings { get; set; }
 
+        public virtual DbSet<Address> Addresses { get; set; }
+
+        public virtual DbSet<CartItem> CartItems { get; set; }
+
+        public virtual DbSet<Category> Categories { get; set; }
+
+        public virtual DbSet<CreditCard> CreditCards { get; set; }
+
+        public virtual DbSet<Order> Orders { get; set; }
+
+        public virtual DbSet<Product> Products { get; set; }
+
+        public virtual DbSet<Review> Reviews { get; set; }
+
+        public virtual DbSet<Sale> Sales { get; set; }
+
+        public virtual DbSet<Shop> Shops { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
