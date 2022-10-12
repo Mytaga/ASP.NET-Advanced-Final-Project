@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Web.ViewModels.Account;
@@ -6,18 +7,21 @@ using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Web.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly RoleManager<ApplicationRole> roleManager;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationRole> roleManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.roleManager = roleManager;
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Register()
         {
             var model = new RegisterViewModel();
@@ -26,6 +30,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (!this.ModelState.IsValid)
@@ -59,6 +64,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login(string returnUrl = null)
         {
             var model = new LoginViewModel()
@@ -70,6 +76,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!this.ModelState.IsValid)
