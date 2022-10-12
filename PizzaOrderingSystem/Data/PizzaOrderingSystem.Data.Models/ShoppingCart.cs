@@ -1,5 +1,6 @@
 ﻿using PizzaOrderingSystem.Data.Common.Models;
 using System;
+using System.Collections.Generic;
 
 namespace PizzaOrderingSystem.Data.Models
 {
@@ -9,5 +10,7 @@ namespace PizzaOrderingSystem.Data.Models
         {
             this.Id = Guid.NewGuid().ToString();
         }
+
+        public virtual ICollection<CartItem> Items { get; set; }
     }
 }

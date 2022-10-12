@@ -32,5 +32,11 @@ namespace PizzaOrderingSystem.Data.Models
         public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
+
+        [Required]
+        [ForeignKey(nameof(Shop))]
+        public string ShopId { get; set; }
+
+        public virtual Shop Shop { get; set; }
     }
 }

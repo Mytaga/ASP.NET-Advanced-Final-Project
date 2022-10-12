@@ -15,19 +15,19 @@ namespace PizzaOrderingSystem.Data.Models
         }
 
         [Required]
-        [MaxLength(PizzaVadidation.NameMaxLength)]
+        [MaxLength(ProductVadidation.NameMaxLength)]
         public string Name { get; set; }
 
         public decimal Price { get; set; }
 
         [Required]
-        [MaxLength(PizzaVadidation.DescriptionMaxLength)]
+        [MaxLength(ProductVadidation.DescriptionMaxLength)]
         public string Description { get; set; }
 
         [Required]
         public string ImageUrl { get; set; }
 
-        public TypeOfDough Dought { get; set; }
+        public TypeOfDough Dough { get; set; }
 
         [Required]
         [ForeignKey(nameof(Category))]
