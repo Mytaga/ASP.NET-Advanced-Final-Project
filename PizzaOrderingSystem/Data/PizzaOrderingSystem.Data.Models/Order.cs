@@ -1,6 +1,7 @@
 ﻿using PizzaOrderingSystem.Data.Common.Models;
 using PizzaOrderingSystem.Data.Models.Enums;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,6 +12,7 @@ namespace PizzaOrderingSystem.Data.Models
         public Order()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.Products = new HashSet<Product>();
         }
 
         public DateTime TimeOfOrder { get; set; }
@@ -33,5 +35,7 @@ namespace PizzaOrderingSystem.Data.Models
         public string ShopId { get; set; }
 
         public virtual Shop Shop { get; set; }
+
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

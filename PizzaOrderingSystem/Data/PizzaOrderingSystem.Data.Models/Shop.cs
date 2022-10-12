@@ -1,4 +1,5 @@
-﻿using PizzaOrderingSystem.Data.Common.Models;
+﻿using PizzaOrderingSystem.Common;
+using PizzaOrderingSystem.Data.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,9 +16,11 @@ namespace PizzaOrderingSystem.Data.Models
         }
 
         [Required]
+        [MaxLength(ModelValidationConstants.ShopValidation.ShopNameMaxLength)]
         public string Name { get; set; }
 
         [Required]
+        [MaxLength(ModelValidationConstants.ShopValidation.ShopDescriptionMaxLength)]
         public string Description { get; set; }
 
         [Required]

@@ -18,13 +18,10 @@ namespace PizzaOrderingSystem.Data.Models
         [Required]
         public string Street { get; set; }
 
-        [Required]
         public int StreetNumber { get; set; }
 
-        [Required]
         public int Floor { get; set; }
 
-        [Required]
         public int PostCode { get; set; }
 
         [Required]

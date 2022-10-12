@@ -1,6 +1,7 @@
 ﻿using PizzaOrderingSystem.Data.Common.Models;
 using PizzaOrderingSystem.Data.Models.Enums;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static PizzaOrderingSystem.Common.ModelValidationConstants;
@@ -12,6 +13,8 @@ namespace PizzaOrderingSystem.Data.Models
         public Product()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.Orders = new HashSet<Order>();
+            this.Shops = new HashSet<Shop>();
         }
 
         [Required]
@@ -34,5 +37,8 @@ namespace PizzaOrderingSystem.Data.Models
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Shop> Shops { get; set; }
     }
 }
