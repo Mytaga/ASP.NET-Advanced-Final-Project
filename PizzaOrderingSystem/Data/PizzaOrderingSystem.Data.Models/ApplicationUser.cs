@@ -46,7 +46,6 @@ namespace PizzaOrderingSystem.Data.Models
         [MaxLength(UserValidation.LastNameMaxLength)]
         public string LastName { get; set; }
 
-        [Required]
         [ForeignKey(nameof(Address))]
         public string AddressId { get; set; }
 
