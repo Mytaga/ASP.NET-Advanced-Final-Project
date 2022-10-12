@@ -1,24 +1,25 @@
-﻿namespace PizzaOrderingSystem.Web
-{
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
-    using PizzaOrderingSystem.Data;
-    using PizzaOrderingSystem.Data.Common;
-    using PizzaOrderingSystem.Data.Common.Repositories;
-    using PizzaOrderingSystem.Data.Models;
-    using PizzaOrderingSystem.Data.Repositories;
-    using PizzaOrderingSystem.Data.Seeding;
-    using PizzaOrderingSystem.Services.Data;
-    using PizzaOrderingSystem.Services.Mapping;
-    using PizzaOrderingSystem.Services.Messaging;
-    using PizzaOrderingSystem.Web.ViewModels;
-    using System.Reflection;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using PizzaOrderingSystem.Data;
+using PizzaOrderingSystem.Data.Common;
+using PizzaOrderingSystem.Data.Common.Repositories;
+using PizzaOrderingSystem.Data.Models;
+using PizzaOrderingSystem.Data.Repositories;
+using PizzaOrderingSystem.Data.Seeding;
+using PizzaOrderingSystem.Services.Data;
+using PizzaOrderingSystem.Services.Mapping;
+using PizzaOrderingSystem.Services.Messaging;
+using PizzaOrderingSystem.Web.ViewModels;
+using System;
+using System.Reflection;
 
+namespace PizzaOrderingSystem.Web
+{
     public class Program
     {
         public static void Main(string[] args)
@@ -70,6 +71,13 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.IdleTimeout = TimeSpan.FromMinutes(15);
+            });
         }
 
         private static void Configure(WebApplication app)
@@ -103,6 +111,8 @@
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
             app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
