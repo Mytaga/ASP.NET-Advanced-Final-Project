@@ -99,8 +99,8 @@ namespace PizzaOrderingSystem.Web.Controllers
             return this.View(model);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Logout(string returnUrl = null)
+        [HttpPost]
+        public async Task<IActionResult> Logout()
         {
             await this.signInManager.SignOutAsync();
 
