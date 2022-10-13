@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Web.ViewModels.Account;
 using System.Threading.Tasks;
@@ -110,6 +111,29 @@ namespace PizzaOrderingSystem.Web.Controllers
         public async Task<IActionResult> Logout()
         {
             await this.signInManager.SignOutAsync();
+
+            return this.RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> CreateRoles()
+        {
+            await this.roleManager.CreateAsync(new ApplicationRole(GlobalConstants.AdministratorRoleName));
+            await this.roleManager.CreateAsync(new ApplicationRole(GlobalConstants.UserRoleName));
+            await this.roleManager.CreateAsync(new ApplicationRole(GlobalConstants.ManagerRoleName));
+
+            return this.RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> AddUsersToRoles()
+        {
+            string adminEmail = GlobalConstants.AdminEmail;
+            string managerEmail = GlobalConstants.ManagerEmail;
+
+            var admin = await this.userManager.FindByEmailAsync(adminEmail);
+            var manager = await this.userManager.FindByEmailAsync(managerEmail);
+
+            await this.userManager.AddToRoleAsync(admin, GlobalConstants.AdministratorRoleName);
+            await this.userManager.AddToRoleAsync(manager, GlobalConstants.ManagerRoleName);
 
             return this.RedirectToAction("Index", "Home");
         }
