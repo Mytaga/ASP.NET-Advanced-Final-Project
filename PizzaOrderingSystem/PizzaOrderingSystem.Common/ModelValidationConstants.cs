@@ -29,7 +29,7 @@ namespace PizzaOrderingSystem.Common
             public const string UserNameMaxLengthError = "Username must be at no more than 30 letters";
         }
 
-        public static class PizzaVadidation
+        public static class ProductVadidation
         {
             public const int NameMinLength = 5;
             public const int NameMaxLength = 30;
@@ -41,20 +41,6 @@ namespace PizzaOrderingSystem.Common
         {
             public const int NameMinLength = 3;
             public const int NameMaxLength = 50;
-        }
-
-        public static class BeverageValidation
-        {
-            public const int NameMinLength = 3;
-            public const int NameMaxLength = 30;
-        }
-
-        public static class DessertValidation
-        {
-            public const int NameMinLength = 3;
-            public const int NameMaxLength = 30;
-            public const int DescriptionMinLength = 10;
-            public const int DescriptionMaxLength = 100;
         }
 
         public static class CreditCardValidation
@@ -75,6 +61,12 @@ namespace PizzaOrderingSystem.Common
             public const int AuthorNameMaxLength = 60;
             public const int ContentMinLength = 20;
             public const int ContentMaxLength = 600;
+        }
+
+        public static class ShopValidation
+        {
+            public const int ShopNameMaxLength = 60;
+            public const int ShopDescriptionMaxLength = 150;
         }
     }
 }
