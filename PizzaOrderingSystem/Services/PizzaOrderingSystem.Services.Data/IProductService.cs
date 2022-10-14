@@ -11,7 +11,7 @@ namespace PizzaOrderingSystem.Services.Data
 
         IQueryable<Product> GetAllByCategory(string categoryName = "");
 
-        ICollection<string> GetAllFurnitureCategories();
+        ICollection<string> GetAllProductsCategories();
 
         Task<Product> GetByIdАsync(string id);
 

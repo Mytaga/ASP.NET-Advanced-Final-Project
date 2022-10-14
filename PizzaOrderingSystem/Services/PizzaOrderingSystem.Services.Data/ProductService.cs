@@ -17,9 +17,10 @@ namespace PizzaOrderingSystem.Services.Data
             this.productRepo = productRepo;
         }
 
-        public Task AddProduct(Product product)
+        public async Task AddProduct(Product product)
         {
-            throw new NotImplementedException();
+            await this.productRepo.AddAsync(product);
+            await this.productRepo.SaveChangesAsync();
         }
 
         public void DeleteProduct(Product product)
@@ -42,12 +43,18 @@ namespace PizzaOrderingSystem.Services.Data
             throw new NotImplementedException();
         }
 
-        public IQueryable<Product> GetAllByName(string searchName = "")
+        public IQueryable<Product> GetAllByName(string searchName = EmptyString)
         {
-            throw new NotImplementedException();
+            if (searchName != null)
+            {
+                return this.productRepo.AllAsNoTracking()
+                    .Where(p => p.Name.ToLower().Contains(searchName.ToLower()) && p.IsDeleted == false);
+            }
+
+            return this.productRepo.AllAsNoTracking();
         }
 
-        public ICollection<string> GetAllFurnitureCategories()
+        public ICollection<string> GetAllProductsCategories()
         {
             throw new NotImplementedException();
         }
