@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using static PizzaOrderingSystem.Common.ModelValidationConstants;
 
 namespace PizzaOrderingSystem.Web.ViewModels.Account
@@ -36,6 +35,5 @@ namespace PizzaOrderingSystem.Web.ViewModels.Account
         [MaxLength(UserValidation.LastNameMaxLength, ErrorMessage = UserValidation.LastNameMaxLengthError)]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
-
     }
 }
