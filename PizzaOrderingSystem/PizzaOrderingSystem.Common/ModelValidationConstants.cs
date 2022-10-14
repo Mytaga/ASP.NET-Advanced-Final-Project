@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PizzaOrderingSystem.Common
+﻿namespace PizzaOrderingSystem.Common
 {
     public static class ModelValidationConstants
     {
@@ -35,12 +28,27 @@ namespace PizzaOrderingSystem.Common
             public const int NameMaxLength = 30;
             public const int DescriptionMinLength = 10;
             public const int DescriptionMaxLength = 100;
+            public const string PriceMinValue = "0";
+            public const string PriceMaxValue = "79228162514264337593543950335";
+
+            public const string NameRequiredError = "Name is required";
+            public const string NameMinLengthError = "Last name must be at least 5 letters";
+            public const string NameMaxLengthError = "Last name must be at no more than 30 letters";
+            public const string PriceRequiredError = "Price is required";
+            public const string DescriptionRequiredError = "Description is required";
+            public const string DescriptionMinLengthError = "Description must be at least 10 letters";
+            public const string DescriptionMaxLengthError = "Desctiption must be at no more than 100 letters";
+            public const string ImageRequiredError = "Image is required";
         }
 
         public static class CategoryValidation
         {
             public const int NameMinLength = 3;
             public const int NameMaxLength = 50;
+
+            public const string NameRequiredError = "Name is required";
+            public const string NameMinLengthError = "Last name must be at least 3 letters";
+            public const string NameMaxLengthError = "Last name must be at no more than 50 letters";
         }
 
         public static class CreditCardValidation
