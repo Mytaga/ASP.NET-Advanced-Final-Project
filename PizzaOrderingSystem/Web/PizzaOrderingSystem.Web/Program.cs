@@ -72,6 +72,7 @@ namespace PizzaOrderingSystem.Web
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICategoryService, CategoryService>();
 
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
