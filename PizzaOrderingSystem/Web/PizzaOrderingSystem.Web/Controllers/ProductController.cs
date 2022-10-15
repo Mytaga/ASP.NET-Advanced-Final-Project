@@ -1,12 +1,16 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Services.Mapping;
 using PizzaOrderingSystem.Web.ViewModels.ProductViewModels;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Web.Controllers
@@ -15,11 +19,13 @@ namespace PizzaOrderingSystem.Web.Controllers
     {
         private readonly IProductService productService;
         private readonly ICategoryService categoryService;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
-        public ProductController(IProductService productService, ICategoryService categoryService)
+        public ProductController(IProductService productService, ICategoryService categoryService, IWebHostEnvironment webHostEnvironment)
         {
             this.productService = productService;
             this.categoryService = categoryService;
+            this.webHostEnvironment = webHostEnvironment;
         }
 
         [HttpGet]
@@ -67,11 +73,32 @@ namespace PizzaOrderingSystem.Web.Controllers
                 return this.RedirectToAction("Create", "Product");
             }
 
+            string uniqueFileName = this.UploadFile(model);
+
             Product product = AutoMapperConfig.MapperInstance.Map<Product>(model);
+            product.ImageUrl = uniqueFileName;
 
             await this.productService.AddProduct(product);
 
             return this.RedirectToAction("Index", "Product");
+        }
+
+        private string UploadFile(CreateProductInputModel model)
+        {
+            string uniqueFileName = null;
+
+            if (model.ImageUrl != null)
+            {
+                string uploadsFolder = Path.Combine(this.webHostEnvironment.WebRootPath, "img");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ImageUrl.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.ImageUrl.CopyTo(fileStream);
+                }
+            }
+
+            return uniqueFileName;
         }
     }
 }
