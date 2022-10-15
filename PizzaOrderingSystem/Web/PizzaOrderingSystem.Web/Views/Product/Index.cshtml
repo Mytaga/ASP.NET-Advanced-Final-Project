@@ -45,7 +45,7 @@
     @foreach (var item in Model.Products)
     {
         <div class="card m-2" style="width: 20rem;">
-            <img class="card-img-top" src="@item.ImageUrl" alt="Card image cap">
+            <img class="card-img-top" src="~/img/@item.ImageUrl" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">Name: @item.Name</h5>
                 <h5 class="card-title">Name: @item.Price$</h5>
