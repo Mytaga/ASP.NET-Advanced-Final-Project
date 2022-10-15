@@ -2,6 +2,7 @@
 using PizzaOrderingSystem.Services.Mapping;
 using static PizzaOrderingSystem.Common.ModelValidationConstants;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
 namespace PizzaOrderingSystem.Web.ViewModels.ProductViewModels
 {
@@ -22,7 +23,7 @@ namespace PizzaOrderingSystem.Web.ViewModels.ProductViewModels
         public string Description { get; set; }
 
         [Required(ErrorMessage = ProductVadidation.ImageRequiredError)]
-        public string ImageUrl { get; set; }
+        public IFormFile ImageUrl { get; set; }
 
         public int CategoryId { get; set; }
     }
