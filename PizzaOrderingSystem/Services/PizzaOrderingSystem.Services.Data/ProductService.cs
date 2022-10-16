@@ -26,7 +26,8 @@ namespace PizzaOrderingSystem.Services.Data
 
         public void DeleteProduct(Product product)
         {
-            throw new NotImplementedException();
+            this.productRepo.Delete(product);
+            this.productRepo.SaveChangesAsync();
         }
 
         public void EditProduct(Product product)
@@ -65,6 +66,13 @@ namespace PizzaOrderingSystem.Services.Data
         {
             return this.productRepo.All()
                 .FirstOrDefaultAsync(p => p.Id == id);
+        }
+
+        public Product GetById(string id)
+        {
+            return this.productRepo
+               .All()
+               .FirstOrDefault(f => f.Id == id);
         }
     }
 }

@@ -15,6 +15,8 @@ namespace PizzaOrderingSystem.Services.Data
 
         Task<Product> GetByIdАsync(string id);
 
+        Product GetById(string id);
+
         Task AddProduct(Product product);
 
         void DeleteProduct(Product product);
