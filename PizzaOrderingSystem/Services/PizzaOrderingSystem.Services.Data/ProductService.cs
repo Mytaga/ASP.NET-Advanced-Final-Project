@@ -1,4 +1,5 @@
-﻿using PizzaOrderingSystem.Data.Common.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,8 @@ namespace PizzaOrderingSystem.Services.Data
 
         public void EditProduct(Product product)
         {
-            throw new NotImplementedException();
+            this.productRepo.Update(product);
+            this.productRepo.SaveChangesAsync();
         }
 
         public bool ExistById(string id)
@@ -61,7 +63,8 @@ namespace PizzaOrderingSystem.Services.Data
 
         public Task<Product> GetByIdАsync(string id)
         {
-            throw new NotImplementedException();
+            return this.productRepo.All()
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
     }
 }
