@@ -83,7 +83,83 @@ namespace PizzaOrderingSystem.Web.Controllers
             return this.RedirectToAction("Index", "Product");
         }
 
+        [HttpGet]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public async Task<IActionResult> Edit(string id)
+        {
+            var product = await this.productService.GetByIdАsync(id);
+
+            if (product == null)
+            {
+                return this.RedirectToAction("Error", "Home");
+            }
+
+            EditProductViewModel viewModel = new EditProductViewModel()
+            {
+                Name = product.Name,
+                Price = product.Price,
+                Description = product.Description,
+            };
+
+            ICollection<ListProductCategoriesViewModel> allCategories =
+               this.categoryService.All()
+               .To<ListProductCategoriesViewModel>()
+               .ToArray();
+
+            viewModel.Categories = allCategories;
+
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public async Task<IActionResult> Edit(string id, EditProductInputModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.RedirectToAction("Edit", "Product");
+            }
+
+            if (!this.categoryService.ExistById(model.CategoryId))
+            {
+                return this.RedirectToAction("Edit", "Product");
+            }
+
+            Product product = await this.productService.GetByIdАsync(id);
+            Category category = this.categoryService.GetById(model.CategoryId);
+
+            string uniqueFileName = this.UploadFile(model);
+
+            product.Name = model.Name;
+            product.Price = model.Price;
+            product.Description = model.Description;
+            product.ImageUrl = uniqueFileName;
+            product.Category = category;
+
+            this.productService.EditProduct(product);
+
+            return this.RedirectToAction("Index", "Product");
+        }
+
         private string UploadFile(CreateProductInputModel model)
+        {
+            string uniqueFileName = null;
+
+            if (model.ImageUrl != null)
+            {
+                string uploadsFolder = Path.Combine(this.webHostEnvironment.WebRootPath, "img");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ImageUrl.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.ImageUrl.CopyTo(fileStream);
+                }
+            }
+
+            return uniqueFileName;
+        }
+
+        private string UploadFile(EditProductInputModel model)
         {
             string uniqueFileName = null;
 
