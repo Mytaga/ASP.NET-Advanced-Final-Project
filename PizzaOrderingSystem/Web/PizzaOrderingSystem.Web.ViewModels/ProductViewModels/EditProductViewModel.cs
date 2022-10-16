@@ -23,7 +23,6 @@ namespace PizzaOrderingSystem.Web.ViewModels.ProductViewModels
         [MaxLength(ProductVadidation.DescriptionMaxLength, ErrorMessage = ProductVadidation.DescriptionMaxLengthError)]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = ProductVadidation.ImageRequiredError)]
         [Display(Name = "Image")]
         public IFormFile ImageUrl { get; set; }
 
