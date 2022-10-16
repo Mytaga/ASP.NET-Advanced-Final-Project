@@ -133,10 +133,44 @@ namespace PizzaOrderingSystem.Web.Controllers
             product.Name = model.Name;
             product.Price = model.Price;
             product.Description = model.Description;
-            product.ImageUrl = uniqueFileName;
             product.Category = category;
 
+            if (uniqueFileName != null)
+            {
+                product.ImageUrl = uniqueFileName;
+            }
+
             this.productService.EditProduct(product);
+
+            return this.RedirectToAction("Index", "Product");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public IActionResult Delete(string id)
+        {
+            var product = this.productService.GetById(id);
+
+            if (product == null)
+            {
+                return this.RedirectToAction("Error", "Home");
+            }
+
+            return this.View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public IActionResult DeleteConfirmed(string id)
+        {
+            var product = this.productService.GetById(id);
+
+            if (product == null)
+            {
+                return this.RedirectToAction("Error", "Home");
+            }
+
+            this.productService.DeleteProduct(product);
 
             return this.RedirectToAction("Index", "Product");
         }
