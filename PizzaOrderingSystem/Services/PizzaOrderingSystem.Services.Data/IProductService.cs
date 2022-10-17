@@ -19,9 +19,9 @@ namespace PizzaOrderingSystem.Services.Data
 
         Task AddProduct(Product product);
 
-        void DeleteProduct(Product product);
+        Task DeleteProduct(Product product);
 
-        void EditProduct(Product product);
+        Task EditProduct(Product product);
 
         bool ExistById(string id);
     }

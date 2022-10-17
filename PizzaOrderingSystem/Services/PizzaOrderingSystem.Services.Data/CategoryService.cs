@@ -1,4 +1,5 @@
-﻿using PizzaOrderingSystem.Data.Common.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,6 +38,13 @@ namespace PizzaOrderingSystem.Services.Data
             return this.categoryRepo
                 .All()
                 .FirstOrDefault(c => c.Id == id);
+        }
+
+        public async Task<Category> GetByIdAsync(int id)
+        {
+            return await this.categoryRepo
+                .All()
+                .FirstOrDefaultAsync(c => c.Id == id);
         }
     }
 }

@@ -13,5 +13,7 @@ namespace PizzaOrderingSystem.Services.Data
         Task AddCategory(Category category);
 
         Category GetById(int id);
+
+        Task<Category> GetByIdAsync(int id);
     }
 }

@@ -24,16 +24,16 @@ namespace PizzaOrderingSystem.Services.Data
             await this.productRepo.SaveChangesAsync();
         }
 
-        public void DeleteProduct(Product product)
+        public async Task DeleteProduct(Product product)
         {
             this.productRepo.Delete(product);
-            this.productRepo.SaveChangesAsync();
+            await this.productRepo.SaveChangesAsync();
         }
 
-        public void EditProduct(Product product)
+        public async Task EditProduct(Product product)
         {
             this.productRepo.Update(product);
-            this.productRepo.SaveChangesAsync();
+            await this.productRepo.SaveChangesAsync();
         }
 
         public bool ExistById(string id)
@@ -54,7 +54,7 @@ namespace PizzaOrderingSystem.Services.Data
                     .Where(p => p.Name.ToLower().Contains(searchName.ToLower()) && p.IsDeleted == false);
             }
 
-            return this.productRepo.AllAsNoTracking();
+            return this.productRepo.All();
         }
 
         public ICollection<string> GetAllProductsCategories()
