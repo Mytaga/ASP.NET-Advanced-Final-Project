@@ -22,7 +22,7 @@ namespace PizzaOrderingSystem.Web.ViewModels.ProductViewModels
         public string Description { get; set; }
 
         [Required(ErrorMessage = ProductVadidation.ImageRequiredError)]
-        [Display(Name="Image")]
+        [Display(Name = "Image")]
         public IFormFile ImageUrl { get; set; }
 
         public ICollection<ListProductCategoriesViewModel> Categories { get; set; }
