@@ -44,6 +44,66 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
+        public IActionResult IndexPizza(string search)
+        {
+            IQueryable<Product> allProducts = this.productService.GetAllByCategory(GlobalConstants.PizzaCategory);
+
+            AllProductsViewModel viewModel = new AllProductsViewModel()
+            {
+                Products = allProducts.To<ListAllProductsViewModel>().ToArray(),
+                SearchQuery = search,
+            };
+
+            return this.View(viewModel);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult IndexSalads(string search)
+        {
+            IQueryable<Product> allProducts = this.productService.GetAllByCategory(GlobalConstants.SaladCategory);
+
+            AllProductsViewModel viewModel = new AllProductsViewModel()
+            {
+                Products = allProducts.To<ListAllProductsViewModel>().ToArray(),
+                SearchQuery = search,
+            };
+
+            return this.View(viewModel);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult IndexDesserts(string search)
+        {
+            IQueryable<Product> allProducts = this.productService.GetAllByCategory(GlobalConstants.DessertCategory);
+
+            AllProductsViewModel viewModel = new AllProductsViewModel()
+            {
+                Products = allProducts.To<ListAllProductsViewModel>().ToArray(),
+                SearchQuery = search,
+            };
+
+            return this.View(viewModel);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult IndexDrinks(string search)
+        {
+            IQueryable<Product> allProducts = this.productService.GetAllByCategory(GlobalConstants.DrinkCategory);
+
+            AllProductsViewModel viewModel = new AllProductsViewModel()
+            {
+                Products = allProducts.To<ListAllProductsViewModel>().ToArray(),
+                SearchQuery = search,
+            };
+
+            return this.View(viewModel);
+        }
+
+        [HttpGet]
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Create()
         {
