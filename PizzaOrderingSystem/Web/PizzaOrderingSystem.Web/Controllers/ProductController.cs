@@ -126,7 +126,7 @@ namespace PizzaOrderingSystem.Web.Controllers
             }
 
             Product product = await this.productService.GetByIdАsync(id);
-            Category category = this.categoryService.GetById(model.CategoryId);
+            Category category = await this.categoryService.GetByIdAsync(model.CategoryId);
 
             string uniqueFileName = this.UploadFile(model);
 
@@ -140,7 +140,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 product.ImageUrl = uniqueFileName;
             }
 
-            this.productService.EditProduct(product);
+            await this.productService.EditProduct(product);
 
             return this.RedirectToAction("Index", "Product");
         }
@@ -161,18 +161,33 @@ namespace PizzaOrderingSystem.Web.Controllers
 
         [HttpPost]
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-        public IActionResult DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var product = this.productService.GetById(id);
+            var product = await this.productService.GetByIdАsync(id);
 
             if (product == null)
             {
                 return this.RedirectToAction("Error", "Home");
             }
 
-            this.productService.DeleteProduct(product);
+            await this.productService.DeleteProduct(product);
 
             return this.RedirectToAction("Index", "Product");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(string id)
+        {
+            Product product = await this.productService.GetByIdАsync(id);
+
+            if (product == null)
+            {
+                return this.RedirectToAction("Error", "Home");
+            }
+
+            DetailsProductViewModel viewModel = AutoMapperConfig.MapperInstance.Map<DetailsProductViewModel>(product);
+
+            return this.View(viewModel);
         }
 
         private string UploadFile(CreateProductInputModel model)
