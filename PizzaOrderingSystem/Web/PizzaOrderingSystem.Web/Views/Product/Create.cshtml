@@ -27,13 +27,13 @@
                 <input asp-for="Description" class="form-control" type="text" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group mb-2">  
-                 <label asp-for="ImageUrl" class="control-label"></label>  
-                 <div>
+            <div class="form-group mb-2">
+                <label asp-for="ImageUrl" class="control-label"></label>
+                <div>
                     <input asp-for="ImageUrl" class="custom-file-input">
-                 </div>
-                 <span asp-validation-for="ImageUrl" class="text-danger"></span>
-            </div>   
+                </div>
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label for="CategoryId" class="control-label">Category</label>
                 <select id="CategoryId" name="CategoryId" class="form-control" asp-items="ViewBag.CategoryId">

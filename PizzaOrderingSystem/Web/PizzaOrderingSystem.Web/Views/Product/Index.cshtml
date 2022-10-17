@@ -53,37 +53,22 @@
                         <h5 class="card-title">Name: @item.Name</h5>
                         <h5 class="card-title">Price: @item.Price$</h5>
                         <h5 class="card-title">@item.Description</h5>
-                        <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                        @if (User.Identity.IsAuthenticated && !User.IsInRole(GlobalConstants.AdministratorRoleName))
-                        {
-                            <a class="btn btn-dark" asp-controller="Order" asp-action="Create" asp-route-id="@item.Id">Add</a>
-                        }
-                        @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
-                        {
-                            <a class="btn btn-dark" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                        }
+                        <div>
+                            <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                            @if (User.Identity.IsAuthenticated && !User.IsInRole(GlobalConstants.AdministratorRoleName))
+                            {
+                                <a class="btn btn-dark" asp-controller="Order" asp-action="Create" asp-route-id="@item.Id">Add</a>
+                            }
+                            @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+                            {
+                                <a class="btn btn-dark" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            }
+                        </div>
+                       
                     </div>
                 </div>
             </div>
         </div>
     }
 </div>
-@*
-<div class="card m-2" style="width: 20rem;">
-    <img class="card-img-top mt-3" src="~/img/@item.ImageUrl" alt="Card image cap">
-    <div class="card-body">
-        <h5 class="card-title">Name: @item.Name</h5>
-        <h5 class="card-title">Name: @item.Price$</h5>
-        <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Id">Details</a>
-        @if (User.Identity.IsAuthenticated && !User.IsInRole(GlobalConstants.AdministratorRoleName))
-        {
-            <a class="btn btn-dark" asp-controller="Order" asp-action="Create" asp-route-id="@item.Id">Add</a>
-        }
-        @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
-        {
-            <a class="btn btn-dark" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-        }
-    </div>
-</div>*@
