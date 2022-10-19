@@ -1,0 +1,42 @@
+﻿@using PizzaOrderingSystem.Common
+@model PizzaOrderingSystem.Web.ViewModels.ReviewViewModels.AllReviewsViewModel
+
+
+@{
+    ViewData["Title"] = "Reviews";
+}
+<h2>Reviews</h2>
+
+<div class="container mt-0">
+    <div id="reviews" class="review-section">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h4 class="m-0">@Model.Reviews.Count Reviews</h4>
+        </div>
+        @if (User.Identity.IsAuthenticated && !User.IsInRole(GlobalConstants.AdministratorRoleName))
+        {
+            <a class="btn btn-dark" asp-controller="Review" asp-action="Create">Add Review</a>
+        }
+        <div class="review-list">
+            <ul>
+                @foreach (var item in Model.Reviews)
+                {
+                    <li>
+                        <div class="d-flex">
+                            <div class="right">
+                                <h4>
+                                    @item.AuthorName
+                                </h4>
+                                <div class="review-description">
+                                    <p>
+                                        @item.Content
+                                    </p>
+                                </div>
+                                <span class="publish py-3 d-inline-block w-100">@item.PublishedOn</span>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
