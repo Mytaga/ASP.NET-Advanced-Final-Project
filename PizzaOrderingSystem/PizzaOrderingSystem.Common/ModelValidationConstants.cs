@@ -69,6 +69,14 @@
             public const int AuthorNameMaxLength = 60;
             public const int ContentMinLength = 20;
             public const int ContentMaxLength = 600;
+
+            public const string NameRequiredError = "Name is required";
+            public const string NameMinLengthError = "Last name must be at least 5 letters";
+            public const string NameMaxLengthError = "Last name must be at no more than 60 letters";
+
+            public const string ContentRequiredError = "Content is required";
+            public const string ContentMinLengthError = "Content must be at least 20 letters";
+            public const string ContentMaxLengthError = "Content must be at no more than 600 letters";
         }
 
         public static class ShopValidation
