@@ -2,7 +2,7 @@
 @model PizzaOrderingSystem.Web.ViewModels.ProductViewModels.AllProductsViewModel
 
 @{
-    ViewData["Title"] = "Salads";
+    ViewData["Title"] = "Pizza";
 }
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
@@ -21,9 +21,13 @@
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-action="IndexDrinks">Drinks</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-action="IndexSauces">Sauces</a>
+            </li>
         </ul>
     </div>
 </nav>
+
 
 <div class="row mt-4 justify-content-center">
     @foreach (var item in Model.Products)
