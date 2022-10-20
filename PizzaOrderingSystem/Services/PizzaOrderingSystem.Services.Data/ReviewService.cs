@@ -1,4 +1,5 @@
-﻿using PizzaOrderingSystem.Data.Common.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
 using System;
 using System.Linq;
@@ -36,6 +37,16 @@ namespace PizzaOrderingSystem.Services.Data
         public IQueryable<Review> GetAll()
         {
             return this.reviewRepo.All();
+        }
+
+        public Review GetById(string id)
+        {
+            return this.reviewRepo.All().FirstOrDefault(r => r.Id == id);
+        }
+
+        public async Task<Review> GetByIdAsync(string id)
+        {
+            return await this.reviewRepo.All().FirstOrDefaultAsync(r => r.Id == id);
         }
     }
 }

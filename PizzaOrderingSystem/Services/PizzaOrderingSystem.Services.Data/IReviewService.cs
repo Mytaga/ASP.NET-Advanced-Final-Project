@@ -13,5 +13,9 @@ namespace PizzaOrderingSystem.Services.Data
         Task DeleteReview(Review review);
 
         Task EditReview(Review review);
+
+        Task<Review> GetByIdAsync(string id);
+
+        Review GetById(string id);  
     }
 }
