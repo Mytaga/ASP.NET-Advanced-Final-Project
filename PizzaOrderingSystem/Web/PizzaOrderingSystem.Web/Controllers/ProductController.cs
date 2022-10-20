@@ -104,6 +104,21 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
+        public IActionResult IndexSauces(string search)
+        {
+            IQueryable<Product> allProducts = this.productService.GetAllByCategory(GlobalConstants.SauceCategory);
+
+            AllProductsViewModel viewModel = new AllProductsViewModel()
+            {
+                Products = allProducts.To<ListAllProductsViewModel>().ToArray(),
+                SearchQuery = search,
+            };
+
+            return this.View(viewModel);
+        }
+
+        [HttpGet]
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Create()
         {
@@ -125,12 +140,12 @@ namespace PizzaOrderingSystem.Web.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return this.RedirectToAction("Create", "Product");
+                return this.RedirectToAction(nameof(this.Create));
             }
 
             if (!this.categoryService.ExistById(model.CategoryId))
             {
-                return this.RedirectToAction("Create", "Product");
+                return this.RedirectToAction(nameof(this.Create));
             }
 
             string uniqueFileName = this.UploadFile(model);
@@ -140,7 +155,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             await this.productService.AddProduct(product);
 
-            return this.RedirectToAction("Index", "Product");
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         [HttpGet]
@@ -177,12 +192,12 @@ namespace PizzaOrderingSystem.Web.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return this.RedirectToAction("Edit", "Product");
+                return this.RedirectToAction(nameof(this.Edit));
             }
 
             if (!this.categoryService.ExistById(model.CategoryId))
             {
-                return this.RedirectToAction("Edit", "Product");
+                return this.RedirectToAction(nameof(this.Edit));
             }
 
             Product product = await this.productService.GetByIdАsync(id);
