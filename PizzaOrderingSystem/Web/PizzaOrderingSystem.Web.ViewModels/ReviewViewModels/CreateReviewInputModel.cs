@@ -2,6 +2,7 @@
 using PizzaOrderingSystem.Services.Mapping;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using static PizzaOrderingSystem.Common.ModelValidationConstants;
 
 namespace PizzaOrderingSystem.Web.ViewModels.ReviewViewModels
@@ -18,7 +19,7 @@ namespace PizzaOrderingSystem.Web.ViewModels.ReviewViewModels
         [MaxLength(ReviewValidation.ContentMaxLength, ErrorMessage = ReviewValidation.ContentMaxLengthError)]
         public string Content { get; set; }
 
-        public DateTime PublishedOn => DateTime.UtcNow;
+        public DateTime PublishedOn => DateTime.Now;
 
         public string UserId { get; set; }
     }
