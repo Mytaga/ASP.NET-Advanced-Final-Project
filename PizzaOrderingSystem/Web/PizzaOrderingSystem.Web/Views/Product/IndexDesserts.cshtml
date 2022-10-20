@@ -47,8 +47,12 @@
                             {
                                 <a class="btn btn-dark" asp-controller="Order" asp-action="Create" asp-route-id="@item.Id">Add</a>
                             }
+                            @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+                            {
+                                <a class="btn btn-dark" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            }
                         </div>
-
                     </div>
                 </div>
             </div>

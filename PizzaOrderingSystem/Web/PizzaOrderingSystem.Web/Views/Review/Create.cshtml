@@ -1,7 +1,7 @@
 ﻿@model PizzaOrderingSystem.Web.ViewModels.ReviewViewModels.CreateReviewViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Review";
 }
 
 <h2>Add Review</h2>
@@ -18,8 +18,15 @@
         <input asp-for="Content" class="form-control" />
         <span asp-validation-for="Content" class="text-danger"></span>
     </div>
-    <div class="form-group mt-3">
+    <div class="form-group mt-3 mb-3">
         <input type="submit" value="Add" class="btn btn-dark" />
         <a class="btn btn-dark" asp-controller="Review" asp-action="Index">Back</a>
     </div>
 </form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+    

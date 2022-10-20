@@ -42,5 +42,20 @@
     </dl>
 </div>
 <div>
-    <a class="btn btn-dark" asp-action="Index">Back</a>
+    @if (Model.CategoryName == "Pizza")
+    {
+        <a class="btn btn-dark" asp-action="IndexPizza">Back</a>
+    }
+    else if (Model.CategoryName == "Dessert")
+    {
+        <a class="btn btn-dark" asp-action="IndexDesserts">Back</a>
+    }
+    else if (Model.CategoryName == "Salad")
+    {
+        <a class="btn btn-dark" asp-action="IndexSalads">Back</a>
+    }
+    else 
+    {
+        <a class="btn btn-dark" asp-action="IndexDrinks">Back</a>
+    }   
 </div>
