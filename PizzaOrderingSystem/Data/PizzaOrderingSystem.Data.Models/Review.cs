@@ -21,6 +21,8 @@ namespace PizzaOrderingSystem.Data.Models
         [MaxLength(ReviewValidation.ContentMaxLength)]
         public string Content { get; set; }
 
+        public DateTime PublishedOn { get; set; }
+
         [Required]
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
