@@ -58,6 +58,7 @@ namespace PizzaOrderingSystem.Web
                 {
                     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                 }).AddRazorRuntimeCompilation();
+
             services.AddRazorPages();
             services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -73,12 +74,17 @@ namespace PizzaOrderingSystem.Web
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IReviewService, ReviewService>();
+            services.AddScoped<ICartService, CartService>();
+
+            services.AddScoped(sp => ShoppingCart.GetCart(sp));
 
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
                 options.Cookie.HttpOnly = true;
                 options.IdleTimeout = TimeSpan.FromMinutes(15);
+                options.Cookie.IsEssential = true;
             });
         }
 
