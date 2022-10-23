@@ -76,6 +76,7 @@ namespace PizzaOrderingSystem.Web
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<ICartService, CartService>();
+            services.AddScoped<ICartItemService, CartItemService>();
 
             services.AddScoped(sp => ShoppingCart.GetCart(sp));
 
