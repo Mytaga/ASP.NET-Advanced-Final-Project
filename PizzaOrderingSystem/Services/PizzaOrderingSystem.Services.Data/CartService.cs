@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using PizzaOrderingSystem.Data;
-using PizzaOrderingSystem.Data.Models;
+﻿using PizzaOrderingSystem.Data.Models;
 using System;
 using System.Threading.Tasks;
 
