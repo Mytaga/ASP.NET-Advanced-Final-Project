@@ -1,12 +1,11 @@
-﻿namespace PizzaOrderingSystem.Web.Controllers
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using PizzaOrderingSystem.Common;
+using PizzaOrderingSystem.Web.ViewModels;
+using System.Diagnostics;
+
+namespace PizzaOrderingSystem.Web.Controllers
 {
-    using System.Diagnostics;
-
-    using PizzaOrderingSystem.Web.ViewModels;
-
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Authorization;
-
     public class HomeController : BaseController
     {
         [AllowAnonymous]
@@ -15,7 +14,7 @@
             return this.View();
         }
 
-        [AllowAnonymous]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Privacy()
         {
             return this.View();
