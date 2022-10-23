@@ -1,9 +1,10 @@
-﻿using PizzaOrderingSystem.Data.Models;
+﻿using AutoMapper;
+using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Mapping;
 
 namespace PizzaOrderingSystem.Web.ViewModels.ShoppingCart
 {
-    public class CartItemViewModel : IMapFrom<CartItem>
+    public class CartItemViewModel : IMapFrom<CartItem>, IHaveCustomMappings
     {
         public string ItemName { get; set; }
 
@@ -12,5 +13,11 @@ namespace PizzaOrderingSystem.Web.ViewModels.ShoppingCart
         public decimal ItemPrice { get; set; }
 
         public decimal Amount => this.ItemPrice * this.Quantity;
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<CartItem, CartItemViewModel>()
+               .ForMember(d => d.ItemName, mo => mo.MapFrom(s => s.Product.Name));
+        }
     }
 }
