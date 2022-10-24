@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Data\\PizzaOrderingSystem.Services.Data.csproj": {}
+    "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Data\\PizzaOrderingSystem.Services.Data.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Common\\PizzaOrderingSystem.Data.Common.csproj": {
+    "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Common\\PizzaOrderingSystem.Data.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Common\\PizzaOrderingSystem.Data.Common.csproj",
+        "projectUniqueName": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Common\\PizzaOrderingSystem.Data.Common.csproj",
         "projectName": "PizzaOrderingSystem.Data.Common",
-        "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Common\\PizzaOrderingSystem.Data.Common.csproj",
+        "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Common\\PizzaOrderingSystem.Data.Common.csproj",
         "packagesPath": "C:\\Users\\PTO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Common\\obj\\",
+        "outputPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PTO\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -67,18 +67,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Models\\PizzaOrderingSystem.Data.Models.csproj": {
+    "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Models\\PizzaOrderingSystem.Data.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Models\\PizzaOrderingSystem.Data.Models.csproj",
+        "projectUniqueName": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Models\\PizzaOrderingSystem.Data.Models.csproj",
         "projectName": "PizzaOrderingSystem.Data.Models",
-        "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Models\\PizzaOrderingSystem.Data.Models.csproj",
+        "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Models\\PizzaOrderingSystem.Data.Models.csproj",
         "packagesPath": "C:\\Users\\PTO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Models\\obj\\",
+        "outputPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PTO\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -95,11 +95,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Common\\PizzaOrderingSystem.Data.Common.csproj": {
-                "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Common\\PizzaOrderingSystem.Data.Common.csproj"
+              "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Common\\PizzaOrderingSystem.Data.Common.csproj": {
+                "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Common\\PizzaOrderingSystem.Data.Common.csproj"
               },
-              "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\PizzaOrderingSystem.Common\\PizzaOrderingSystem.Common.csproj": {
-                "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\PizzaOrderingSystem.Common\\PizzaOrderingSystem.Common.csproj"
+              "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\PizzaOrderingSystem.Common\\PizzaOrderingSystem.Common.csproj": {
+                "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\PizzaOrderingSystem.Common\\PizzaOrderingSystem.Common.csproj"
               }
             }
           }
@@ -114,6 +114,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Extensions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
               "version": "[5.0.17, )"
@@ -121,6 +129,10 @@
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.5, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
             },
             "StyleCop.Analyzers": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers",
@@ -145,18 +157,115 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\PizzaOrderingSystem.Common\\PizzaOrderingSystem.Common.csproj": {
+    "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data\\PizzaOrderingSystem.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\PizzaOrderingSystem.Common\\PizzaOrderingSystem.Common.csproj",
-        "projectName": "PizzaOrderingSystem.Common",
-        "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\PizzaOrderingSystem.Common\\PizzaOrderingSystem.Common.csproj",
+        "projectUniqueName": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data\\PizzaOrderingSystem.Data.csproj",
+        "projectName": "PizzaOrderingSystem.Data",
+        "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data\\PizzaOrderingSystem.Data.csproj",
         "packagesPath": "C:\\Users\\PTO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\PizzaOrderingSystem.Common\\obj\\",
+        "outputPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\PTO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Common\\PizzaOrderingSystem.Data.Common.csproj": {
+                "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Common\\PizzaOrderingSystem.Data.Common.csproj"
+              },
+              "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Models\\PizzaOrderingSystem.Data.Models.csproj": {
+                "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Models\\PizzaOrderingSystem.Data.Models.csproj"
+              },
+              "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\PizzaOrderingSystem.Common\\PizzaOrderingSystem.Common.csproj": {
+                "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\PizzaOrderingSystem.Common\\PizzaOrderingSystem.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.Extensions.Configuration.UserSecrets": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "StyleCop.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.2.0-beta.435, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\PizzaOrderingSystem.Common\\PizzaOrderingSystem.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\PizzaOrderingSystem.Common\\PizzaOrderingSystem.Common.csproj",
+        "projectName": "PizzaOrderingSystem.Common",
+        "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\PizzaOrderingSystem.Common\\PizzaOrderingSystem.Common.csproj",
+        "packagesPath": "C:\\Users\\PTO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\PizzaOrderingSystem.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PTO\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -208,18 +317,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Data\\PizzaOrderingSystem.Services.Data.csproj": {
+    "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Data\\PizzaOrderingSystem.Services.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Data\\PizzaOrderingSystem.Services.Data.csproj",
+        "projectUniqueName": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Data\\PizzaOrderingSystem.Services.Data.csproj",
         "projectName": "PizzaOrderingSystem.Services.Data",
-        "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Data\\PizzaOrderingSystem.Services.Data.csproj",
+        "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Data\\PizzaOrderingSystem.Services.Data.csproj",
         "packagesPath": "C:\\Users\\PTO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Data\\obj\\",
+        "outputPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PTO\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -236,14 +345,17 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Common\\PizzaOrderingSystem.Data.Common.csproj": {
-                "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Common\\PizzaOrderingSystem.Data.Common.csproj"
+              "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Common\\PizzaOrderingSystem.Data.Common.csproj": {
+                "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Common\\PizzaOrderingSystem.Data.Common.csproj"
               },
-              "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Models\\PizzaOrderingSystem.Data.Models.csproj": {
-                "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Models\\PizzaOrderingSystem.Data.Models.csproj"
+              "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Models\\PizzaOrderingSystem.Data.Models.csproj": {
+                "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Models\\PizzaOrderingSystem.Data.Models.csproj"
               },
-              "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Mapping\\PizzaOrderingSystem.Services.Mapping.csproj": {
-                "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Mapping\\PizzaOrderingSystem.Services.Mapping.csproj"
+              "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data\\PizzaOrderingSystem.Data.csproj": {
+                "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data\\PizzaOrderingSystem.Data.csproj"
+              },
+              "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Mapping\\PizzaOrderingSystem.Services.Mapping.csproj": {
+                "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Mapping\\PizzaOrderingSystem.Services.Mapping.csproj"
               }
             }
           }
@@ -258,6 +370,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Http.Extensions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "StyleCop.Analyzers": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers",
               "suppressParent": "All",
@@ -281,18 +397,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Mapping\\PizzaOrderingSystem.Services.Mapping.csproj": {
+    "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Mapping\\PizzaOrderingSystem.Services.Mapping.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Mapping\\PizzaOrderingSystem.Services.Mapping.csproj",
+        "projectUniqueName": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Mapping\\PizzaOrderingSystem.Services.Mapping.csproj",
         "projectName": "PizzaOrderingSystem.Services.Mapping",
-        "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Mapping\\PizzaOrderingSystem.Services.Mapping.csproj",
+        "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Mapping\\PizzaOrderingSystem.Services.Mapping.csproj",
         "packagesPath": "C:\\Users\\PTO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PTO\\Downloads\\ASP.NET Advanced Final Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Mapping\\obj\\",
+        "outputPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Mapping\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PTO\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -348,7 +464,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

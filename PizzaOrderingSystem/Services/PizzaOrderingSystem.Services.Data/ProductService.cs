@@ -43,7 +43,8 @@ namespace PizzaOrderingSystem.Services.Data
 
         public IQueryable<Product> GetAllByCategory(string categoryName = "")
         {
-            throw new NotImplementedException();
+            return this.productRepo.AllAsNoTracking()
+                .Where(p => p.Category.Name == categoryName && p.IsDeleted == false);
         }
 
         public IQueryable<Product> GetAllByName(string searchName = EmptyString)
@@ -62,9 +63,9 @@ namespace PizzaOrderingSystem.Services.Data
             throw new NotImplementedException();
         }
 
-        public Task<Product> GetByIdАsync(string id)
+        public async Task<Product> GetByIdАsync(string id)
         {
-            return this.productRepo.All()
+            return await this.productRepo.All()
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 
