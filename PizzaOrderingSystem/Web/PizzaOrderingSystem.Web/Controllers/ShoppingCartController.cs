@@ -4,6 +4,7 @@ using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Services.Mapping;
 using PizzaOrderingSystem.Web.ViewModels.ShoppingCart;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Web.Controllers
 {
@@ -11,11 +12,13 @@ namespace PizzaOrderingSystem.Web.Controllers
     {
         private readonly ICartItemService cartItemService;
         private readonly ICartService cartService;
+        private readonly IProductService productService;
 
-        public ShoppingCartController(ICartItemService cartItemService, ICartService cartService)
+        public ShoppingCartController(ICartItemService cartItemService, ICartService cartService, IProductService productService)
         {
             this.cartItemService = cartItemService;
             this.cartService = cartService;
+            this.productService = productService;
         }
 
         [HttpGet]
@@ -29,6 +32,19 @@ namespace PizzaOrderingSystem.Web.Controllers
             };
 
             return this.View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Add(string id)
+        {
+            var product = await this.productService.GetByIdАsync(id);
+
+            if (product != null)
+            {
+                await this.cartService.AddToCartAsync(product, 1);
+            }
+
+            return this.RedirectToAction(nameof(this.Index));
         }
     }
 }
