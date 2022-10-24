@@ -21,9 +21,6 @@ namespace PizzaOrderingSystem.Data.Models
         public virtual Product Product { get; set; }
 
         [Required]
-        [ForeignKey(nameof(Cart))]
         public string ShoppingCartId { get; set; }
-
-        public virtual ShoppingCart Cart { get; set; }
     }
 }

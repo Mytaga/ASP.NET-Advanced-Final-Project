@@ -1,18 +1,18 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using PizzaOrderingSystem.Data.Common.Models;
 using System;
 using System.Collections.Generic;
 
 namespace PizzaOrderingSystem.Data.Models
 {
-    public class ShoppingCart : BaseDeletableModel<string>
-    { 
+    public class ShoppingCart
+    {
         public ShoppingCart()
         {
-            this.Id = Guid.NewGuid().ToString();
             this.Items = new HashSet<CartItem>();
         }
+
+        public string ShoppingCartId { get; set; }
 
         public virtual ICollection<CartItem> Items { get; set; }
 
@@ -24,7 +24,7 @@ namespace PizzaOrderingSystem.Data.Models
 
             session.SetString("CartId", cartId);
 
-            return new ShoppingCart() { Id = cartId };
+            return new ShoppingCart() { ShoppingCartId = cartId };
         }
     }
 }
