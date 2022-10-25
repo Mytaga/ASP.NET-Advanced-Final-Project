@@ -1,5 +1,7 @@
 ﻿using PizzaOrderingSystem.Data.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Services.Data
@@ -8,6 +10,10 @@ namespace PizzaOrderingSystem.Services.Data
     {
         Task AddToCartAsync(Product product, int quantity);
 
-        Task RemoveFromCartAsync(Product product);
+        Task RemoveFromCartAsync(CartItem item);
+
+        Task<IEnumerable<CartItem>> GetCartItemsAsync();
+
+        Task ClearCartAsync();
     }
 }

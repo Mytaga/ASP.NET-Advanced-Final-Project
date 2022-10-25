@@ -2,6 +2,8 @@
 using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Services.Data
@@ -43,9 +45,39 @@ namespace PizzaOrderingSystem.Services.Data
             await this.cartItemRepo.SaveChangesAsync();
         }
 
-        public Task RemoveFromCartAsync(Product product)
+        public async Task ClearCartAsync()
         {
-            throw new NotImplementedException();
+            var cartItems = await this.cartItemRepo
+                .All()
+                .Where(ci => ci.ShoppingCartId == this.shoppingCart.ShoppingCartId)
+                .ToListAsync();
+
+            foreach (var item in cartItems)
+            {
+                this.cartItemRepo.Delete(item);
+            }
+
+            await this.cartItemRepo.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<CartItem>> GetCartItemsAsync()
+        {
+            return await this.cartItemRepo
+                .All()
+                .Where(ci => ci.ShoppingCartId == this.shoppingCart.ShoppingCartId)
+                .Include(p => p.Product)
+                .ToListAsync();
+        }
+
+        public async Task RemoveFromCartAsync(CartItem item)
+        {
+            if (item != null)
+            {
+                this.shoppingCart.Items.Remove(item);
+                this.cartItemRepo.Delete(item);
+            }
+
+            await this.cartItemRepo.SaveChangesAsync();
         }
     }
 }
