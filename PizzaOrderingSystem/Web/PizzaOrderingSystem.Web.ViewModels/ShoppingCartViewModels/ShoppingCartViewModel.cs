@@ -7,6 +7,11 @@ namespace PizzaOrderingSystem.Web.ViewModels.ShoppingCart
 {
     public class ShoppingCartViewModel
     {
+        public ShoppingCartViewModel()
+        {
+           this.CartItems = new HashSet<CartItemViewModel>();
+        }
+
         public ICollection<CartItemViewModel> CartItems { get; set; }
 
         public decimal Total => this.CartItems.Sum(ci => ci.Amount);
