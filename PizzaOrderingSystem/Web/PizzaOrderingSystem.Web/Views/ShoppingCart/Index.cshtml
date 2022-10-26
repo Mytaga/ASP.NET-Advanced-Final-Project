@@ -28,17 +28,18 @@
                                                 <h6 class="text-black mb-0">@item.ItemName</h6>
                                             </div>
                                             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                                <button class="btn btn-link px-2"
-                                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                <button class="btn btn-link px-2">
+                                                    <a class="text-muted" asp-controller="ShoppingCart" asp-action="DecreaseQuantity" asp-route-id="@item.Id">
                                                     <i class="fas fa-minus"></i>
+                                                    </a>
                                                 </button>
-
                                                 <input id="form1" min="0" name="quantity" value=@item.Quantity type="number"
                                                    class="form-control form-control-sm" />
 
-                                                <button class="btn btn-link px-2"
-                                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                <button class="btn btn-link px-2">
+                                                    <a class="text-muted" asp-controller="ShoppingCart" asp-action="IncreaseQuantity" asp-route-id="@item.Id">
                                                     <i class="fas fa-plus"></i>
+                                                    </a>
                                                 </button>
                                             </div>
                                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
@@ -73,7 +74,8 @@
                                     </div>
 
                                     <h5 class="text-uppercase mb-3">Shipping : Free</h5>
-
+                                    <hr class="my-4">
+                                    <h5 class="text-uppercase mb-3">Expected Delivery : @Model.ExpectedDelivery</h5>
                                     <hr class="my-4">
 
                                     <div class="d-flex justify-content-between mb-5">
@@ -83,7 +85,9 @@
 
                                     <button type="button" class="btn btn-dark btn-block btn-lg"
                                             data-mdb-ripple-color="dark">
-                                        Proceed To Checkout
+                                        <a class="btn btn-dark" asp-controller="Order" asp-action="Index">       
+                                            Proceed To Checkout
+                                        </a>
                                     </button>
                                 </div>
                             </div>
