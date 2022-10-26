@@ -59,7 +59,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             if (product != null)
             {
-                await this.cartService.AddToCartAsync(product, 1);
+                await this.cartService.AddToCartAsync(product);
             }
 
             return this.RedirectToAction(nameof(this.Index));
@@ -82,6 +82,32 @@ namespace PizzaOrderingSystem.Web.Controllers
         public async Task<IActionResult> Clear()
         {
             await this.cartService.ClearCartAsync();
+
+            return this.RedirectToAction(nameof(this.Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> IncreaseQuantity(string id)
+        {
+            var item = await this.cartItemService.GetByIdАsync(id);
+
+            if (item != null)
+            {
+                await this.cartService.IncreaseQuantity(item);
+            }
+
+            return this.RedirectToAction(nameof(this.Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DecreaseQuantity(string id)
+        {
+            var item = await this.cartItemService.GetByIdАsync(id);
+
+            if (item != null)
+            {
+                await this.cartService.DecreaseQuantity(item);
+            }
 
             return this.RedirectToAction(nameof(this.Index));
         }
