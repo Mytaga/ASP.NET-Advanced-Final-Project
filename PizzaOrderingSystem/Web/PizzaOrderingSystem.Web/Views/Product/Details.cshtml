@@ -54,8 +54,12 @@
     {
         <a class="btn btn-dark" asp-action="IndexSalads">Back</a>
     }
-    else 
+    else if (Model.CategoryName == "Sauce")
+    {
+        <a class="btn btn-dark" asp-action="IndexSauces">Back</a>
+    }   
+    else
     {
         <a class="btn btn-dark" asp-action="IndexDrinks">Back</a>
-    }   
+    }
 </div>
