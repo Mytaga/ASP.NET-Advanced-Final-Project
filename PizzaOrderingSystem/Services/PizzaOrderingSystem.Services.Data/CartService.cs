@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,28 +18,18 @@ namespace PizzaOrderingSystem.Services.Data
             this.shoppingCart = shoppingCart;
         }
 
-        public async Task AddToCartAsync(Product product, int quantity)
+        public async Task AddToCartAsync(Product product)
         {
-            var shoppingCartItem = await this.cartItemRepo
-                .All()
-                .FirstOrDefaultAsync(i => i.Product.Id == product.Id && i.ShoppingCartId == this.shoppingCart.ShoppingCartId);
 
-            if (shoppingCartItem == null)
+            var shoppingCartItem = new CartItem()
             {
-                shoppingCartItem = new CartItem()
-                {
-                    ShoppingCartId = this.shoppingCart.ShoppingCartId,
-                    Quantity = 1,
-                    Product = product,
-                    ProductId = product.Id,
-                };
+                ShoppingCartId = this.shoppingCart.ShoppingCartId,
+                Quantity = 1,
+                Product = product,
+                ProductId = product.Id,
+            };
 
-                await this.cartItemRepo.AddAsync(shoppingCartItem);
-            }
-            else
-            {
-                shoppingCartItem.Quantity++;
-            }
+            await this.cartItemRepo.AddAsync(shoppingCartItem);
 
             await this.cartItemRepo.SaveChangesAsync();
         }
@@ -60,6 +49,22 @@ namespace PizzaOrderingSystem.Services.Data
             await this.cartItemRepo.SaveChangesAsync();
         }
 
+        public async Task DecreaseQuantity(CartItem item)
+        {
+            if (item.Quantity > 0)
+            {
+                item.Quantity--;
+                this.cartItemRepo.Update(item);
+            }
+            else
+            {
+                this.shoppingCart.Items.Remove(item);
+                this.cartItemRepo.Delete(item);
+            }
+
+            await this.cartItemRepo.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<CartItem>> GetCartItemsAsync()
         {
             return await this.cartItemRepo
@@ -69,14 +74,18 @@ namespace PizzaOrderingSystem.Services.Data
                 .ToListAsync();
         }
 
+        public async Task IncreaseQuantity(CartItem item)
+        {
+            item.Quantity++;
+            this.cartItemRepo.Update(item);
+
+            await this.cartItemRepo.SaveChangesAsync();
+        }
+
         public async Task RemoveFromCartAsync(CartItem item)
         {
-            if (item != null)
-            {
-                this.shoppingCart.Items.Remove(item);
-                this.cartItemRepo.Delete(item);
-            }
-
+            this.shoppingCart.Items.Remove(item);
+            this.cartItemRepo.Delete(item);
             await this.cartItemRepo.SaveChangesAsync();
         }
     }
