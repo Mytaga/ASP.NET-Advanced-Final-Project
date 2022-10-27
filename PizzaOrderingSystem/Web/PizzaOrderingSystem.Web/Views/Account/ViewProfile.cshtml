@@ -1,0 +1,124 @@
+﻿@model PizzaOrderingSystem.Web.ViewModels.Account.ProfileViewModel
+
+@{
+    ViewData["Title"] = "Profile Page";
+}
+
+<div class="container">
+    <div class="main-body">
+        <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                            <div class="mt-3">
+                                <h4>@Model.UserName</h4>                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">First Name</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                @Model.FirstName 
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Last Name</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                @Model.LastName 
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Email</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                @Model.Email
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Phone</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                @Model.PhoneNumber
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">City</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                @Model.City
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Street</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                @Model.Street 
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Street Number</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                @Model.StreetNumber
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Floor</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                @Model.Floor
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Postal Code</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                @Model.PostCode
+                            </div>
+
+                        <div class="row mt-4">
+                            <div class="col-sm-12">
+                                <a class="btn btn-dark" asp-controller="Account" asp-action="Update">Update Profile</a>
+                                @if(Model.CreditCard == null)
+                                {
+                                    <a class="btn btn-dark" asp-controller="Card" asp-action="Add">Add Payment Card</a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-dark" asp-controller="Card" asp-action="Edit">Edit Payment Card</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
