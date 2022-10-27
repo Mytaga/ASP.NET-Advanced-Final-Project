@@ -5,7 +5,11 @@ using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Mapping;
 using PizzaOrderingSystem.Web.ViewModels.Account;
+using PizzaOrderingSystem.Web.ViewModels.ProductViewModels;
+using System.IO;
+using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 
 namespace PizzaOrderingSystem.Web.Controllers
 {
@@ -14,12 +18,14 @@ namespace PizzaOrderingSystem.Web.Controllers
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly RoleManager<ApplicationRole> roleManager;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationRole> roleManager)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationRole> roleManager, IWebHostEnvironment webHostEnvironment)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
+            this.webHostEnvironment = webHostEnvironment;
         }
 
         [HttpGet]
@@ -136,6 +142,30 @@ namespace PizzaOrderingSystem.Web.Controllers
             return this.View(viewModel);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Update(UpdateProfileInputModel model)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            string uniqueFileName = this.UploadFile(model);
+
+            var address = new Address()
+            {
+                City = model.City,
+                Street = model.Street,
+                StreetNumber = model.StreetNumber,
+                Floor = model.Floor,
+                PostCode = model.PostCode,
+            };
+
+            user.PhoneNumber = model.PhoneNumber;
+            user.ImageUrl = uniqueFileName;
+            user.Address = address;
+
+            await this.userManager.UpdateAsync(user);
+
+            return this.RedirectToAction(nameof(this.ViewProfile));
+        }
 
         public async Task<IActionResult> CreateRoles()
         {
@@ -158,6 +188,24 @@ namespace PizzaOrderingSystem.Web.Controllers
             await this.userManager.AddToRoleAsync(manager, GlobalConstants.ManagerRoleName);
 
             return this.RedirectToAction("Index", "Home");
+        }
+
+        private string UploadFile(UpdateProfileInputModel model)
+        {
+            string uniqueFileName = null;
+
+            if (model.ImageUrl != null)
+            {
+                string uploadsFolder = Path.Combine(this.webHostEnvironment.WebRootPath, "img");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ImageUrl.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.ImageUrl.CopyTo(fileStream);
+                }
+            }
+
+            return uniqueFileName;
         }
     }
 }
