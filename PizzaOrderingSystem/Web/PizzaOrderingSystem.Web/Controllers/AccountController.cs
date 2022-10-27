@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Mapping;
 using PizzaOrderingSystem.Web.ViewModels.Account;
-using PizzaOrderingSystem.Web.ViewModels.ProductViewModels;
-using System.IO;
 using System;
+using System.IO;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
 
 namespace PizzaOrderingSystem.Web.Controllers
 {
@@ -137,7 +136,13 @@ namespace PizzaOrderingSystem.Web.Controllers
         {
             var user = await this.userManager.GetUserAsync(this.User);
 
-            var viewModel = AutoMapperConfig.MapperInstance.Map<UpdateProfileViewModel>(user);
+            var viewModel = new UpdateProfileViewModel();
+
+            viewModel.PhoneNumber = user.PhoneNumber;
+            viewModel.City = user.Address.City;
+            viewModel.Street = user.Address.Street;
+            viewModel.StreetNumber = user.Address.StreetNumber;
+            viewModel.PostCode = user.Address.PostCode;
 
             return this.View(viewModel);
         }
@@ -156,6 +161,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 StreetNumber = model.StreetNumber,
                 Floor = model.Floor,
                 PostCode = model.PostCode,
+                User = user,
             };
 
             user.PhoneNumber = model.PhoneNumber;
