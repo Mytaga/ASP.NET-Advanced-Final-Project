@@ -1,4 +1,6 @@
-﻿namespace PizzaOrderingSystem.Common
+﻿using System.Data;
+
+namespace PizzaOrderingSystem.Common
 {
     public static class ModelValidationConstants
     {
@@ -10,6 +12,8 @@
             public const int LastNameMaxLength = 30;
             public const int UsernameMinLength = 1;
             public const int UsernameMaxLength = 30;
+            public const int PhoneNumberMinLength = 10;
+            public const int PhoneNumberMaxLength = 20;
 
             public const string FirstNameRequired = "First name is required";
             public const string LastNameRequired = "Last name is required";
@@ -20,6 +24,8 @@
             public const string UsernameRequired = "Username is required";
             public const string UserNameMinLengthError = "Username must be at least 1 letters";
             public const string UserNameMaxLengthError = "Username must be at no more than 30 letters";
+            public const string PhoneNumberMinLengthError = "Phone number must be at least 10 digits";
+            public const string PhoneNumberMaxLengthError = "Phone number must be at no more than 20 digits";
         }
 
         public static class ProductVadidation
@@ -83,6 +89,27 @@
         {
             public const int ShopNameMaxLength = 60;
             public const int ShopDescriptionMaxLength = 150;
+        }
+
+        public static class AddressValidation
+        {
+            public const int CityMinLength = 2;
+            public const int CityMaxLength = 50;
+            public const int StreetMinLength = 2;
+            public const int StreetMaxLength = 60;
+            public const int StreetNumberMinValue = 1;
+            public const int StreetNumberMaxValue = 1000;
+            public const int FloorMinValue = 0;
+            public const int FloorMaxValue = 100;
+
+            public const string CityRequiredError = "City is required";
+            public const string CityMinLengthError = "City name must be at least 2 letters";
+            public const string CityMaxLengthError = "City name must be no more than 50 letters";
+            public const string StreetRequiredError = "Street is required";
+            public const string StreetMinLengthError = "Street name must be at least 2 letters";
+            public const string StreetMaxLengthError = "Street name must be no more than 60 letters";
+            public const string StreetNumberRangeLengthError = "Street number name must be between 1 and 1000";
+            public const string FloorRangeLengthError = "Floor name must be between 0 and 100";
         }
     }
 }
