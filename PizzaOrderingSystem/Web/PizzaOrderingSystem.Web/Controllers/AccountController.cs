@@ -126,7 +126,20 @@ namespace PizzaOrderingSystem.Web.Controllers
         {
             var user = await this.userManager.GetUserAsync(this.User);
 
-            var viewModel = AutoMapperConfig.MapperInstance.Map<ProfileViewModel>(user);
+            var viewModel = new ProfileViewModel()
+            {
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                ImageUrl = user.ImageUrl,
+                PhoneNumber = user.PhoneNumber,
+                City = user.Address.City,
+                Street = user.Address.Street,
+                StreetNumber = user.Address.StreetNumber,
+                Floor = user.Address.Floor,
+                PostCode = user.Address.PostCode,
+            };
 
             return this.View(viewModel);
         }
@@ -136,13 +149,14 @@ namespace PizzaOrderingSystem.Web.Controllers
         {
             var user = await this.userManager.GetUserAsync(this.User);
 
-            var viewModel = new UpdateProfileViewModel();
-
-            viewModel.PhoneNumber = user.PhoneNumber;
-            viewModel.City = user.Address.City;
-            viewModel.Street = user.Address.Street;
-            viewModel.StreetNumber = user.Address.StreetNumber;
-            viewModel.PostCode = user.Address.PostCode;
+            var viewModel = new UpdateProfileViewModel()
+            {
+                PhoneNumber = user.PhoneNumber,
+                City = user.Address.City,
+                Street = user.Address.Street,
+                StreetNumber = user.Address.StreetNumber,
+                PostCode = user.Address.PostCode,
+            };
 
             return this.View(viewModel);
         }
