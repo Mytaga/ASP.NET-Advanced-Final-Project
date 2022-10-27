@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
+using PizzaOrderingSystem.Services.Mapping;
 using PizzaOrderingSystem.Web.ViewModels.Account;
 using System.Threading.Tasks;
 
@@ -114,6 +115,27 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             return this.RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ViewProfile()
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            var viewModel = AutoMapperConfig.MapperInstance.Map<ProfileViewModel>(user);
+
+            return this.View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Update()
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            var viewModel = AutoMapperConfig.MapperInstance.Map<UpdateProfileViewModel>(user);
+
+            return this.View(viewModel);
+        }
+
 
         public async Task<IActionResult> CreateRoles()
         {
