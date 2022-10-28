@@ -32,6 +32,6 @@ namespace PizzaOrderingSystem.Web.ViewModels.Account
         [Range(ModelValidationConstants.AddressValidation.FloorMinValue, ModelValidationConstants.AddressValidation.FloorMaxValue, ErrorMessage = ModelValidationConstants.AddressValidation.FloorRangeLengthError)]
         public int Floor { get; set; }
 
-        public int PostCode { get; set; }
+        public string PostCode { get; set; }
     }
 }

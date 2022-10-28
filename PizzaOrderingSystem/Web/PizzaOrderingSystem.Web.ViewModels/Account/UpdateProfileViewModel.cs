@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PizzaOrderingSystem.Web.ViewModels.Account
 {
-    public class UpdateProfileViewModel : IMapFrom<ApplicationUser>, IHaveCustomMappings
+    public class UpdateProfileViewModel 
     {
         [Phone]
         [MinLength(ModelValidationConstants.UserValidation.PhoneNumberMinLength, ErrorMessage = ModelValidationConstants.UserValidation.PhoneNumberMinLengthError)]
@@ -27,20 +27,6 @@ namespace PizzaOrderingSystem.Web.ViewModels.Account
 
         public int Floor { get; set; }
 
-        public int PostCode { get; set; }
-
-        public void CreateMappings(IProfileExpression configuration)
-        {
-            configuration.CreateMap<ApplicationUser, ProfileViewModel>()
-                 .ForMember(d => d.City, mo => mo.MapFrom(s => s.Address.City));
-            configuration.CreateMap<ApplicationUser, ProfileViewModel>()
-                 .ForMember(d => d.Street, mo => mo.MapFrom(s => s.Address.Street));
-            configuration.CreateMap<ApplicationUser, ProfileViewModel>()
-                 .ForMember(d => d.StreetNumber, mo => mo.MapFrom(s => s.Address.StreetNumber));
-            configuration.CreateMap<ApplicationUser, ProfileViewModel>()
-                 .ForMember(d => d.Floor, mo => mo.MapFrom(s => s.Address.Floor));
-            configuration.CreateMap<ApplicationUser, ProfileViewModel>()
-                 .ForMember(d => d.PostCode, mo => mo.MapFrom(s => s.Address.PostCode));
-        }
+        public string PostCode { get; set; }
     }
 }
