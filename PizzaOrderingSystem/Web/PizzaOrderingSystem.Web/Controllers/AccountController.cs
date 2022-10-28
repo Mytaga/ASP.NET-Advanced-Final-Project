@@ -7,6 +7,7 @@ using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Mapping;
 using PizzaOrderingSystem.Web.ViewModels.Account;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -134,12 +135,16 @@ namespace PizzaOrderingSystem.Web.Controllers
                 Email = user.Email,
                 ImageUrl = user.ImageUrl,
                 PhoneNumber = user.PhoneNumber,
-                City = user.Address.City,
-                Street = user.Address.Street,
-                StreetNumber = user.Address.StreetNumber,
-                Floor = user.Address.Floor,
-                PostCode = user.Address.PostCode,
             };
+
+            if (user.Address != null)
+            {
+                viewModel.City = user.Address.City;
+                viewModel.Street = user.Address.Street;
+                viewModel.StreetNumber = user.Address.StreetNumber;
+                viewModel.Floor = user.Address.Floor;
+                viewModel.PostCode = user.Address.PostCode;
+            }
 
             return this.View(viewModel);
         }
@@ -152,11 +157,16 @@ namespace PizzaOrderingSystem.Web.Controllers
             var viewModel = new UpdateProfileViewModel()
             {
                 PhoneNumber = user.PhoneNumber,
-                City = user.Address.City,
-                Street = user.Address.Street,
-                StreetNumber = user.Address.StreetNumber,
-                PostCode = user.Address.PostCode,
             };
+
+            if (user.Address != null)
+            {
+                viewModel.City = user.Address.City;
+                viewModel.Street = user.Address.Street;
+                viewModel.StreetNumber = user.Address.StreetNumber;
+                viewModel.Floor = user.Address.Floor;
+                viewModel.PostCode = user.Address.PostCode;
+            }
 
             return this.View(viewModel);
         }
