@@ -22,15 +22,13 @@ namespace PizzaOrderingSystem.Data.Models
 
         public int Floor { get; set; }
 
-        public int PostCode { get; set; }
+        public string PostCode { get; set; }
 
-        [Required]
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
 
-        [Required]
         [ForeignKey(nameof(Shop))]
         public string ShopId { get; set; }
 
