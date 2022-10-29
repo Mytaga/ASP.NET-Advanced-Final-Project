@@ -31,19 +31,17 @@ namespace PizzaOrderingSystem.Web.Controllers
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> Create(CreateCategoryInputModel model)
         {
-            var category = AutoMapperConfig.MapperInstance.Map<Category>(model);
-
             if (!this.ModelState.IsValid)
             {
-                return this.RedirectToAction("Create", "Category");
+                return this.RedirectToAction(nameof(this.Create));
             }
 
-            if (this.categoryService.ExistById(category.Id))
+            if (this.categoryService.ExistByName(model.Name))
             {
-                return this.RedirectToAction("Create", "Category");
+                return this.RedirectToAction(nameof(this.Create));
             }
 
-            await this.categoryService.AddCategory(category);
+            await this.categoryService.AddCategory(model);
 
             return this.RedirectToAction("Index", "Product");
         }
