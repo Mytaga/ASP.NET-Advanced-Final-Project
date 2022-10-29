@@ -101,6 +101,8 @@ namespace PizzaOrderingSystem.Common
             public const int StreetNumberMaxValue = 1000;
             public const int FloorMinValue = 0;
             public const int FloorMaxValue = 100;
+            public const int PostalCodeMinLength = 4;
+            public const int PostalCodeMaxLength = 4;
 
             public const string CityRequiredError = "City is required";
             public const string CityMinLengthError = "City name must be at least 2 letters";
@@ -108,8 +110,10 @@ namespace PizzaOrderingSystem.Common
             public const string StreetRequiredError = "Street is required";
             public const string StreetMinLengthError = "Street name must be at least 2 letters";
             public const string StreetMaxLengthError = "Street name must be no more than 60 letters";
-            public const string StreetNumberRangeLengthError = "Street number name must be between 1 and 1000";
+            public const string StreetNumberRangeLengthError = "Street number must be between 1 and 1000";
             public const string FloorRangeLengthError = "Floor name must be between 0 and 100";
+            public const string PostalCodeMinLengthError = "Postal code must be at least 4 digits";
+            public const string PostalCodeMaxLengthError = "Postal code must be no more than 4 digits";
         }
     }
 }
