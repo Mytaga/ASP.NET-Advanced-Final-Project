@@ -172,8 +172,13 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(UpdateProfileInputModel model)
+        public async Task<IActionResult> Update(UpdateProfileViewModel model)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
             var user = await this.userManager.GetUserAsync(this.User);
 
             string uniqueFileName = this.UploadFile(model);
@@ -189,7 +194,12 @@ namespace PizzaOrderingSystem.Web.Controllers
             };
 
             user.PhoneNumber = model.PhoneNumber;
-            user.ImageUrl = uniqueFileName;
+
+            if (uniqueFileName != null)
+            {
+                user.ImageUrl = uniqueFileName;
+            }
+
             user.Address = address;
 
             await this.userManager.UpdateAsync(user);
@@ -220,7 +230,7 @@ namespace PizzaOrderingSystem.Web.Controllers
             return this.RedirectToAction("Index", "Home");
         }
 
-        private string UploadFile(UpdateProfileInputModel model)
+        private string UploadFile(UpdateProfileViewModel model)
         {
             string uniqueFileName = null;
 
