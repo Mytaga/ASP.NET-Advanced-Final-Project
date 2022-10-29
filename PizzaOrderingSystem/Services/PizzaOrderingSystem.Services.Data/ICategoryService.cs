@@ -1,4 +1,5 @@
 ﻿using PizzaOrderingSystem.Data.Models;
+using PizzaOrderingSystem.Web.ViewModels.CategoryViewModels;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,9 +9,11 @@ namespace PizzaOrderingSystem.Services.Data
     {
         IQueryable<Category> All();
 
+        bool ExistByName(string name);
+
         bool ExistById(int id);
 
-        Task AddCategory(Category category);
+        Task AddCategory(CreateCategoryInputModel model);
 
         Category GetById(int id);
 
