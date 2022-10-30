@@ -1,9 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
+using PizzaOrderingSystem.Services.Mapping;
+using PizzaOrderingSystem.Web.ViewModels.ProductViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Services.Data
@@ -41,21 +44,42 @@ namespace PizzaOrderingSystem.Services.Data
             throw new NotImplementedException();
         }
 
-        public IQueryable<Product> GetAllByCategory(string categoryName = "")
+        public async Task<AllProductsViewModel> GetAllByCategory(string categoryName = EmptyString, string searchName = EmptyString)
         {
-            return this.productRepo.AllAsNoTracking()
+            var products = this.productRepo.AllAsNoTracking()
                 .Where(p => p.Category.Name == categoryName && p.IsDeleted == false);
-        }
 
-        public IQueryable<Product> GetAllByName(string searchName = EmptyString)
-        {
             if (searchName != null)
             {
-                return this.productRepo.AllAsNoTracking()
-                    .Where(p => p.Name.ToLower().Contains(searchName.ToLower()) && p.IsDeleted == false);
+                products = this.productRepo.AllAsNoTracking().Where(p => p.Category.Name == categoryName &&
+                p.Name.ToLower().StartsWith(searchName.ToLower()) && p.IsDeleted == false);
             }
 
-            return this.productRepo.All();
+            AllProductsViewModel viewModel = new AllProductsViewModel()
+            {
+                Products = await products.To<ListAllProductsViewModel>().ToListAsync(),
+                SearchQuery = searchName,
+            };
+
+            return viewModel;
+        }
+
+        public async Task<AllProductsViewModel> GetAllByName(string searchName = EmptyString)
+        {
+            var products = this.productRepo.AllAsNoTracking();
+
+            if (searchName != null)
+            {
+                products = this.productRepo.AllAsNoTracking().Where(p => p.Name.ToLower().StartsWith(searchName.ToLower()) && p.IsDeleted == false);
+            }
+
+            AllProductsViewModel viewModel = new AllProductsViewModel()
+            {
+                Products = await products.To<ListAllProductsViewModel>().ToListAsync(),
+                SearchQuery = searchName,
+            };
+
+            return viewModel;
         }
 
         public ICollection<string> GetAllProductsCategories()
