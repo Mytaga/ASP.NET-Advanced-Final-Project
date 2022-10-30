@@ -5,32 +5,52 @@
     ViewData["Title"] = "Menu";
 }
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
-    <a class="navbar-brand ms-lg-3" asp-action="Index">Menu</a>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-action="IndexPizza">Pizza</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-action="IndexSalads">Salads</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-action="IndexDesserts">Desserts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-action="IndexDrinks">Drinks</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-action="IndexSauces">Sauces</a>
-            </li>
-        </ul>
+<nav class="navbar navbar-expand-lg navbar-light bg-success">
+    <div class="container-fluid">
+        <a class="navbar-brand ms-lg-3" asp-action="Index">Menu</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-action="IndexPizza">Pizza</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-action="IndexSalads">Salads</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-action="IndexDesserts">Desserts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-action="IndexDrinks">Drinks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-action="IndexSauces">Sauces</a>
+                </li>
+            </ul>
+            <form class="d-flex" method="get" asp-controller="Product" asp-action="Index">
+                <div class="input-group">
+                    @if (Model.SearchQuery == null)
+                    {
+                        <input type="text" name="search" class="form-control" placeholder="Search....">
+                    }
+                    else
+                    {
+                        <input type="text" name="search" class="form-control" value="@Model.SearchQuery">
+                    }
+                    <div class="input-group-btn">
+                        <button class="btn btn-dark" type="submit">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </nav>
 
 
+
 <div class="row mt-4">
-    <div class="col-md-4">
+    <div class="col-md-3">
 
         @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
         {
@@ -42,41 +62,19 @@
             </p>
         }
     </div>
-    <div class="col-md-4 justify-content-end">
-        <form method="get" asp-controller="Product" asp-action="Index" class="mt-5">
-            <div class="input-group">
-                @if (Model.SearchQuery == null)
-                {
-                    <input type="text" name="search" class="form-control" placeholder="Search....">
-                }
-                else
-                {
-                    <input type="text" name="search" class="form-control" value="@Model.SearchQuery">
-                }
-                <div class="input-group-btn">
-                    <button class="btn btn-dark" type="submit">
-                        Search
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
 </div>
 
-<div class="row mt-4 justify-content-center">
+<div class="row row-cols-1 row-cols-md-3 g-4">
     @foreach (var item in Model.Products)
     {
-        <div class="card mb-2" style="max-width: 400px;">
-            <div class="row g-0">
-                <div class="col-md-4 mt-2 mb-2">
-                    <img src="~/img/@item.ImageUrl" class="img-fluid rounded-start" alt="image">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
+        <div class="col">
+            <div class="card h-100 bg-success mb-3" style="max-width: 28rem">
+                <img src="~/img/@item.ImageUrl" class="img-fluid rounded-start" alt="image">
+                <div class="card-body">
                         <h5 class="card-title">@item.Name</h5>
                         <h5 class="card-title">$ @item.Price</h5>
-                        <h5 class="card-title">@item.Description</h5>
-                        <div>
+                        <p class="card-text">@item.Description</p>
+                        <div class="mt-4">
                             <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Id">Details</a>
                             @if (User.Identity.IsAuthenticated && !User.IsInRole(GlobalConstants.AdministratorRoleName))
                             {
@@ -92,11 +90,9 @@
                                 <a class="btn btn-dark" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
                                 <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                             }
-                        </div>
-                       
+                        </div>                     
                     </div>
                 </div>
-            </div>
         </div>
     }
 </div>
