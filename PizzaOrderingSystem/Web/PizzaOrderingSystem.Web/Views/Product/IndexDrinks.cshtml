@@ -29,6 +29,30 @@
     </div>
 </nav>
 
+<div class="row mt-4 justify-content-center">
+    <div class="col-md-4">
+        <div class="col-md-10 justify-content-center">
+            <form method="get" asp-controller="Product" asp-action="IndexDrinks" class="mt-5">
+                <div class="input-group">
+                    @if (Model.SearchQuery == null)
+                    {
+                        <input type="text" name="search" class="form-control" placeholder="Search....">
+                    }
+                    else
+                    {
+                        <input type="text" name="search" class="form-control" value="@Model.SearchQuery">
+                    }
+                    <div class="input-group-btn">
+                        <button class="btn btn-dark" type="submit">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <div class="row mt-4 justify-content-center">
     @foreach (var item in Model.Products)
