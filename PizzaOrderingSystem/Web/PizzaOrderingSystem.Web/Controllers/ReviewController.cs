@@ -22,16 +22,11 @@ namespace PizzaOrderingSystem.Web.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            IQueryable<Review> allReviews = this.reviewService.GetAll();
+           var viewModel = await this.reviewService.GetAll();
 
-            AllReviewsViewModel viewModel = new AllReviewsViewModel()
-            {
-                Reviews = allReviews.To<ReviewViewModel>().ToList(),
-            };
-
-            return this.View(viewModel);
+           return this.View(viewModel);
         }
 
         [HttpGet]
@@ -87,7 +82,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             await this.reviewService.DeleteReview(product);
 
-            return this.RedirectToAction("Index", "Review");
+            return this.RedirectToAction(nameof(this.Index));
         }
     }
 }
