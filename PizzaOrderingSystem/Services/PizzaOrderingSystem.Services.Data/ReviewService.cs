@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
+using PizzaOrderingSystem.Services.Mapping;
+using PizzaOrderingSystem.Web.ViewModels.ReviewViewModels;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,15 +30,15 @@ namespace PizzaOrderingSystem.Services.Data
             await this.reviewRepo.SaveChangesAsync();
         }
 
-        public async Task EditReview(Review review)
+        public async Task<AllReviewsViewModel> GetAll()
         {
-            this.reviewRepo.Update(review);
-            await this.reviewRepo.SaveChangesAsync();
-        }
+            var reviews = this.reviewRepo.AllAsNoTracking();
+            AllReviewsViewModel viewModel = new AllReviewsViewModel()
+            {
+                Reviews = await reviews.To<ReviewViewModel>().ToListAsync(),
+            };
 
-        public IQueryable<Review> GetAll()
-        {
-            return this.reviewRepo.All();
+            return viewModel;
         }
 
         public Review GetById(string id)
