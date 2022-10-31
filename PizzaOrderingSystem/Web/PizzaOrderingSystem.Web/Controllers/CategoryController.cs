@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Common;
-using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Data;
-using PizzaOrderingSystem.Services.Mapping;
 using PizzaOrderingSystem.Web.ViewModels.CategoryViewModels;
 using System.Threading.Tasks;
 
@@ -33,7 +31,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return this.RedirectToAction(nameof(this.Create));
+                return this.RedirectToAction(GlobalConstants.CreateAction);
             }
 
             if (this.categoryService.ExistByName(model.Name))
@@ -43,7 +41,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             await this.categoryService.AddCategory(model);
 
-            return this.RedirectToAction("Index", "Product");
+            return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ProductController);
         }
     }
 }

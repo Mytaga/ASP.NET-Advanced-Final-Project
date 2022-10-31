@@ -4,10 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
-using PizzaOrderingSystem.Services.Mapping;
 using PizzaOrderingSystem.Web.ViewModels.Account;
 using System;
-using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -60,7 +58,7 @@ namespace PizzaOrderingSystem.Web.Controllers
             if (result.Succeeded)
             {
                 await this.signInManager.SignInAsync(user, isPersistent: false);
-                return this.RedirectToAction("Index", "Home");
+                return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController);
             }
 
             foreach (var item in result.Errors)
@@ -105,7 +103,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                         return this.Redirect(model.ReturnUrl);
                     }
 
-                    return this.RedirectToAction("Index", "Home");
+                    return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController);
                 }
             }
 
@@ -119,7 +117,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         {
             await this.signInManager.SignOutAsync();
 
-            return this.RedirectToAction("Index", "Home");
+            return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController);
         }
 
         [HttpGet]
@@ -213,7 +211,7 @@ namespace PizzaOrderingSystem.Web.Controllers
             await this.roleManager.CreateAsync(new ApplicationRole(GlobalConstants.UserRoleName));
             await this.roleManager.CreateAsync(new ApplicationRole(GlobalConstants.ManagerRoleName));
 
-            return this.RedirectToAction("Index", "Home");
+            return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController);
         }
 
         public async Task<IActionResult> AddUsersToRoles()
@@ -227,7 +225,7 @@ namespace PizzaOrderingSystem.Web.Controllers
             await this.userManager.AddToRoleAsync(admin, GlobalConstants.AdministratorRoleName);
             await this.userManager.AddToRoleAsync(manager, GlobalConstants.ManagerRoleName);
 
-            return this.RedirectToAction("Index", "Home");
+            return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController);
         }
 
         private string UploadFile(UpdateProfileViewModel model)

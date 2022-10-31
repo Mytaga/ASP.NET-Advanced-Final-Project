@@ -29,90 +29,54 @@ namespace PizzaOrderingSystem.Web.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Index(string search)
+        public async Task<IActionResult> Index(string search)
         {
-            IQueryable<Product> allProducts = this.productService.GetAllByName(search);
-
-            AllProductsViewModel viewModel = new AllProductsViewModel()
-            {
-                Products = allProducts.To<ListAllProductsViewModel>().ToArray(),
-                SearchQuery = search,
-            };
+            var viewModel = await this.productService.GetAllByName(search);
 
             return this.View(viewModel);
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult IndexPizza(string search)
+        public async Task<IActionResult> IndexPizza(string search)
         {
-            IQueryable<Product> allProducts = this.productService.GetAllByCategory(GlobalConstants.PizzaCategory);
-
-            AllProductsViewModel viewModel = new AllProductsViewModel()
-            {
-                Products = allProducts.To<ListAllProductsViewModel>().ToArray(),
-                SearchQuery = search,
-            };
+            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.PizzaCategory);
 
             return this.View(viewModel);
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult IndexSalads(string search)
+        public async Task<IActionResult> IndexSalads(string search)
         {
-            IQueryable<Product> allProducts = this.productService.GetAllByCategory(GlobalConstants.SaladCategory);
-
-            AllProductsViewModel viewModel = new AllProductsViewModel()
-            {
-                Products = allProducts.To<ListAllProductsViewModel>().ToArray(),
-                SearchQuery = search,
-            };
+            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.SaladCategory);
 
             return this.View(viewModel);
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult IndexDesserts(string search)
+        public async Task<IActionResult> IndexDesserts(string search)
         {
-            IQueryable<Product> allProducts = this.productService.GetAllByCategory(GlobalConstants.DessertCategory);
-
-            AllProductsViewModel viewModel = new AllProductsViewModel()
-            {
-                Products = allProducts.To<ListAllProductsViewModel>().ToArray(),
-                SearchQuery = search,
-            };
+            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.DessertCategory);
 
             return this.View(viewModel);
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult IndexDrinks(string search)
+        public async Task<IActionResult> IndexDrinks(string search)
         {
-            IQueryable<Product> allProducts = this.productService.GetAllByCategory(GlobalConstants.DrinkCategory);
-
-            AllProductsViewModel viewModel = new AllProductsViewModel()
-            {
-                Products = allProducts.To<ListAllProductsViewModel>().ToArray(),
-                SearchQuery = search,
-            };
+            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.DrinkCategory);
 
             return this.View(viewModel);
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult IndexSauces(string search)
+        public async Task<IActionResult> IndexSauces(string search)
         {
-            IQueryable<Product> allProducts = this.productService.GetAllByCategory(GlobalConstants.SauceCategory);
-
-            AllProductsViewModel viewModel = new AllProductsViewModel()
-            {
-                Products = allProducts.To<ListAllProductsViewModel>().ToArray(),
-                SearchQuery = search,
-            };
+            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.SauceCategory);
 
             return this.View(viewModel);
         }
@@ -165,7 +129,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             if (product == null)
             {
-                return this.RedirectToAction("Error", "Home");
+                return this.RedirectToAction(GlobalConstants.ErrorAction, GlobalConstants.HomeController);
             }
 
             EditProductViewModel viewModel = new EditProductViewModel()
@@ -216,7 +180,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             await this.productService.EditProduct(product);
 
-            return this.RedirectToAction("Index", "Product");
+            return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ProductController);
         }
 
         [HttpGet]
@@ -227,7 +191,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             if (product == null)
             {
-                return this.RedirectToAction("Error", "Home");
+                return this.RedirectToAction(GlobalConstants.ErrorAction, GlobalConstants.HomeController);
             }
 
             return this.View();
@@ -241,12 +205,12 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             if (product == null)
             {
-                return this.RedirectToAction("Error", "Home");
+                return this.RedirectToAction(GlobalConstants.ErrorAction, GlobalConstants.HomeController);
             }
 
             await this.productService.DeleteProduct(product);
 
-            return this.RedirectToAction("Index", "Product");
+            return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ProductController);
         }
 
         [HttpGet]
@@ -256,7 +220,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             if (product == null)
             {
-                return this.RedirectToAction("Error", "Home");
+                return this.RedirectToAction(GlobalConstants.ErrorAction, GlobalConstants.HomeController);
             }
 
             DetailsProductViewModel viewModel = AutoMapperConfig.MapperInstance.Map<DetailsProductViewModel>(product);

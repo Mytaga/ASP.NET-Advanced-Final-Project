@@ -24,9 +24,9 @@ namespace PizzaOrderingSystem.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-           var viewModel = await this.reviewService.GetAll();
+            var viewModel = await this.reviewService.GetAll();
 
-           return this.View(viewModel);
+            return this.View(viewModel);
         }
 
         [HttpGet]
@@ -52,7 +52,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             await this.reviewService.AddReview(review);
 
-            return this.RedirectToAction(nameof(this.Index));
+            return this.RedirectToAction(GlobalConstants.IndexAction);
         }
 
         [HttpGet]
@@ -63,7 +63,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             if (product == null)
             {
-                return this.RedirectToAction("Error", "Home");
+                return this.RedirectToAction(GlobalConstants.ErrorAction, GlobalConstants.HomeController);
             }
 
             return this.View();
@@ -77,12 +77,12 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             if (product == null)
             {
-                return this.RedirectToAction("Error", "Home");
+                return this.RedirectToAction(GlobalConstants.ErrorAction, GlobalConstants.HomeController);
             }
 
             await this.reviewService.DeleteReview(product);
 
-            return this.RedirectToAction(nameof(this.Index));
+            return this.RedirectToAction(GlobalConstants.IndexAction);
         }
     }
 }

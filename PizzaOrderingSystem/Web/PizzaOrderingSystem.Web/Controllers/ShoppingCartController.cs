@@ -71,7 +71,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 await this.cartService.RemoveFromCartAsync(item);
             }
 
-            return this.RedirectToAction(nameof(this.Index));
+            return this.RedirectToAction(GlobalConstants.IndexAction);
         }
 
         [HttpGet]
@@ -79,7 +79,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         {
             await this.cartService.ClearCartAsync();
 
-            return this.RedirectToAction(nameof(this.Index));
+            return this.RedirectToAction(GlobalConstants.IndexAction);
         }
 
         [HttpGet]
@@ -92,7 +92,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 await this.cartService.IncreaseQuantity(item);
             }
 
-            return this.RedirectToAction(nameof(this.Index));
+            return this.RedirectToAction(GlobalConstants.IndexAction);
         }
 
         [HttpGet]
@@ -105,7 +105,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 await this.cartService.DecreaseQuantity(item);
             }
 
-            return this.RedirectToAction(nameof(this.Index));
+            return this.RedirectToAction(GlobalConstants.IndexAction);
         }
     }
 }
