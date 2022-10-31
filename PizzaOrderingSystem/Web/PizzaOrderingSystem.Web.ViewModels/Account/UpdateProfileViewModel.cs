@@ -1,37 +1,38 @@
 ﻿using Microsoft.AspNetCore.Http;
-using PizzaOrderingSystem.Common;
+using static PizzaOrderingSystem.Common.ModelValidationConstants.UserValidation;
+using static PizzaOrderingSystem.Common.ModelValidationConstants.AddressValidation;
 using System.ComponentModel.DataAnnotations;
 
 namespace PizzaOrderingSystem.Web.ViewModels.Account
 {
     public class UpdateProfileViewModel
     {
-        [MinLength(ModelValidationConstants.UserValidation.PhoneNumberMinLength, ErrorMessage = ModelValidationConstants.UserValidation.PhoneNumberMinLengthError)]
-        [MaxLength(ModelValidationConstants.UserValidation.PhoneNumberMaxLength, ErrorMessage = ModelValidationConstants.UserValidation.PhoneNumberMaxLengthError)]
+        [MinLength(PhoneNumberMinLength, ErrorMessage = PhoneNumberMinLengthError)]
+        [MaxLength(PhoneNumberMaxLength, ErrorMessage = PhoneNumberMaxLengthError)]
         [Phone]
         public string PhoneNumber { get; set; }
 
         [Display(Name = "Image")]
         public IFormFile ImageUrl { get; set; }
 
-        [Required(ErrorMessage = ModelValidationConstants.AddressValidation.CityRequiredError)]
-        [MinLength(ModelValidationConstants.AddressValidation.CityMinLength, ErrorMessage = ModelValidationConstants.AddressValidation.CityMinLengthError)]
-        [MaxLength(ModelValidationConstants.AddressValidation.CityMaxLength, ErrorMessage = ModelValidationConstants.AddressValidation.CityMaxLengthError)]
+        [Required(ErrorMessage = CityRequiredError)]
+        [MinLength(CityMinLength, ErrorMessage =CityMinLengthError)]
+        [MaxLength(CityMaxLength, ErrorMessage = CityMaxLengthError)]
         public string City { get; set; }
 
-        [Required(ErrorMessage = ModelValidationConstants.AddressValidation.StreetRequiredError)]
-        [MinLength(ModelValidationConstants.AddressValidation.StreetMinLength, ErrorMessage = ModelValidationConstants.AddressValidation.StreetMinLengthError)]
-        [MaxLength(ModelValidationConstants.AddressValidation.StreetMaxLength, ErrorMessage = ModelValidationConstants.AddressValidation.StreetMaxLengthError)]
+        [Required(ErrorMessage = StreetRequiredError)]
+        [MinLength(StreetMinLength, ErrorMessage = StreetMinLengthError)]
+        [MaxLength(StreetMaxLength, ErrorMessage = StreetMaxLengthError)]
         public string Street { get; set; }
 
-        [Range(ModelValidationConstants.AddressValidation.StreetNumberMinValue, ModelValidationConstants.AddressValidation.StreetNumberMaxValue, ErrorMessage = ModelValidationConstants.AddressValidation.StreetNumberRangeLengthError)]
+        [Range(StreetNumberMinValue,StreetNumberMaxValue, ErrorMessage = StreetNumberRangeLengthError)]
         public int StreetNumber { get; set; }
 
-        [Range(ModelValidationConstants.AddressValidation.FloorMinValue, ModelValidationConstants.AddressValidation.FloorMaxValue, ErrorMessage = ModelValidationConstants.AddressValidation.FloorRangeLengthError)]
+        [Range(FloorMinValue, FloorMaxValue, ErrorMessage =FloorRangeLengthError)]
         public int Floor { get; set; }
 
-        [MinLength(ModelValidationConstants.AddressValidation.PostalCodeMinLength, ErrorMessage = ModelValidationConstants.AddressValidation.PostalCodeMinLengthError)]
-        [MaxLength(ModelValidationConstants.AddressValidation.PostalCodeMaxLength, ErrorMessage = ModelValidationConstants.AddressValidation.PostalCodeMaxLengthError)]
+        [MinLength(PostalCodeMinLength, ErrorMessage = PostalCodeMinLengthError)]
+        [MaxLength(PostalCodeMaxLength, ErrorMessage = PostalCodeMaxLengthError)]
         public string PostCode { get; set; }
     }
 }
