@@ -1,4 +1,6 @@
-﻿namespace PizzaOrderingSystem.Common
+﻿using System.Data;
+
+namespace PizzaOrderingSystem.Common
 {
     public static class GlobalConstants
     {
@@ -16,5 +18,12 @@
         public const string DessertCategory = "Dessert";
         public const string DrinkCategory = "Drink";
         public const string SauceCategory = "Sauce";
+
+        public const string ProductController = "Product";
+        public const string HomeController = "Home";
+
+        public const string IndexAction = "Index";
+        public const string CreateAction = "Create";
+        public const string ErrorAction = "Error";
     }
 }
