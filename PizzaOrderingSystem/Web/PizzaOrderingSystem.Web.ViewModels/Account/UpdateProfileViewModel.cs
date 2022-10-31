@@ -16,7 +16,7 @@ namespace PizzaOrderingSystem.Web.ViewModels.Account
         public IFormFile ImageUrl { get; set; }
 
         [Required(ErrorMessage = CityRequiredError)]
-        [MinLength(CityMinLength, ErrorMessage =CityMinLengthError)]
+        [MinLength(CityMinLength, ErrorMessage = CityMinLengthError)]
         [MaxLength(CityMaxLength, ErrorMessage = CityMaxLengthError)]
         public string City { get; set; }
 
@@ -25,10 +25,10 @@ namespace PizzaOrderingSystem.Web.ViewModels.Account
         [MaxLength(StreetMaxLength, ErrorMessage = StreetMaxLengthError)]
         public string Street { get; set; }
 
-        [Range(StreetNumberMinValue,StreetNumberMaxValue, ErrorMessage = StreetNumberRangeLengthError)]
+        [Range(StreetNumberMinValue, StreetNumberMaxValue, ErrorMessage = StreetNumberRangeLengthError)]
         public int StreetNumber { get; set; }
 
-        [Range(FloorMinValue, FloorMaxValue, ErrorMessage =FloorRangeLengthError)]
+        [Range(FloorMinValue, FloorMaxValue, ErrorMessage = FloorRangeLengthError)]
         public int Floor { get; set; }
 
         [MinLength(PostalCodeMinLength, ErrorMessage = PostalCodeMinLengthError)]
