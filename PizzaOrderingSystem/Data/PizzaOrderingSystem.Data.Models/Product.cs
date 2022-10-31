@@ -1,5 +1,4 @@
 ﻿using PizzaOrderingSystem.Data.Common.Models;
-using PizzaOrderingSystem.Data.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -29,8 +28,6 @@ namespace PizzaOrderingSystem.Data.Models
 
         [Required]
         public string ImageUrl { get; set; }
-
-        public TypeOfDough Dough { get; set; }
 
         [Required]
         [ForeignKey(nameof(Category))]
