@@ -111,11 +111,11 @@
                                 <a class="btn btn-dark" asp-controller="Account" asp-action="Update">Update Profile</a>
                                 @if(Model.CreditCard == null)
                                 {
-                                    <a class="btn btn-dark" asp-controller="Card" asp-action="Add">Add Payment Card</a>
+                                    <a class="btn btn-dark" asp-controller="PaymentCard" asp-action="Add">Add Payment Card</a>
                                 }
                                 else
                                 {
-                                    <a class="btn btn-dark" asp-controller="Card" asp-action="Edit">Edit Payment Card</a>
+                                    <a class="btn btn-dark" asp-controller="PaymentCard" asp-action="Edit">Edit Payment Card</a>
                                 }
                             </div>
                         </div>
