@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Common;
-using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Data;
-using PizzaOrderingSystem.Services.Mapping;
 using PizzaOrderingSystem.Web.ViewModels.ShoppingCart;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Web.Controllers
@@ -62,7 +58,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 await this.cartService.AddToCartAsync(product);
             }
 
-            return this.RedirectToAction(nameof(this.Index));
+            return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ProductController);
         }
 
         [HttpGet]
