@@ -1,5 +1,7 @@
-﻿using PizzaOrderingSystem.Data.Common.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
+using PizzaOrderingSystem.Services.Mapping;
 using PizzaOrderingSystem.Web.ViewModels.PaymentCardViewModels;
 using System;
 using System.Threading.Tasks;
@@ -15,7 +17,7 @@ namespace PizzaOrderingSystem.Services.Data
             this.creditCardRepo = creditCardRepo;
         }
 
-        public async Task Add(AddCardViewModel viewModel)
+        public async Task AddAsync(AddCardViewModel viewModel)
         {
             throw new NotImplementedException();
         }
@@ -25,9 +27,16 @@ namespace PizzaOrderingSystem.Services.Data
             throw new NotImplementedException();
         }
 
-        public async Task<AllCardsViewModel> GetAll()
+        public async Task<AddCardViewModel> GetAll()
         {
-            throw new NotImplementedException();
+            var cards = this.creditCardRepo.AllAsNoTracking();
+
+            AddCardViewModel viewModel = new AddCardViewModel
+            {
+                SavedCards = await cards.To<PaymentCardViewModel>().ToListAsync(),
+            };
+
+            return viewModel;
         }
     }
 }
