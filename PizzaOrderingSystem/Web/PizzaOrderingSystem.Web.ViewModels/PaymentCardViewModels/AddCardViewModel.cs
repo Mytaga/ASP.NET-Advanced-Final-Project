@@ -13,7 +13,7 @@ namespace PizzaOrderingSystem.Web.ViewModels.PaymentCardViewModels
 
         [Required(ErrorMessage = ExpirationDateRequiredError)]
         [MinLength(ExpirationDateMinLength, ErrorMessage = ExpirationDateMinLengthError)]
-        [MaxLength(ExpirationDateMaxLength, ErrorMessage = ExpirationDateMaxLengthError))]
+        [MaxLength(ExpirationDateMaxLength, ErrorMessage = ExpirationDateMaxLengthError)]
         public string ExpirationDate { get; set; }
 
         [Required(ErrorMessage = CardHolderRequiredError)]
