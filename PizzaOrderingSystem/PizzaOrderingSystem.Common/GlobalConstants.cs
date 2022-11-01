@@ -21,9 +21,13 @@ namespace PizzaOrderingSystem.Common
 
         public const string ProductController = "Product";
         public const string HomeController = "Home";
+        public const string PaymentCardController = "PaymentCard";
+        public const string AccountController = "Account";
 
         public const string IndexAction = "Index";
         public const string CreateAction = "Create";
         public const string ErrorAction = "Error";
+        public const string AddAction = "Add";
+        public const string ViewProfileAction = "ViewProfile";
     }
 }

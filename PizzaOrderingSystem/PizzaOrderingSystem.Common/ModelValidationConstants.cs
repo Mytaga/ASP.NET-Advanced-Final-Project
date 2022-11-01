@@ -39,11 +39,11 @@ namespace PizzaOrderingSystem.Common
 
             public const string NameRequiredError = "Name is required";
             public const string NameMinLengthError = "Last name must be at least 5 letters";
-            public const string NameMaxLengthError = "Last name must be at no more than 30 letters";
+            public const string NameMaxLengthError = "Last name must be no more than 30 letters";
             public const string PriceRequiredError = "Price is required";
             public const string DescriptionRequiredError = "Description is required";
             public const string DescriptionMinLengthError = "Description must be at least 10 letters";
-            public const string DescriptionMaxLengthError = "Desctiption must be at no more than 100 letters";
+            public const string DescriptionMaxLengthError = "Desctiption must be no more than 100 letters";
             public const string ImageRequiredError = "Image is required";
         }
 
@@ -54,7 +54,7 @@ namespace PizzaOrderingSystem.Common
 
             public const string NameRequiredError = "Name is required";
             public const string NameMinLengthError = "Last name must be at least 3 letters";
-            public const string NameMaxLengthError = "Last name must be at no more than 50 letters";
+            public const string NameMaxLengthError = "Last name must be no more than 50 letters";
         }
 
         public static class CreditCardValidation
@@ -67,6 +67,19 @@ namespace PizzaOrderingSystem.Common
             public const int CardHolderMaxLength = 61;
             public const int CvcMinLength = 3;
             public const int CvcMaxLength = 3;
+
+            public const string CardNumberRequiredError = "Card number is required";
+            public const string CardNumberMinLengthError = "Last name must be at least 13 digits";
+            public const string CardNumberMaxLengthError = "Last name must be no more than 19 digits";
+            public const string CardHolderRequiredError = "Card holder name is required";
+            public const string CardHolderMinLengthError = "Card holder name must be at least 5 letters";
+            public const string CardHolderMaxLengthError = "Card holder name must be no more than 61 letters";
+            public const string ExpirationDateRequiredError = "Expiration date is required";
+            public const string ExpirationDateMinLengthError = "Expiration date must be at least 5 letters";
+            public const string ExpirationDateMaxLengthError = "Expiration date must be no more than 5 letters";
+            public const string CvcRequiredError = "Cvc code is required";
+            public const string CvcMinLengthError = "Cvc code must be at least 3 digits";
+            public const string CvcMaxLengthError = "Cvc code must be no more than 3 digits";
         }
 
         public static class ReviewValidation
