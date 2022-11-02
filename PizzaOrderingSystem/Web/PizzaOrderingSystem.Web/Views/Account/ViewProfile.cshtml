@@ -109,14 +109,7 @@
                         <div class="row mt-4">
                             <div class="col-sm-12">
                                 <a class="btn btn-dark" asp-controller="Account" asp-action="Update">Update Profile</a>
-                                @if(Model.CreditCard == null)
-                                {
-                                    <a class="btn btn-dark" asp-controller="PaymentCard" asp-action="Add">Add Payment Card</a>
-                                }
-                                else
-                                {
-                                    <a class="btn btn-dark" asp-controller="PaymentCard" asp-action="Edit">Edit Payment Card</a>
-                                }
+                                <a class="btn btn-dark" asp-controller="PaymentCard" asp-action="Add">Add Payment Cards</a>                       
                             </div>
                         </div>
                     </div>
