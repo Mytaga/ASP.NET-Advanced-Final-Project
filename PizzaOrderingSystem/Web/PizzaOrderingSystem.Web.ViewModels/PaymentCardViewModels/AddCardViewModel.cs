@@ -26,6 +26,8 @@ namespace PizzaOrderingSystem.Web.ViewModels.PaymentCardViewModels
         [MaxLength(CvcMaxLength, ErrorMessage = CvcMaxLengthError)]
         public string Cvc { get; set; }
 
+        public string UserId { get; set; }
+
         public virtual ICollection<PaymentCardViewModel> SavedCards { get; set; }
     }
 }

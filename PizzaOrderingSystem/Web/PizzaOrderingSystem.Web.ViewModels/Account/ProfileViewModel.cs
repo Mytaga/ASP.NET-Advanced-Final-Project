@@ -31,7 +31,7 @@ namespace PizzaOrderingSystem.Web.ViewModels.Account
 
         public string PostCode { get; set; }
 
-        public virtual CreditCard CreditCard { get; set; }
+        public virtual ICollection<CreditCard> CreditCards => new HashSet<CreditCard>();
 
         public virtual ICollection<Order> Orders => new HashSet<Order>();
 
