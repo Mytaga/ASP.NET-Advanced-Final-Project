@@ -2,6 +2,8 @@
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Web.ViewModels.PaymentCardViewModels;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Web.Controllers
@@ -18,7 +20,9 @@ namespace PizzaOrderingSystem.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            AddCardViewModel viewModel = await this.paymentCardService.GetAll();
+            string userId = this.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            AddCardViewModel viewModel = await this.paymentCardService.GetAll(userId);
 
             return this.View(viewModel);
         }
@@ -30,9 +34,10 @@ namespace PizzaOrderingSystem.Web.Controllers
                 return this.RedirectToAction(GlobalConstants.AddAction, GlobalConstants.PaymentCardController);
             }
 
+            model.UserId = this.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             await this.paymentCardService.AddAsync(model);
 
-            return this.RedirectToAction(GlobalConstants.ViewProfileAction, GlobalConstants.AccountController);
+            return this.RedirectToAction(GlobalConstants.AddAction, GlobalConstants.PaymentCardController);
         }
 
         public async Task<IActionResult> Delete()
