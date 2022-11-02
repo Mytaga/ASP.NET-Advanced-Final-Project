@@ -8,8 +8,8 @@
 <section class="p-4 p-md-5 bg-success" >
     <div class="row d-flex justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-5">
-            <div class="card rounded-3">
-                <div class="card-body p-4">
+            <div class="card rounded-4">
+                <div class="card-body p-3">
                     <div class="text-center mb-4">
                         <h3>Payment Settings</h3>
                     </div>
@@ -23,7 +23,7 @@
                                 <div class="flex-fill mx-3">
                                     <div class="form-outline">
                                         <input type="text" id="formControlLgXc" class="form-control form-control-lg"
-                                           value=@card.CardNumber />
+                                           value="@card.CardNumber"/>
                                         <label class="form-label" for="formControlLgXc">Card Number</label>
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                             </div>
                             <div class="col-3">
                                 <div class="form-outline">
-                                    <input asp-for="ExpirationDate" type="password" id="formControlLgExpk" class="form-control form-control-lg"
+                                    <input asp-for="ExpirationDate" type="text" id="formControlLgExpk" class="form-control form-control-lg"
                                            placeholder="MM/YY"/>
                                     <label asp-for="ExpirationDate" class="form-label" for="formControlLgExpk">Expire</label>
                                     <span asp-validation-for="ExpirationDate" class="text-danger"></span>
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <input type="submit" value="Add Card" class="btn btn-dark" />
-                        <a class="btn btn-dark" asp-action="Index">Back</a>
+                        <a class="btn btn-dark" asp-controller="Account" asp-action="ViewProfile">Back</a>
                     </form>
                 </div>
             </div>
