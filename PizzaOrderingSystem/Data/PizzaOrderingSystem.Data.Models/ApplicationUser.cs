@@ -53,10 +53,7 @@ namespace PizzaOrderingSystem.Data.Models
 
         public string ImageUrl { get; set; }
 
-        [ForeignKey(nameof(CreditCard))]
-        public string CreditCardId { get; set; }
-
-        public virtual CreditCard CreditCard { get; set; }
+        public virtual ICollection<CreditCard> CreditCards { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
 
