@@ -17,5 +17,7 @@ namespace PizzaOrderingSystem.Services.Data
         Task IncreaseQuantity(CartItem item);
 
         Task DecreaseQuantity(CartItem item);
+
+        decimal GetShoppingCartTotal();
     }
 }

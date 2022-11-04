@@ -88,5 +88,15 @@ namespace PizzaOrderingSystem.Services.Data
             this.cartItemRepo.Delete(item);
             await this.cartItemRepo.SaveChangesAsync();
         }
+
+        public decimal GetShoppingCartTotal()
+        {
+            var total = this.cartItemRepo.All()
+                .Where(ci => ci.ShoppingCartId == this.shoppingCart.ShoppingCartId)
+                .Include(p => p.Product)
+                .Select(ci => ci.Product.Price * ci.Quantity).Sum();
+
+            return total;
+        }
     }
 }
