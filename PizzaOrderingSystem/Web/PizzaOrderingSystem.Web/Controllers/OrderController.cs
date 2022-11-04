@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Web.ViewModels.OrderViewModels;
@@ -13,18 +14,16 @@ namespace PizzaOrderingSystem.Web.Controllers
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ICartService cartService;
+        private readonly IOrderService ordertService;
 
-        public OrderController(UserManager<ApplicationUser> userManager, ICartService cartService)
+        public OrderController(UserManager<ApplicationUser> userManager, ICartService cartService, IOrderService orderService)
         {
             this.userManager = userManager;
             this.cartService = cartService;
+            this.ordertService = orderService;
         }
 
-        public IActionResult Index()
-        {
-            return this.View();
-        }
-
+        [HttpGet]
         public async Task<IActionResult> Confirm()
         {
             var userId = this.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
@@ -33,17 +32,29 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             CreateOrderViewModel viewModel = new CreateOrderViewModel()
             {
-                TotalPrice = this.cartService.GetShoppingCartTotal(),
+                TotalPrice = this.cartService.GetShoppingCartTotal().ToString("C2"),
                 UserId = userId,
                 Cards = user.CreditCards,
                 City = user.Address.City,
                 Street = user.Address.Street,
                 StreetNumber = user.Address.StreetNumber,
                 Floor = user.Address.Floor,
-                ShopId = null,
             };
 
             return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateOrderViewModel viewModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.RedirectToAction(GlobalConstants.ConfirmOrderAction, GlobalConstants.OrderController);
+            }
+
+            await this.ordertService.AddAsync(viewModel);
+
+            return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController);
         }
     }
 }
