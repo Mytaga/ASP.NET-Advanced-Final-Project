@@ -65,6 +65,7 @@ body {
     margin-bottom: 60px;
     background-color: navajowhite;
     font-family: Tahoma;
+    background-image: url(/img/BackgroundImage.jpg);
 }
 
 .footer {
@@ -262,6 +263,9 @@ ul, ul li {
     align-items: center;
     font-weight: 700;
 }
+
+/*ShoppingCart*/
+
 @media (min-width: 1025px) {
     .h-custom {
         height: 100vh !important;
