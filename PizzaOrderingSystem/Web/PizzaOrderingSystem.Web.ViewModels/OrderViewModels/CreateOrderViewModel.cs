@@ -12,7 +12,7 @@ namespace PizzaOrderingSystem.Web.ViewModels.OrderViewModels
         public DateTime TimeOfOrder => DateTime.Now;
 
         [Required]
-        public string TotalPrice { get; set; }
+        public decimal TotalPrice { get; set; }
 
         public OrderType DeliveryType => OrderType.Delivery;
 
