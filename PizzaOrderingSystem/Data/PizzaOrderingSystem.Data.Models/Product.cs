@@ -1,4 +1,5 @@
 ﻿using PizzaOrderingSystem.Data.Common.Models;
+using PizzaOrderingSystem.Data.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

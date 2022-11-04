@@ -23,18 +23,13 @@ namespace PizzaOrderingSystem.Data.Models
 
         public OrderStatus Status { get; set; }
 
+        public PaymentType PaymentType { get; set; }
+
         [Required]
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
-
-        [Required]
-        [ForeignKey(nameof(Shop))]
-
-        public string ShopId { get; set; }
-
-        public virtual Shop Shop { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
     }
