@@ -1,4 +1,5 @@
-﻿@model PizzaOrderingSystem.Web.ViewModels.OrderViewModels.CreateOrderViewModel
+﻿@using PizzaOrderingSystem.Data.Models.Enums
+@model PizzaOrderingSystem.Web.ViewModels.OrderViewModels.CreateOrderViewModel
 
 @{
     ViewData["Title"] = "Confirm Order";
@@ -11,13 +12,16 @@
                 <div class="row d-flex justify-content-center pb-5">
                     <div class="col-md-7 col-xl-5 mb-4 mb-md-0">
                         <div class="pt-2">
-                            <div class="d-flex pb-2">
-                                <a class="btn btn-dark" asp-controller="Product" asp-action="Index">Cancel and return to website</a>                              
+                            <div class="p-2 me-3">
+                                <h4>Order Recap</h4>
                             </div>
-                            <form class="pb-3 mt-3">
-                                <div class="d-flex flex-row pb-3">
+                            <form asp-action="Create" class="pb-3 mt-3">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <label asp-for="PaymentType" class="control-label">Payment Type</label>
+                                <select asp-for="PaymentType" class="form-control mt-2" asp-items="Html.GetEnumSelectList<PaymentType>()"></select>
+                                <div class="d-flex flex-row pb-3 mt-3">
                                     @foreach (var card in Model.Cards)
-                                   {
+                                    {
                                         <div class="d-flex align-items-center pe-2">
                                             <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1"
                                                value="" aria-label="..." checked />
@@ -28,37 +32,39 @@
                                             </p>
                                             <div class="ms-auto">@card.CardNumber</div>
                                         </div>
-                                    }                               
+                                    }
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label asp-for="City" class="control-label">City</label>
+                                    <input asp-for="City" class="form-control mt-2" type="text" value="@Model.City" />
+                                    <span asp-validation-for="City" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Street" class="control-label mt-2">Street</label>
+                                    <input asp-for="Street" class="form-control mt-2" type="text" value="@Model.Street" />
+                                    <span asp-validation-for="Street" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="StreetNumber" class="control-label mt-2">Street Number</label>
+                                    <input asp-for="StreetNumber" class="form-control mt-2" type="text" value="@Model.StreetNumber" />
+                                    <span asp-validation-for="StreetNumber" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ExpectedDelivery" class="control-label mt-2">Expected Delivery</label>
+                                    <input asp-for="ExpectedDelivery" class="form-control mt-2" type="text" readonly="readonly" value="@Model.ExpectedDelivery" />
+                                    <span asp-validation-for="ExpectedDelivery" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="TotalPrice" class="control-label mt-2">Total Price</label>
+                                    <input asp-for="TotalPrice" class="form-control mt-2 text-success" type="text" readonly="readonly" value="@Model.TotalPrice" />
+                                    <span asp-validation-for="TotalPrice" class="text-danger"></span>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="submit" value="Confirm Order" class="btn btn-dark" />
+                                    <a class="btn btn-dark" asp-controller="Product" asp-action="Index">Cancel and return to website</a>
                                 </div>
                             </form>
-                            <input type="button" value="Proceed to payment" class="btn btn-dark btn-block btn-lg" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-5 col-xl-4 offset-xl-1">
-
-                        <div class="rounded d-flex flex-column p-2 bg-success">
-                            <div class="p-2 me-3">
-                                <h4>Order Recap</h4>
-                            </div>
-                            <div class="p-2 d-flex">
-                                <div class="col-8">City</div>
-                                <div class="ms-auto">@Model.City</div>
-                            </div>
-                            <div class="p-2 d-flex">
-                                <div class="col-8">Street</div>
-                                <div class="ms-auto">@Model.Street</div>
-                            </div>
-                            <div class="border-top px-2 mx-2"></div>
-                            <div class="p-2 d-flex pt-3">
-                                <div class="col-8">Street Number</div>
-                                <div class="ms-auto">@Model.StreetNumber</div>
-                            </div>                         
-                            <div class="border-top px-2 mx-2"></div>
-                            <div class="p-2 d-flex pt-3">
-                                <div class="col-8"><b>Total</b></div>
-                                <div class="ms-auto"><b class="text-success">$@Model.TotalPrice</b></div>
-                            </div>
                         </div>
                     </div>
                 </div>
