@@ -79,6 +79,7 @@ namespace PizzaOrderingSystem.Web
             services.AddScoped<ICartItemService, CartItemService>();
             services.AddScoped<IAddressService, AddressService>();
             services.AddScoped<IPaymentCardService, PaymentCardService>();
+            services.AddScoped<IOrderService, OrderService>();
 
             services.AddScoped(sp => ShoppingCart.GetCart(sp));
 
@@ -86,7 +87,7 @@ namespace PizzaOrderingSystem.Web
             services.AddSession(options =>
             {
                 options.Cookie.HttpOnly = true;
-                options.IdleTimeout = TimeSpan.FromMinutes(15);
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
                 options.Cookie.IsEssential = true;
             });
         }
