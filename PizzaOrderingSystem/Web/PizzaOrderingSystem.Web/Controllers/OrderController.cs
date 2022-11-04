@@ -32,7 +32,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             CreateOrderViewModel viewModel = new CreateOrderViewModel()
             {
-                TotalPrice = this.cartService.GetShoppingCartTotal().ToString("C2"),
+                TotalPrice = this.cartService.GetShoppingCartTotal(),
                 UserId = userId,
                 Cards = user.CreditCards,
                 City = user.Address.City,
