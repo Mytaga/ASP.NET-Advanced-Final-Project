@@ -20,6 +20,8 @@ namespace PizzaOrderingSystem.Web.ViewModels.OrderViewModels
 
         public string ShopId { get; set; }
 
+        public string City { get; set; }
+
         public ICollection<Product> Products { get; set; }
     }
 }
