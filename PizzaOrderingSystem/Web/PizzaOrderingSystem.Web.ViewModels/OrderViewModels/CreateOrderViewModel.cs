@@ -38,5 +38,7 @@ namespace PizzaOrderingSystem.Web.ViewModels.OrderViewModels
         public string UserId { get; set; }
 
         public virtual ICollection<CreditCard> Cards { get; set; }
+
+        public ICollection<Product> Products { get; set; }
     }
 }
