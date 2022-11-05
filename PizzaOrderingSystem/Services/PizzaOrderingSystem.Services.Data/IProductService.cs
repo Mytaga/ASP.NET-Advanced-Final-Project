@@ -1,4 +1,5 @@
 ﻿using PizzaOrderingSystem.Data.Models;
+using PizzaOrderingSystem.Web.ViewModels.ProductViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,9 +8,9 @@ namespace PizzaOrderingSystem.Services.Data
 {
     public interface IProductService
     {
-        IQueryable<Product> GetAllByName(string searchName = "");
+        Task<AllProductsViewModel> GetAllByName(string searchName = "");
 
-        IQueryable<Product> GetAllByCategory(string categoryName = "");
+        Task<AllProductsViewModel> GetAllByCategory(string categoryName = "", string searchName = "");
 
         ICollection<string> GetAllProductsCategories();
 

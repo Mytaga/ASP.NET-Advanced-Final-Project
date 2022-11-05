@@ -74,6 +74,16 @@ namespace PizzaOrderingSystem.Services.Data
                 .ToListAsync();
         }
 
+        public async Task<ICollection<Product>> GetCartProductsAsync()
+        {
+            return await this.cartItemRepo
+                .All()
+                .Where(ci => ci.ShoppingCartId == this.shoppingCart.ShoppingCartId)
+                .Include(p => p.Product)
+                .Select(ci => ci.Product)
+                .ToListAsync();
+        }
+
         public async Task IncreaseQuantity(CartItem item)
         {
             item.Quantity++;

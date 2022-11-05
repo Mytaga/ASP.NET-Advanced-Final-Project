@@ -1,4 +1,5 @@
-﻿using PizzaOrderingSystem.Data.Models;
+﻿using Microsoft.VisualBasic;
+using PizzaOrderingSystem.Data.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -19,5 +20,7 @@ namespace PizzaOrderingSystem.Services.Data
         Task DecreaseQuantity(CartItem item);
 
         decimal GetShoppingCartTotal();
+
+        Task<ICollection<Product>> GetCartProductsAsync();
     }
 }

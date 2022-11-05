@@ -10,10 +10,12 @@ namespace PizzaOrderingSystem.Services.Data
     public class OrderService : IOrderService
     {
         private readonly IDeletableEntityRepository<Order> orderRepo;
+        private readonly ICartService cartService;
 
-        public OrderService(IDeletableEntityRepository<Order> orderRepo)
+        public OrderService(IDeletableEntityRepository<Order> orderRepo, ICartService cartService)
         {
             this.orderRepo = orderRepo;
+            this.cartService = cartService;
         }
 
         public async Task AddAsync(CreateOrderViewModel viewModel)
@@ -26,6 +28,7 @@ namespace PizzaOrderingSystem.Services.Data
                 Status = viewModel.Status,
                 PaymentType = viewModel.PaymentType,
                 UserId = viewModel.UserId,
+                Products = await this.cartService.GetCartProductsAsync(),
             };
 
             await this.orderRepo.AddAsync(order);

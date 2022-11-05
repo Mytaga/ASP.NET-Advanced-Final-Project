@@ -23,6 +23,7 @@
     <ProjectReference Include="..\..\Data\PizzaOrderingSystem.Data.Common\PizzaOrderingSystem.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\PizzaOrderingSystem.Data.Models\PizzaOrderingSystem.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\PizzaOrderingSystem.Data\PizzaOrderingSystem.Data.csproj" />
+    <ProjectReference Include="..\..\Web\PizzaOrderingSystem.Web.ViewModels\PizzaOrderingSystem.Web.ViewModels.csproj" />
     <ProjectReference Include="..\PizzaOrderingSystem.Services.Mapping\PizzaOrderingSystem.Services.Mapping.csproj" />
   </ItemGroup>
 

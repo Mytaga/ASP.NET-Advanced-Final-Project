@@ -106,3 +106,10 @@ C:\Users\PTO\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\Servic
 C:\Users\PTO\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\Services\PizzaOrderingSystem.Services.Data\bin\Debug\net6.0\appsettings.json
 C:\Users\PTO\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\Services\PizzaOrderingSystem.Services.Data\bin\Debug\net6.0\PizzaOrderingSystem.Data.dll
 C:\Users\PTO\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\Services\PizzaOrderingSystem.Services.Data\bin\Debug\net6.0\PizzaOrderingSystem.Data.pdb
+C:\Users\mitko\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\Services\PizzaOrderingSystem.Services.Data\bin\Debug\net6.0\appsettings.json
+C:\Users\mitko\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\Services\PizzaOrderingSystem.Services.Data\bin\Debug\net6.0\PizzaOrderingSystem.Data.dll
+C:\Users\mitko\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\Services\PizzaOrderingSystem.Services.Data\bin\Debug\net6.0\PizzaOrderingSystem.Data.pdb
+C:\Users\mitko\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\Services\PizzaOrderingSystem.Services.Data\bin\Debug\net6.0\PizzaOrderingSystem.Web.ViewModels.dll
+C:\Users\mitko\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\Services\PizzaOrderingSystem.Services.Data\bin\Debug\net6.0\PizzaOrderingSystem.Web.ViewModels.pdb
+C:\Users\PTO\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\Services\PizzaOrderingSystem.Services.Data\bin\Debug\net6.0\PizzaOrderingSystem.Web.ViewModels.dll
+C:\Users\PTO\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\Services\PizzaOrderingSystem.Services.Data\bin\Debug\net6.0\PizzaOrderingSystem.Web.ViewModels.pdb

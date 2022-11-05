@@ -13,6 +13,7 @@
           "PizzaOrderingSystem.Data.Common": "1.0.0",
           "PizzaOrderingSystem.Data.Models": "1.0.0",
           "PizzaOrderingSystem.Services.Mapping": "1.0.0",
+          "PizzaOrderingSystem.Web.ViewModels": "1.0.0",
           "StyleCop.Analyzers": "1.2.0-beta.435"
         },
         "runtime": {
@@ -749,6 +750,15 @@
         "runtime": {
           "PizzaOrderingSystem.Services.Mapping.dll": {}
         }
+      },
+      "PizzaOrderingSystem.Web.ViewModels/1.0.0": {
+        "dependencies": {
+          "PizzaOrderingSystem.Data.Models": "1.0.0",
+          "PizzaOrderingSystem.Services.Mapping": "1.0.0"
+        },
+        "runtime": {
+          "PizzaOrderingSystem.Web.ViewModels.dll": {}
+        }
       }
     }
   },
@@ -1234,6 +1244,11 @@
       "sha512": ""
     },
     "PizzaOrderingSystem.Services.Mapping/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PizzaOrderingSystem.Web.ViewModels/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
