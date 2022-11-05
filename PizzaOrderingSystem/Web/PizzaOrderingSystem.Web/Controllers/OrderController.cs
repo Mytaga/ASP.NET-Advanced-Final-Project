@@ -4,6 +4,7 @@ using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Web.ViewModels.OrderViewModels;
+using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -55,7 +56,26 @@ namespace PizzaOrderingSystem.Web.Controllers
             await this.ordertService.AddAsync(viewModel);
             await this.cartService.ClearCartAsync();
 
-            return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController);
+            return this.RedirectToAction(GlobalConstants.OrderDetailsAction, GlobalConstants.OrderController);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(string id)
+        {
+            var order = await this.ordertService.GetLastOrderAsync();
+
+            OrderDetailsViewModel viewModel = new OrderDetailsViewModel()
+            {
+                OrderId = order.Id,
+                TimeOfOrder = order.TimeOfOrder.ToString("f", CultureInfo.InvariantCulture),
+                TotalPrice = order.TotalPrice.ToString("C"),
+                DeliveryType = order.DeliveryType.ToString(),
+                Status = order.Status.ToString(),
+                PaymentType = order.PaymentType.ToString(),
+                Products = order.Products,
+            };
+
+            return this.View(viewModel);
         }
     }
 }
