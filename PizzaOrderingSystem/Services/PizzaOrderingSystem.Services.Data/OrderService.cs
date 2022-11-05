@@ -1,6 +1,8 @@
-﻿using PizzaOrderingSystem.Data.Common.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Web.ViewModels.OrderViewModels;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Services.Data
@@ -19,7 +21,7 @@ namespace PizzaOrderingSystem.Services.Data
             Order order = new Order()
             {
                 TimeOfOrder = viewModel.TimeOfOrder,
-                TotalPrice = decimal.Parse(viewModel.TotalPrice),
+                TotalPrice = viewModel.TotalPrice,
                 DeliveryType = viewModel.DeliveryType,
                 Status = viewModel.Status,
                 PaymentType = viewModel.PaymentType,
@@ -28,6 +30,14 @@ namespace PizzaOrderingSystem.Services.Data
 
             await this.orderRepo.AddAsync(order);
             await this.orderRepo.SaveChangesAsync();
+        }
+
+        public async Task<Order> GetLastOrderAsync()
+        {
+            return await this.orderRepo
+                .AllAsNoTracking()
+                .OrderByDescending(o => o.CreatedOn)
+                .FirstOrDefaultAsync();
         }
     }
 }
