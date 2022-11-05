@@ -5,9 +5,10 @@
     using PizzaOrderingSystem.Common;
     using PizzaOrderingSystem.Web.Controllers;
 
-    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-    [Area("Administration")]
-    public class AdministrationController : BaseController
+    [Authorize(Roles = GlobalConstants.ManagerRoleName)]
+    [Area("Manager")]
+    public class ManagerController : BaseController
     {
+
     }
 }

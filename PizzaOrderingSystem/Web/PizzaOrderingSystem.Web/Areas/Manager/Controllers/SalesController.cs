@@ -4,11 +4,11 @@
     using PizzaOrderingSystem.Services.Data;
     using PizzaOrderingSystem.Web.ViewModels.Administration.Dashboard;
 
-    public class DashboardController : AdministrationController
+    public class SalesController : ManagerController
     {
         private readonly ISettingsService settingsService;
 
-        public DashboardController(ISettingsService settingsService)
+        public SalesController(ISettingsService settingsService)
         {
             this.settingsService = settingsService;
         }
