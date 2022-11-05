@@ -53,6 +53,7 @@ namespace PizzaOrderingSystem.Web.Controllers
             }
 
             await this.ordertService.AddAsync(viewModel);
+            await this.cartService.ClearCartAsync();
 
             return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController);
         }
