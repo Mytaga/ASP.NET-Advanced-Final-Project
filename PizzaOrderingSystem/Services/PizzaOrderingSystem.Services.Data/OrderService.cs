@@ -38,7 +38,7 @@ namespace PizzaOrderingSystem.Services.Data
         public async Task<Order> GetLastOrderAsync()
         {
             return await this.orderRepo
-                .AllAsNoTracking()
+                .All()
                 .OrderByDescending(o => o.CreatedOn)
                 .FirstOrDefaultAsync();
         }
