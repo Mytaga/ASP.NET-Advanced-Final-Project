@@ -11,13 +11,12 @@
 </div>
 
 <div class="container mt-0 bg-success">
-    <div id="reviews" class="review-section">
-      
-        @if (User.Identity.IsAuthenticated && !User.IsInRole(GlobalConstants.AdministratorRoleName))
-        {
-            <a class="btn btn-dark" asp-controller="Review" asp-action="Create">Add Review</a>
-        }
-        <div class="review-list mt-3 bg-success">
+    @if (User.Identity.IsAuthenticated && !User.IsInRole(GlobalConstants.AdministratorRoleName))
+    {
+        <a class="btn btn-dark mt-4" asp-controller="Review" asp-action="Create">Add Review</a>
+    }
+    <div id="reviews" class="review-section">        
+        <div class="review-list mt-1 bg-success">
             <ul>
                 <li>
                     <h4 class="m-0">@Model.Reviews.Count Reviews</h4>

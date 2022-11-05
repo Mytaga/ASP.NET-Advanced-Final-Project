@@ -5,28 +5,30 @@
 }
 
 <h2>Add Review</h2>
-
-<form asp-action="Create">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="AuthorName" class="control-label"></label>
-        <input asp-for="AuthorName" class="form-control" />
-        <span asp-validation-for="AuthorName" class="text-danger"></span>
+<div class="row">
+    <div class="col-md-4 bg-success">
+        <form asp-action="Create" class="bg-success text-black">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AuthorName" class="control-label mt-2"></label>
+                <input asp-for="AuthorName" class="form-control mt-2" />
+                <span asp-validation-for="AuthorName" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="Content" class="control-label"></label>
+                <input asp-for="Content" class="form-control mt-2" />
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3 mb-3">
+                <input type="submit" value="Add" class="btn btn-dark" />
+                <a class="btn btn-dark" asp-controller="Review" asp-action="Index">Back</a>
+            </div>
+        </form>
     </div>
-    <div class="form-group mt-3">
-        <label asp-for="Content" class="control-label"></label>
-        <input asp-for="Content" class="form-control" />
-        <span asp-validation-for="Content" class="text-danger"></span>
-    </div>
-    <div class="form-group mt-3 mb-3">
-        <input type="submit" value="Add" class="btn btn-dark" />
-        <a class="btn btn-dark" asp-controller="Review" asp-action="Index">Back</a>
-    </div>
-</form>
+</div>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-}
-    
+    }
