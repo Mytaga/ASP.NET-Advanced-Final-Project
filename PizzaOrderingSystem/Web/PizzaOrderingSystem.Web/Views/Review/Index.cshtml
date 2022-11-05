@@ -6,19 +6,22 @@
     ViewData["Title"] = "Reviews";
 }
 
-<h2>Reviews</h2>
+<div class="mt-2">
+    <h1>Reviews</h1>
+</div>
 
-<div class="container mt-0">
+<div class="container mt-0 bg-success">
     <div id="reviews" class="review-section">
-        <div class="d-flex align-items-center justify-content-between mb-4">
-            <h4 class="m-0">@Model.Reviews.Count Reviews</h4>
-        </div>
+      
         @if (User.Identity.IsAuthenticated && !User.IsInRole(GlobalConstants.AdministratorRoleName))
         {
             <a class="btn btn-dark" asp-controller="Review" asp-action="Create">Add Review</a>
         }
-        <div class="review-list mt-3">
+        <div class="review-list mt-3 bg-success">
             <ul>
+                <li>
+                    <h4 class="m-0">@Model.Reviews.Count Reviews</h4>
+                </li>
                 @foreach (var item in Model.Reviews)
                 {
                     <li>
@@ -32,7 +35,7 @@
                                         @item.Content
                                     </p>
                                 </div>
-                                <span class="publish py-3 d-inline-block w-100">@item.PublishedOn</span>
+                                <span class="publish py-3 d-inline-block w-100 text-black">@item.PublishedOn</span>
                             </div>
                         </div>
                         @if (User.IsInRole(GlobalConstants.AdministratorRoleName))

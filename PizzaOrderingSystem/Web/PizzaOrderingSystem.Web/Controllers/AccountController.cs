@@ -58,6 +58,7 @@ namespace PizzaOrderingSystem.Web.Controllers
             if (result.Succeeded)
             {
                 await this.signInManager.SignInAsync(user, isPersistent: false);
+                await this.userManager.AddToRoleAsync(user, GlobalConstants.UserRoleName);
                 return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController);
             }
 
@@ -107,7 +108,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 }
             }
 
-            this.ModelState.AddModelError(string.Empty, "Invalid login");
+            this.ModelState.AddModelError(string.Empty, ErrorConstants.InvalidLogin);
 
             return this.View(model);
         }
@@ -121,6 +122,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = GlobalConstants.UserRoleName)]
         public async Task<IActionResult> ViewProfile()
         {
             var user = await this.userManager.GetUserAsync(this.User);
