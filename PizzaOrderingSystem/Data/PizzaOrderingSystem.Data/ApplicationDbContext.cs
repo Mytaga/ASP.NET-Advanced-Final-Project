@@ -1,16 +1,14 @@
 ﻿namespace PizzaOrderingSystem.Data
 {
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore;
+    using PizzaOrderingSystem.Data.Common.Models;
+    using PizzaOrderingSystem.Data.Models;
     using System;
     using System.Linq;
     using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
-
-    using PizzaOrderingSystem.Data.Common.Models;
-    using PizzaOrderingSystem.Data.Models;
-
-    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
