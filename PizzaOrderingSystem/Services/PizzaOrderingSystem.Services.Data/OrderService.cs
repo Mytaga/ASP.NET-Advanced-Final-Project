@@ -28,7 +28,7 @@ namespace PizzaOrderingSystem.Services.Data
                 Status = viewModel.Status,
                 PaymentType = viewModel.PaymentType,
                 UserId = viewModel.UserId,
-                Products = await this.cartService.GetCartProductsAsync(),
+                OrderProducts = await this.cartService.GetCartProductsAsync(),
             };
 
             await this.orderRepo.AddAsync(order);
@@ -39,6 +39,7 @@ namespace PizzaOrderingSystem.Services.Data
         {
             return await this.orderRepo
                 .All()
+                .Include(o => o.OrderProducts)
                 .OrderByDescending(o => o.CreatedOn)
                 .FirstOrDefaultAsync();
         }
