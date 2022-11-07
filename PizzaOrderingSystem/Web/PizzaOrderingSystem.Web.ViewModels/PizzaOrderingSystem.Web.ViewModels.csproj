@@ -23,4 +23,8 @@
     <ProjectReference Include="..\..\Services\PizzaOrderingSystem.Services.Mapping\PizzaOrderingSystem.Services.Mapping.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Manager\Sales\" />
+  </ItemGroup>
+
 </Project>
