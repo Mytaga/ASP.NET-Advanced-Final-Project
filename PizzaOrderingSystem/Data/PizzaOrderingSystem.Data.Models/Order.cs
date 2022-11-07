@@ -12,7 +12,7 @@ namespace PizzaOrderingSystem.Data.Models
         public Order()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.Products = new HashSet<Product>();
+            this.OrderProducts = new HashSet<CartItem>();
         }
 
         public DateTime TimeOfOrder { get; set; }
@@ -31,6 +31,6 @@ namespace PizzaOrderingSystem.Data.Models
 
         public virtual ApplicationUser User { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<CartItem> OrderProducts { get; set; }
     }
 }

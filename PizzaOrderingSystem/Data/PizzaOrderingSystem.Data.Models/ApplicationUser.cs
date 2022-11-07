@@ -19,6 +19,7 @@ namespace PizzaOrderingSystem.Data.Models
             this.Logins = new HashSet<IdentityUserLogin<string>>();
             this.Orders = new HashSet<Order>();
             this.Reviews = new HashSet<Review>();
+            this.CreditCards = new HashSet<CreditCard>();
         }
 
         // Audit info

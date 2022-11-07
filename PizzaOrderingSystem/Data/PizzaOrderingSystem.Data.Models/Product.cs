@@ -13,7 +13,6 @@ namespace PizzaOrderingSystem.Data.Models
         public Product()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.Orders = new HashSet<Order>();
             this.Shops = new HashSet<Shop>();
         }
 
@@ -35,8 +34,6 @@ namespace PizzaOrderingSystem.Data.Models
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
-
-        public virtual ICollection<Order> Orders { get; set; }
 
         public virtual ICollection<Shop> Shops { get; set; }
     }
