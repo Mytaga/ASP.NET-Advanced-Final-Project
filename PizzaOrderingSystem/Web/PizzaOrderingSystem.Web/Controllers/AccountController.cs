@@ -204,7 +204,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             await this.userManager.UpdateAsync(user);
 
-            return this.RedirectToAction(nameof(this.ViewProfile));
+            return this.RedirectToAction(GlobalConstants.ViewProfileAction, GlobalConstants.AccountController);
         }
 
         public async Task<IActionResult> CreateRoles()

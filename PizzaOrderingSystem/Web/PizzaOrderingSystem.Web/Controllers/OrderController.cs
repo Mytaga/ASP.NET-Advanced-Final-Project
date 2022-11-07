@@ -15,13 +15,15 @@ namespace PizzaOrderingSystem.Web.Controllers
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ICartService cartService;
-        private readonly IOrderService ordertService;
+        private readonly IOrderService orderService;
+        private readonly ICartItemService cartItemService;
 
-        public OrderController(UserManager<ApplicationUser> userManager, ICartService cartService, IOrderService orderService)
+        public OrderController(UserManager<ApplicationUser> userManager, ICartService cartService, IOrderService orderService, ICartItemService cartItemService)
         {
             this.userManager = userManager;
             this.cartService = cartService;
-            this.ordertService = orderService;
+            this.orderService = orderService;
+            this.cartItemService = cartItemService;
         }
 
         [HttpGet]
@@ -30,6 +32,11 @@ namespace PizzaOrderingSystem.Web.Controllers
             var userId = this.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
  
             var user = await this.userManager.FindByIdAsync(userId);
+
+            if (user.Address == null)
+            {
+                return this.RedirectToAction(GlobalConstants.UpdateProficeAction, GlobalConstants.AccountController);
+            }
 
             CreateOrderViewModel viewModel = new CreateOrderViewModel()
             {
@@ -53,8 +60,8 @@ namespace PizzaOrderingSystem.Web.Controllers
                 return this.RedirectToAction(GlobalConstants.ConfirmOrderAction, GlobalConstants.OrderController);
             }
 
-            await this.ordertService.AddAsync(viewModel);
-            await this.cartService.ClearCartAsync();
+            await this.orderService.AddAsync(viewModel);
+            //await this.cartService.ClearCartAsync();
 
             return this.RedirectToAction(GlobalConstants.OrderDetailsAction, GlobalConstants.OrderController);
         }
@@ -62,7 +69,8 @@ namespace PizzaOrderingSystem.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(string id)
         {
-            var order = await this.ordertService.GetLastOrderAsync();
+            var order = await this.orderService.GetLastOrderAsync();
+            var products = this.cartItemService.GetAllByOrder(order.Id);
 
             OrderDetailsViewModel viewModel = new OrderDetailsViewModel()
             {
@@ -72,7 +80,13 @@ namespace PizzaOrderingSystem.Web.Controllers
                 DeliveryType = order.DeliveryType.ToString(),
                 Status = order.Status.ToString(),
                 PaymentType = order.PaymentType.ToString(),
-                Products = order.Products,
+                Products = products.ToList(),
+                Recipient = order.User.FirstName + " " + order.User.LastName,
+                RecipientPhone = order.User.PhoneNumber,
+                RecipientCity = order.User.Address.City,
+                RecipientStreet = order.User.Address.Street,
+                RecipientStreetNumber = order.User.Address.StreetNumber.ToString(),
+                RecipientPostalCode = order.User.Address.PostCode.ToString(),
             };
 
             return this.View(viewModel);
