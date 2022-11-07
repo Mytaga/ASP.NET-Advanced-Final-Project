@@ -6,7 +6,9 @@ namespace PizzaOrderingSystem.Services.Data
 {
     public interface ICartItemService
     {
-        IQueryable<CartItem> GetAllByName();
+        IQueryable<CartItem> GetAll();
+
+        IQueryable<CartItem> GetAllByOrder(string orderId);
 
         Task<CartItem> GetByIdАsync(string id);
     }

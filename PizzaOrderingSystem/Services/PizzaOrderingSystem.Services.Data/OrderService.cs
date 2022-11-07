@@ -39,7 +39,6 @@ namespace PizzaOrderingSystem.Services.Data
         {
             return await this.orderRepo
                 .All()
-                .Include(o => o.OrderProducts)
                 .OrderByDescending(o => o.CreatedOn)
                 .FirstOrDefaultAsync();
         }

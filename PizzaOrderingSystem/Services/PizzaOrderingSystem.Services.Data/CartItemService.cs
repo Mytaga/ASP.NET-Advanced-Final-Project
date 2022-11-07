@@ -15,9 +15,14 @@ namespace PizzaOrderingSystem.Services.Data
             this.cartItemRepo = cartItemRepo;
         }
 
-        public IQueryable<CartItem> GetAllByName()
+        public IQueryable<CartItem> GetAll()
         {
             return this.cartItemRepo.All();
+        }
+
+        public IQueryable<CartItem> GetAllByOrder(string orderId)
+        {
+            return this.cartItemRepo.All().Where(c => c.OrderId == orderId);
         }
 
         public async Task<CartItem> GetByIdАsync(string id)
