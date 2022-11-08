@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Data;
+using PizzaOrderingSystem.Web.Extensions;
 using PizzaOrderingSystem.Web.ViewModels.OrderViewModels;
 using System.Globalization;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Confirm()
         {
-            var userId = this.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var userId = this.User.Id();
  
             var user = await this.userManager.FindByIdAsync(userId);
 
@@ -61,7 +62,6 @@ namespace PizzaOrderingSystem.Web.Controllers
             }
 
             await this.orderService.AddAsync(viewModel);
-            //await this.cartService.ClearCartAsync();
 
             return this.RedirectToAction(GlobalConstants.OrderDetailsAction, GlobalConstants.OrderController);
         }
@@ -88,6 +88,17 @@ namespace PizzaOrderingSystem.Web.Controllers
                 RecipientStreetNumber = order.User.Address.StreetNumber.ToString(),
                 RecipientPostalCode = order.User.Address.PostCode.ToString(),
             };
+
+            await this.cartService.ClearCartAsync();
+
+            return this.View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UserOrders()
+        {
+            var userId = this.User.Id();
+            var viewModel = await this.orderService.GetUserOrders(userId);
 
             return this.View(viewModel);
         }

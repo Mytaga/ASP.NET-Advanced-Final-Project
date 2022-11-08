@@ -4,6 +4,7 @@ using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Services.Mapping;
+using PizzaOrderingSystem.Web.Extensions;
 using PizzaOrderingSystem.Web.ViewModels.ReviewViewModels;
 using System.Linq;
 using System.Security.Claims;
@@ -48,7 +49,7 @@ namespace PizzaOrderingSystem.Web.Controllers
             }
 
             Review review = AutoMapperConfig.MapperInstance.Map<Review>(model);
-            review.UserId = this.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            review.UserId = this.User.Id();
 
             await this.reviewService.AddReview(review);
 
