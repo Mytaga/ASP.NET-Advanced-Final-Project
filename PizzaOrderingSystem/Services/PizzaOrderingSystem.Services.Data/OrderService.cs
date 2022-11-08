@@ -2,6 +2,9 @@
 using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Web.ViewModels.OrderViewModels;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -41,6 +44,22 @@ namespace PizzaOrderingSystem.Services.Data
                 .All()
                 .OrderByDescending(o => o.CreatedOn)
                 .FirstOrDefaultAsync();
+        }
+
+        public async Task<IEnumerable<OrderViewModel>> GetUserOrders(string userId)
+        {
+            return await this.orderRepo
+                .All()
+                .Where(o => o.UserId == userId)
+                .Select(o => new OrderViewModel
+                {
+                    TimeOfOrder = o.TimeOfOrder.ToString("f", CultureInfo.InvariantCulture),
+                    TotalPrice = o.TotalPrice.ToString("C"),
+                    DeliveryType = o.DeliveryType.ToString(),
+                    Status = o.Status.ToString(),
+                    OrderId = o.Id,
+                })
+                .ToListAsync();
         }
     }
 }
