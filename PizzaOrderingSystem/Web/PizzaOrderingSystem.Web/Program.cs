@@ -14,6 +14,7 @@ using PizzaOrderingSystem.Data.Seeding;
 using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Services.Mapping;
 using PizzaOrderingSystem.Services.Messaging;
+using PizzaOrderingSystem.Web.Extensions;
 using PizzaOrderingSystem.Web.ViewModels;
 using System;
 using System.Reflection;
@@ -64,24 +65,7 @@ namespace PizzaOrderingSystem.Web
 
             services.AddSingleton(configuration);
 
-            // Data repositories
-            services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
-            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-            services.AddScoped<IDbQueryRunner, DbQueryRunner>();
-
-            // Application services
-            services.AddTransient<IEmailSender, NullMessageSender>();
-            services.AddTransient<ISettingsService, SettingsService>();
-            services.AddScoped<IProductService, ProductService>();
-            services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<IReviewService, ReviewService>();
-            services.AddScoped<ICartService, CartService>();
-            services.AddScoped<ICartItemService, CartItemService>();
-            services.AddScoped<IAddressService, AddressService>();
-            services.AddScoped<IPaymentCardService, PaymentCardService>();
-            services.AddScoped<IOrderService, OrderService>();
-
-            services.AddScoped(sp => ShoppingCart.GetCart(sp));
+            services.AddApplicationServices();
 
             services.AddDistributedMemoryCache();
             services.AddSession(options =>

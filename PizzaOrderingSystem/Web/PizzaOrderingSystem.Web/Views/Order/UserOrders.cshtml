@@ -1,0 +1,27 @@
+﻿@model IEnumerable<PizzaOrderingSystem.Web.ViewModels.OrderViewModels.OrderViewModel>
+
+
+@{
+    ViewData["Title"] = "User Orders";
+}
+
+<ul class="list-group list-group-light bg-success">
+    @foreach (var order in Model)
+   {
+        <li class="list-group-item d-flex justify-content-between align-items-center bg-success ">
+            <div class="d-flex align-items-center">
+                <div class="ms-4">
+                    <p class="fw-bold mb-1">Order Number: @order.OrderId</p>
+                    <p class="fw-bold mb-1">@order.TimeOfOrder</p>
+                    <p class="text-dark mb-0">@order.TotalPrice</p>
+                </div>
+            </div>
+            <a class="btn btn-dark" asp-controller="Order" asp-action="" asp-route-id="@order.OrderId">View</a>
+        </li>
+    }
+</ul>
+
+
+<div>
+    <a class="btn btn-dark mt-3" asp-controller="Account" asp-action="ViewProfile">Back</a>
+</div>

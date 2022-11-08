@@ -105,15 +105,13 @@
                     <!-- Shipping information -->
                     <div class="card-body">
                         <h3 class="h6">Shipping Information</h3>
-                        <strong>FedEx</strong>
-                        <span><a href="#" class="text-decoration-underline" target="_blank">FF1234567890</a> <i class="bi bi-box-arrow-up-right"></i> </span>
                         <hr>
                         <h3 class="h6">Address</h3>
                         <address>
-                            <strong>John Doe</strong><br>
-                            1355 Market St, Suite 900<br>
-                            San Francisco, CA 94103<br>
-                            <abbr title="Phone">P:</abbr> (123) 456-7890
+                            <strong>@Model.Recipient</strong><br>
+                            @Model.RecipientStreet @Model.RecipientStreetNumber<br>
+                            @Model.RecipientCity, @Model.RecipientPostalCode<br>
+                            <abbr title="Phone">P:</abbr> @Model.RecipientPhone
                         </address>
                     </div>
                 </div>
