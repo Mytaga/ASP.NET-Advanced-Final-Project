@@ -300,3 +300,16 @@ ul, ul li {
         border-bottom-right-radius: 16px;
     }
 }
+
+.map-container {
+    height: 300px;
+    position: relative;
+}
+
+    .map-container iframe {
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+    }
