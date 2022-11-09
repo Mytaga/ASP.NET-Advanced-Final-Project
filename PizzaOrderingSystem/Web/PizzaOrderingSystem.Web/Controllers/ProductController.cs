@@ -40,7 +40,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> IndexPizza(string search)
         {
-            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.PizzaCategory);
+            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.PizzaCategory, search);
 
             return this.View(viewModel);
         }
@@ -49,7 +49,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> IndexSalads(string search)
         {
-            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.SaladCategory);
+            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.SaladCategory, search);
 
             return this.View(viewModel);
         }
@@ -58,7 +58,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> IndexDesserts(string search)
         {
-            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.DessertCategory);
+            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.DessertCategory, search);
 
             return this.View(viewModel);
         }
@@ -67,7 +67,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> IndexDrinks(string search)
         {
-            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.DrinkCategory);
+            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.DrinkCategory, search);
 
             return this.View(viewModel);
         }
@@ -76,7 +76,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> IndexSauces(string search)
         {
-            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.SauceCategory);
+            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.SauceCategory, search);
 
             return this.View(viewModel);
         }
