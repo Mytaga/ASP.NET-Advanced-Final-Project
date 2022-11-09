@@ -47,17 +47,19 @@ namespace PizzaOrderingSystem.Services.Data
         public async Task<AllProductsViewModel> GetAllByCategory(string categoryName = EmptyString, string searchName = EmptyString)
         {
             var products = this.productRepo.AllAsNoTracking()
-                .Where(p => p.Category.Name == categoryName && p.IsDeleted == false);
+                .Where(p => p.Category.Name == categoryName);
 
             if (searchName != null)
             {
-                products = this.productRepo.AllAsNoTracking().Where(p => p.Category.Name == categoryName &&
-                p.Name.ToLower().StartsWith(searchName.ToLower()) && p.IsDeleted == false);
+                products = this.productRepo
+                    .AllAsNoTracking().Where(p => p.Category.Name == categoryName &&
+                p.Name.ToLower().StartsWith(searchName.ToLower()) && p.IsDeleted == false)
+                    .OrderByDescending(p => p.CreatedOn);
             }
 
             AllProductsViewModel viewModel = new AllProductsViewModel()
             {
-                Products = await products.To<ListAllProductsViewModel>().ToListAsync(),
+                Products = await products.To<ListAllProductsViewModel>().OrderByDescending(p => p.Price).ToListAsync(),
                 SearchQuery = searchName,
             };
 
@@ -70,12 +72,14 @@ namespace PizzaOrderingSystem.Services.Data
 
             if (searchName != null)
             {
-                products = this.productRepo.AllAsNoTracking().Where(p => p.Name.ToLower().StartsWith(searchName.ToLower()) && p.IsDeleted == false);
+                products = this.productRepo
+                    .AllAsNoTracking().Where(p => p.Name.ToLower().StartsWith(searchName.ToLower()) && p.IsDeleted == false)
+                    .OrderByDescending(p => p.CreatedOn);
             }
 
             AllProductsViewModel viewModel = new AllProductsViewModel()
             {
-                Products = await products.To<ListAllProductsViewModel>().ToListAsync(),
+                Products = await products.To<ListAllProductsViewModel>().OrderByDescending(p => p.Price).ToListAsync(),
                 SearchQuery = searchName,
             };
 
