@@ -12,7 +12,7 @@ namespace PizzaOrderingSystem.Web.ModelBinders
             ValueProviderResult valueResult = bindingContext.ValueProvider
                 .GetValue(bindingContext.ModelName);
 
-            if (valueResult != ValueProviderResult.None && string.IsNullOrEmpty(valueResult.FirstValue))
+            if (valueResult != ValueProviderResult.None && !string.IsNullOrEmpty(valueResult.FirstValue))
             {
                 decimal actualValue = 0M;
                 bool success = false;
