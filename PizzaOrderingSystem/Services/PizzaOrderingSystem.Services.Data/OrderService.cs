@@ -2,7 +2,7 @@
 using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Web.ViewModels.OrderViewModels;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -26,7 +26,7 @@ namespace PizzaOrderingSystem.Services.Data
             Order order = new Order()
             {
                 TimeOfOrder = viewModel.TimeOfOrder,
-                TotalPrice = viewModel.TotalPrice,
+                TotalPrice = Convert.ToDecimal(viewModel.TotalPrice),
                 DeliveryType = viewModel.DeliveryType,
                 Status = viewModel.Status,
                 PaymentType = viewModel.PaymentType,
@@ -51,6 +51,7 @@ namespace PizzaOrderingSystem.Services.Data
             return await this.orderRepo
                 .All()
                 .Where(o => o.UserId == userId)
+                .OrderByDescending(o => o.CreatedOn)
                 .Select(o => new OrderViewModel
                 {
                     TimeOfOrder = o.TimeOfOrder.ToString("f", CultureInfo.InvariantCulture),
