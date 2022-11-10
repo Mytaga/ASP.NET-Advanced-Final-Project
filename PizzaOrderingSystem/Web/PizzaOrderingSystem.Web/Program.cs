@@ -6,15 +6,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PizzaOrderingSystem.Data;
-using PizzaOrderingSystem.Data.Common;
-using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
-using PizzaOrderingSystem.Data.Repositories;
 using PizzaOrderingSystem.Data.Seeding;
-using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Services.Mapping;
-using PizzaOrderingSystem.Services.Messaging;
 using PizzaOrderingSystem.Web.Extensions;
+using PizzaOrderingSystem.Web.ModelBinders;
 using PizzaOrderingSystem.Web.ViewModels;
 using System;
 using System.Reflection;
@@ -58,7 +54,9 @@ namespace PizzaOrderingSystem.Web
                 options =>
                 {
                     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-                }).AddRazorRuntimeCompilation();
+                    options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+                })
+                .AddRazorRuntimeCompilation();
 
             services.AddRazorPages();
             services.AddDatabaseDeveloperPageExceptionFilter();
