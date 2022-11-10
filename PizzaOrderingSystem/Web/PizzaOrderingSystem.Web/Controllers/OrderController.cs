@@ -41,7 +41,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             CreateOrderViewModel viewModel = new CreateOrderViewModel()
             {
-                TotalPrice = this.cartService.GetShoppingCartTotal(),
+                TotalPrice = this.cartService.GetShoppingCartTotal().ToString("F"),
                 UserId = userId,
                 Cards = user.CreditCards,
                 City = user.Address.City,
