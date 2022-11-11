@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Web.Controllers
 {
+    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class CategoryController : BaseController
     {
         private readonly ICategoryService categoryService;
@@ -17,7 +18,6 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Create()
         {
             CreateCategoryViewModel viewModel = new CreateCategoryViewModel();
@@ -26,7 +26,6 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> Create(CreateCategoryInputModel model)
         {
             if (!this.ModelState.IsValid)

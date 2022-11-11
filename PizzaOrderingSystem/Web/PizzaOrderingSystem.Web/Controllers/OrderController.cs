@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
@@ -7,11 +8,11 @@ using PizzaOrderingSystem.Web.Extensions;
 using PizzaOrderingSystem.Web.ViewModels.OrderViewModels;
 using System.Globalization;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Web.Controllers
 {
+    [Authorize(Roles = GlobalConstants.UserRoleName)]
     public class OrderController : BaseController
     {
         private readonly UserManager<ApplicationUser> userManager;
@@ -31,7 +32,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         public async Task<IActionResult> Confirm()
         {
             var userId = this.User.Id();
- 
+
             var user = await this.userManager.FindByIdAsync(userId);
 
             if (user.Address == null)

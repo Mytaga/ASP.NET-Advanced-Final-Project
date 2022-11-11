@@ -6,8 +6,6 @@ using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Services.Mapping;
 using PizzaOrderingSystem.Web.Extensions;
 using PizzaOrderingSystem.Web.ViewModels.ReviewViewModels;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Web.Controllers
@@ -31,6 +29,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = GlobalConstants.UserRoleName)]
         public IActionResult Create()
         {
             CreateReviewViewModel viewModel = new CreateReviewViewModel();
@@ -41,6 +40,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = GlobalConstants.UserRoleName)]
         public async Task<IActionResult> Create(CreateReviewInputModel model)
         {
             if (!this.ModelState.IsValid)
