@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Web.ViewModels.ShoppingCart;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Web.Controllers
 {
+    [Authorize(Roles = GlobalConstants.UserRoleName)]
     public class ShoppingCartController : BaseController
     {
         private readonly ICartItemService cartItemService;
