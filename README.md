@@ -18,7 +18,7 @@
  - Data Validation, both Client-side and Server-side
  - Data Validation in the Models and Input View Models
  - Responsive Design
- - Bootstrap 4.0
+ - MDB Bootstrap 4.0
  - jQuery
 
 
