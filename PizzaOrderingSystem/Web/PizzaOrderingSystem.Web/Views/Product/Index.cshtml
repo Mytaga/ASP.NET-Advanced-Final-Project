@@ -26,11 +26,11 @@
                     <a class="nav-link text-dark" asp-action="IndexSauces">Sauces</a>
                 </li>
             </ul>
-            <form class="d-flex" method="get" asp-controller="Product" asp-action="Index">
+            <form class="d-flex input-group w-auto" method="get" asp-controller="Product" asp-action="Index">
                 <div class="input-group">
                     @if (Model.SearchQuery == null)
                     {
-                        <input type="text" name="search" class="form-control" placeholder="Search....">
+                        <input type="text" class="form-control rounded" name="search" placeholder="Search....">
                     }
                     else
                     {
@@ -71,28 +71,53 @@
             <div class="card h-100 bg-success mb-3" style="max-width: 28rem">
                 <img src="~/img/@item.ImageUrl" class="img-fluid rounded-start" alt="image">
                 <div class="card-body">
-                        <h5 class="card-title">@item.Name</h5>
-                        <h5 class="card-title">$ @item.Price</h5>
-                        <p class="card-text">@item.Description</p>
-                        <div class="mt-4">
-                            <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                            @if (User.Identity.IsAuthenticated && !User.IsInRole(GlobalConstants.AdministratorRoleName))
-                            {
-                                <a class="btn btn-dark" asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@item.Id">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket3-fill" viewBox="0 0 16 16">
-                                        <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM2.468 15.426.943 9h14.114l-1.525 6.426a.75.75 0 0 1-.729.574H3.197a.75.75 0 0 1-.73-.574z" />
-                                    </svg>
-                                    Add
-                                </a>
-                            }
-                            @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
-                            {
-                                <a class="btn btn-dark" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                            }
-                        </div>                     
+                    <h5 class="card-title">@item.Name</h5>
+                    <h5 class="card-title">$ @item.Price</h5>
+                    <p class="card-text">@item.Description</p>
+                    <div class="mt-4">
+                        <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        @if (User.Identity.IsAuthenticated && !User.IsInRole(GlobalConstants.AdministratorRoleName))
+                        {
+                            <a class="btn btn-dark" asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@item.Id">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket3-fill" viewBox="0 0 16 16">
+                                    <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM2.468 15.426.943 9h14.114l-1.525 6.426a.75.75 0 0 1-.729.574H3.197a.75.75 0 0 1-.73-.574z" />
+                                </svg>
+                                Add
+                            </a>
+                        }
+                        @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+                        {
+                            <a class="btn btn-dark" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+                                Delete
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+                                            <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">Are you sure you want to delete this ?</div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-dark" data-mdb-dismiss="modal">Close</button>
+                                            <form asp-action="Delete" asp-controller="Product" method="post">
+                                                <input name="id" type="hidden" value="@item.Id" />
+                                                <button type="submit" class="btn btn-danger">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
+            </div>
         </div>
     }
 </div>
+
+
