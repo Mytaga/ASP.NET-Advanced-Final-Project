@@ -4,9 +4,13 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+
 
 <div class="bg-success">
+    <div class="mt-4">
+        <h1 class="text-dark ml-4">Details</h1>
+    </div>
+    
     <hr />
     <dl class="row">
         <div class="col-md-4 ms-lg-2">
@@ -36,11 +40,11 @@
             </dd>
         </div>
         <div class="col-md-3 mb-3">
-            <img class="img-thumbnail mx-auto mt-4" style="width: 320px" src="~/img/@Model.ImageUrl" alt="@Model.Name" />
+            <img class="img-thumbnail mx-auto mt-4" style="width: 350px" src="~/img/@Model.ImageUrl" alt="@Model.Name" />
         </div>
     </dl>
 </div>
-<div>
+<div class="ml-4">
     @if (Model.CategoryName == "Pizza")
     {
         <a class="btn btn-dark" asp-action="IndexPizza">Back</a>
