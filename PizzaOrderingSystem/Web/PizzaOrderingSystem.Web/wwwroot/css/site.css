@@ -63,8 +63,8 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-/*    font-family: Tahoma;*/
-    background-image: url(/img/BackgroundImage_thumbnail.png);
+    /*    font-family: Tahoma;*/
+    background-image: url(/img/BackgroundImageNew.jpg);
 }
 
 .footer {

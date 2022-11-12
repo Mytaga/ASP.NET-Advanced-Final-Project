@@ -18,9 +18,11 @@ namespace PizzaOrderingSystem.Web.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return this.View();
+            var viewModel = await this.shopService.GetAllAsync();
+
+            return this.View(viewModel);
         }
 
         [HttpGet]
@@ -40,6 +42,8 @@ namespace PizzaOrderingSystem.Web.Controllers
             {
                 return this.RedirectToAction(GlobalConstants.CreateAction, GlobalConstants.ShopController);
             }
+
+            await this.shopService.CreateAsync(viewModel);
 
             return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ShopController);
         }
