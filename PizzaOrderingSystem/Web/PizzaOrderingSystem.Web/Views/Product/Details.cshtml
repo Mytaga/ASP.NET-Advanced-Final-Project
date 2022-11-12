@@ -42,27 +42,27 @@
         <div class="col-md-3 mb-3">
             <img class="img-thumbnail mx-auto mt-4" style="width: 350px" src="~/img/@Model.ImageUrl" alt="@Model.Name" />
         </div>
+        <div class="ml-4 mt-4 mb-4">
+            @if (Model.CategoryName == "Pizza")
+            {
+                <a class="btn btn-dark" asp-action="IndexPizza">Back</a>
+            }
+            else if (Model.CategoryName == "Dessert")
+            {
+                <a class="btn btn-dark" asp-action="IndexDesserts">Back</a>
+            }
+            else if (Model.CategoryName == "Salad")
+            {
+                <a class="btn btn-dark" asp-action="IndexSalads">Back</a>
+            }
+            else if (Model.CategoryName == "Sauce")
+            {
+                <a class="btn btn-dark" asp-action="IndexSauces">Back</a>
+            }
+            else
+            {
+                <a class="btn btn-dark" asp-action="IndexDrinks">Back</a>
+            }
+        </div>
     </dl>
-</div>
-<div class="ml-4">
-    @if (Model.CategoryName == "Pizza")
-    {
-        <a class="btn btn-dark" asp-action="IndexPizza">Back</a>
-    }
-    else if (Model.CategoryName == "Dessert")
-    {
-        <a class="btn btn-dark" asp-action="IndexDesserts">Back</a>
-    }
-    else if (Model.CategoryName == "Salad")
-    {
-        <a class="btn btn-dark" asp-action="IndexSalads">Back</a>
-    }
-    else if (Model.CategoryName == "Sauce")
-    {
-        <a class="btn btn-dark" asp-action="IndexSauces">Back</a>
-    }   
-    else
-    {
-        <a class="btn btn-dark" asp-action="IndexDrinks">Back</a>
-    }
 </div>
