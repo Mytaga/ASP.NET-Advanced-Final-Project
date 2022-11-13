@@ -100,8 +100,18 @@ namespace PizzaOrderingSystem.Common
 
         public static class ShopValidation
         {
+            public const int ShopNameMinLength = 3;
             public const int ShopNameMaxLength = 60;
+            public const int ShopDescriptionMinLength = 20;
             public const int ShopDescriptionMaxLength = 150;
+
+            public const string NameRequiredError = "Name is required";
+            public const string NameMinLengthError = "Last name must be at least 3 letters";
+            public const string NameMaxLengthError = "Last name must be at no more than 60 letters";
+
+            public const string DescriptionRequiredError = "Descriptions is required";
+            public const string DescriptionMinLengthError = "Description must be at least 20 letters";
+            public const string DescriptionMaxLengthError = "Description must be at no more than 150 letters";
         }
 
         public static class AddressValidation
@@ -120,11 +130,14 @@ namespace PizzaOrderingSystem.Common
             public const string CityRequiredError = "City is required";
             public const string CityMinLengthError = "City name must be at least 2 letters";
             public const string CityMaxLengthError = "City name must be no more than 50 letters";
+
             public const string StreetRequiredError = "Street is required";
             public const string StreetMinLengthError = "Street name must be at least 2 letters";
             public const string StreetMaxLengthError = "Street name must be no more than 60 letters";
             public const string StreetNumberRangeLengthError = "Street number must be between 1 and 1000";
+
             public const string FloorRangeLengthError = "Floor name must be between 0 and 100";
+
             public const string PostalCodeMinLengthError = "Postal code must be at least 4 digits";
             public const string PostalCodeMaxLengthError = "Postal code must be no more than 4 digits";
         }
