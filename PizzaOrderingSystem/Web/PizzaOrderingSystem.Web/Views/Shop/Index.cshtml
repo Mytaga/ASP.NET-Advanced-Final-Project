@@ -27,19 +27,12 @@
     {
         <div class="col">
             <div class="card h-100 bg-success">
-                <img src=@shop.ImageUrl class="card-img-top" alt="Skyscrapers" />
+                <img src=@shop.ImageUrl class="card-img-top" alt="Image" />
                 <div class="card-body">
-                    <h5 class="card-title">Name</h5>
-                    <p class="card-text">
-                        @shop.Name
-                    </p>
-                    <h5 class="card-title">Working Hours:</h5>
-                    <p class="card-text">
-                        @shop.Description
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">@shop.City @shop.Street @shop.StreetNumber</small>
+                    <h4 class="card-title text-dark">@shop.Name</h4>
+                    <h5 class="card-title mt-3">@shop.Description</h5>
+                    <h5 class="card-title mt-3">Phone Number: @shop.PhoneNumber</h5>
+                    <h5 class="card-title mt-3">Address: @shop.City - @shop.Street - @shop.StreetNumber</h5>
                 </div>
             </div>
         </div>

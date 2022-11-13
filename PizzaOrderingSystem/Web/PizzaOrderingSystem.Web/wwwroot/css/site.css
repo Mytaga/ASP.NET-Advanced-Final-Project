@@ -62,7 +62,8 @@ html {
 
 body {
     /* Margin bottom by footer height */
-    margin-bottom: 60px;
+    margin-bottom: 60px !important;
+    height: 100%;
     /*    font-family: Tahoma;*/
     background-image: url(/img/BackgroundImageNew.jpg);
 }
