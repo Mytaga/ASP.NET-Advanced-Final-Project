@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using static PizzaOrderingSystem.Common.ModelValidationConstants;
 
 namespace PizzaOrderingSystem.Web.ViewModels.ReviewViewModels
@@ -8,6 +9,7 @@ namespace PizzaOrderingSystem.Web.ViewModels.ReviewViewModels
         [Required(ErrorMessage = ReviewValidation.NameRequiredError)]
         [MinLength(ReviewValidation.AuthorNameMinLength, ErrorMessage = ReviewValidation.NameMinLengthError)]
         [MaxLength(ReviewValidation.AuthorNameMaxLength, ErrorMessage = ReviewValidation.NameMaxLengthError)]
+        [DisplayName("Author")]
         public string AuthorName { get; set; }
 
         [Required(ErrorMessage = ReviewValidation.ContentRequiredError)]
