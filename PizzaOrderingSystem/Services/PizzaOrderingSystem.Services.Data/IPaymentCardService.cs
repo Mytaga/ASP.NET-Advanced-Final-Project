@@ -11,5 +11,7 @@ namespace PizzaOrderingSystem.Services.Data
         Task<AddCardViewModel> GetAll(string userId);
 
         Task Delete(CreditCard card);
+
+        Task<CreditCard> GetByIdAsync(string id);
     }
 }
