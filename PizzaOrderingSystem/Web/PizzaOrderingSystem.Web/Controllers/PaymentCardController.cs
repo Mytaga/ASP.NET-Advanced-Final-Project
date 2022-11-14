@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Common;
+using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Web.Extensions;
 using PizzaOrderingSystem.Web.ViewModels.PaymentCardViewModels;
@@ -43,9 +44,18 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete()
+        public async Task<IActionResult> Delete(string id)
         {
-            return this.View();
+            CreditCard card = await this.paymentCardService.GetByIdAsync(id);
+
+            if (card == null)
+            {
+                return this.NotFound();
+            }
+
+            await this.paymentCardService.Delete(card);
+
+            return this.RedirectToAction(GlobalConstants.AddAction, GlobalConstants.PaymentCardController);
         }
     }
 }
