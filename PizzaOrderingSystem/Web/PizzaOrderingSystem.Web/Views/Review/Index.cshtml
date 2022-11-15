@@ -40,7 +40,7 @@
                         </div>
                         @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
                         {
-                            <a class="btn btn-dark" asp-controller="Review" asp-action="Delete" asp-route-id="@item.Id">Delete Review</a>
+                            <partial name="_DeleteReviewModalPartial" model="item" />
                         }
                     </li>
                 }
