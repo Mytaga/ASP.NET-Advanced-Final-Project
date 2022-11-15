@@ -56,23 +56,9 @@ namespace PizzaOrderingSystem.Web.Controllers
             return this.RedirectToAction(GlobalConstants.IndexAction);
         }
 
-        [HttpGet]
-        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-        public IActionResult Delete(string id)
-        {
-            var product = this.reviewService.GetById(id);
-
-            if (product == null)
-            {
-                return this.RedirectToAction(GlobalConstants.ErrorAction, GlobalConstants.HomeController);
-            }
-
-            return this.View();
-        }
-
         [HttpPost]
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> Delete(string id)
         {
             var product = await this.reviewService.GetByIdAsync(id);
 
