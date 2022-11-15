@@ -8,15 +8,16 @@
 
 
 <div class="container mt-0 bg-success">
+    <hr />
     <div class="mt-3 ml-4 text-dark">
-        <h1 class="mt-3">Reviews</h1>
+        <h1 class="mt-4">Reviews</h1>
     </div>
     <hr />
     @if (User.Identity.IsAuthenticated && !User.IsInRole(GlobalConstants.AdministratorRoleName))
     {
         <a class="btn btn-dark mt-4" asp-controller="Review" asp-action="Create">Add Review</a>
     }
-    <div id="reviews" class="review-section">        
+    <div id="reviews" class="review-section">
         <div class="review-list mt-1 bg-success">
             <ul>
                 <li>

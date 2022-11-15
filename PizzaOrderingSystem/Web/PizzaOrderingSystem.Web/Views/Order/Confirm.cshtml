@@ -5,7 +5,7 @@
     ViewData["Title"] = "Confirm Order";
 }
 
-<section class="bg-success">
+<section>
     <div class="container py-5">
         <div class="card">
             <div class="card-body">
@@ -64,7 +64,7 @@
                                     <input asp-for="UserId" class="form-control mt-2 text-success" type="text" readonly="readonly" value="@Model.UserId" />
                                     <span asp-validation-for="UserId" class="text-danger"></span>
                                 </div>
-                                <div class="form-group mt-3">
+                                <div class="form-group mt-5">
                                     <input type="submit" value="Confirm Order" class="btn btn-dark" />
                                     <a class="btn btn-dark" asp-controller="Product" asp-action="Index">Cancel and return to website</a>
                                 </div>

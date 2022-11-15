@@ -5,7 +5,7 @@
     ViewData["Title"] = "Restaurants";
 }
 
-<div id="map-container-google-1" class="z-depth-1 map-container mb-5">
+<div id="map-container-google-1" class="z-depth-1 map-container mb-4">
     <iframe src="https://maps.google.com/maps?q=sofia&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
             style="border:0" allowfullscreen></iframe>
 </div>
@@ -16,7 +16,7 @@
         @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
         {
             <p>
-                <a class="btn btn-dark" asp-controller="Shop" asp-action="Create">Add new restaurant</a>
+                <a class="btn btn-lg btn-dark" asp-controller="Shop" asp-action="Create">Add new restaurant</a>
             </p>        
         }
     </div>

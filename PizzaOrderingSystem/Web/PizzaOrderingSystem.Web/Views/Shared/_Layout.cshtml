@@ -17,9 +17,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-success box-shadow mb-3 text-dark">
+        <nav class="navbar navbar-expand-lg navbar-light bg-transparent box-shadow mb-3 text-dark" style="font-size: 24px">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
+                <a class="navbar-brand" style="font-size: 30px" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -27,30 +27,21 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Settings" asp-action="Index">Settings</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li>
-                        }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Menu</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Review" asp-action="Index">Reviews</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">MENU</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="AboutUs" asp-action="Index">About Us</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Review" asp-action="Index">REVIEWS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Shop" asp-action="Index">Restaurants</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="AboutUs" asp-action="Index">ABOUT US</a>
                         </li>
-                        @if (!User.IsInRole(GlobalConstants.AdministratorRoleName))
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Shop" asp-action="Index">RESTAURATS</a>
+                        </li>
+                        @if (User.IsInRole(GlobalConstants.UserRoleName))
                         {
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="ShoppingCart" asp-action="Index">

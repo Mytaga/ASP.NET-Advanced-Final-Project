@@ -4,9 +4,9 @@
     ViewData["Title"] = "Menu";
 }
 
-<nav class="navbar navbar-expand-lg navbar-light bg-success">
+<nav class="navbar navbar-expand-lg navbar-light bg-transparent" style="font-size: 25px">
     <div class="container-fluid">
-        <a class="navbar-brand ms-lg-3" asp-action="Index">Menu</a>
+        <a class="navbar-brand ms-lg-3" asp-action="Index" style="font-size: 25px">Menu</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
@@ -36,7 +36,7 @@
                         <input type="text" name="search" class="form-control" value="@Model.SearchQuery">
                     }
                     <div class="input-group-btn">
-                        <button class="btn btn-dark" type="submit">
+                        <button class="btn btn-lg btn-dark" type="submit">
                             Search
                         </button>
                     </div>
