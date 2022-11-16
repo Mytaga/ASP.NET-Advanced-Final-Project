@@ -48,6 +48,7 @@ namespace PizzaOrderingSystem.Web
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = "/Account/Login";
+                options.LogoutPath = "/Account/Logout";
             });
 
             services.AddControllersWithViews(
