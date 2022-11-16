@@ -5,6 +5,8 @@ namespace PizzaOrderingSystem.Web.ViewModels.OrderViewModels
 {
     public class OrderViewModel : IMapFrom<Order>
     {
+        public string Id { get; set; }
+
         public string TimeOfOrder { get; set; }
 
         public string TotalPrice { get; set; }
