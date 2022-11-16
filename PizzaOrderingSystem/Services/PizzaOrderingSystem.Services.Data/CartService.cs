@@ -43,7 +43,7 @@ namespace PizzaOrderingSystem.Services.Data
 
             foreach (var item in cartItems)
             {
-                this.cartItemRepo.Delete(item);
+                item.ShoppingCartId = null;
             }
 
             await this.cartItemRepo.SaveChangesAsync();

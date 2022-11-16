@@ -30,6 +30,7 @@ namespace PizzaOrderingSystem.Services.Data
             {
                 Name = viewModel.Name,
                 Description = viewModel.Description,
+                PhoneNumber = viewModel.PhoneNumber,
                 Address = adress,
             };
 
@@ -44,6 +45,7 @@ namespace PizzaOrderingSystem.Services.Data
                 {
                 Name = s.Name,
                 Description = s.Description,
+                PhoneNumber = s.PhoneNumber,
                 City = s.Address.City,
                 Street = s.Address.Street,
                 StreetNumber = s.Address.StreetNumber,

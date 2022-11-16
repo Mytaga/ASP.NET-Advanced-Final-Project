@@ -46,6 +46,24 @@ namespace PizzaOrderingSystem.Services.Data
                 .FirstOrDefaultAsync();
         }
 
+        public async Task<OrderDetailsViewModel> GetUserOrderDetailsAsync(string userId, string orderId)
+        {
+            return await this.orderRepo
+                .All()
+                .Where(o => o.UserId == userId && o.Id == orderId)
+                .Select(o => new OrderDetailsViewModel
+                {
+                    OrderId = orderId,
+                    TimeOfOrder = o.TimeOfOrder.ToString("f", CultureInfo.InvariantCulture),
+                    TotalPrice = o.TotalPrice.ToString("C"),
+                    DeliveryType = o.DeliveryType.ToString(),
+                    PaymentType = o.PaymentType.ToString(),
+                    Status = o.Status.ToString(),
+                    Products = o.OrderProducts,
+                })
+                .FirstOrDefaultAsync();
+        }
+
         public async Task<IEnumerable<OrderViewModel>> GetUserOrders(string userId)
         {
             return await this.orderRepo

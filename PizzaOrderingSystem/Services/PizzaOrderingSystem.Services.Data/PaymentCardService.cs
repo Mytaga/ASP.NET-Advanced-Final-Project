@@ -35,8 +35,7 @@ namespace PizzaOrderingSystem.Services.Data
 
         public async Task Delete(CreditCard card)
         {
-            this.creditCardRepo.Delete(card);
-            await this.creditCardRepo.SaveChangesAsync();
+            throw new NotImplementedException();
         }
 
         public async Task<AddCardViewModel> GetAll(string userId)
@@ -51,13 +50,6 @@ namespace PizzaOrderingSystem.Services.Data
             };
 
             return viewModel;
-        }
-
-        public Task<CreditCard> GetByIdAsync(string id)
-        {
-            return this.creditCardRepo
-                .All()
-                .FirstOrDefaultAsync(c => c.Id == id);
         }
     }
 }
