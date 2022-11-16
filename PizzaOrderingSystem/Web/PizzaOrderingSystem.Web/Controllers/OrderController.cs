@@ -71,7 +71,6 @@ namespace PizzaOrderingSystem.Web.Controllers
         public async Task<IActionResult> Details(string id)
         {
             var order = await this.orderService.GetLastOrderAsync();
-            var products = this.cartItemService.GetAllByOrder(order.Id);
 
             OrderDetailsViewModel viewModel = new OrderDetailsViewModel()
             {
@@ -81,7 +80,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 DeliveryType = order.DeliveryType.ToString(),
                 Status = order.Status.ToString(),
                 PaymentType = order.PaymentType.ToString(),
-                Products = products.ToList(),
+                Products = order.OrderProducts,
                 Recipient = order.User.FirstName + " " + order.User.LastName,
                 RecipientPhone = order.User.PhoneNumber,
                 RecipientCity = order.User.Address.City,
@@ -100,6 +99,15 @@ namespace PizzaOrderingSystem.Web.Controllers
         {
             var userId = this.User.Id();
             var viewModel = await this.orderService.GetUserOrders(userId);
+
+            return this.View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UserOrderDetails(string id)
+        {
+            var userId = this.User.Id();
+            var viewModel = await this.orderService.GetUserOrderDetailsAsync(userId, id);
 
             return this.View(viewModel);
         }
