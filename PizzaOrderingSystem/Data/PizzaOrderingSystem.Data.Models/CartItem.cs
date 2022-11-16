@@ -26,7 +26,6 @@ namespace PizzaOrderingSystem.Data.Models
 
         public virtual Order Order { get; set; }
 
-        [Required]
         public string ShoppingCartId { get; set; }
     }
 }
