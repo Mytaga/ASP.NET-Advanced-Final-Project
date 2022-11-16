@@ -17,15 +17,15 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-xl navbar-light bg-transparent box-shadow mb-3 text-dark" style="font-size: 24px">
-            <div class="container">
-                <a class="navbar-brand mr-5" style="font-size: 30px" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
+        <nav class="navbar navbar-expand navbar-light bg-transparent box-shadow mb-3 text-dark" style="font-size: 24px">
+            <div class="container ml-5">
+                <a class="navbar-brand mr-4" style="font-size: 30px" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1 mr-5">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ml-4">
+                    <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">HOME</a>
                         </li>
@@ -50,9 +50,11 @@
                             </li>
                         }             
                     </ul>
-                    <partial name="_LoginPartial" />
+                   
                 </div>
+                
             </div>
+            <partial name="_LoginPartial" />
         </nav>
     </header>
 

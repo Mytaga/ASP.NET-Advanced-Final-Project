@@ -15,7 +15,7 @@
     <hr />
     @if (User.Identity.IsAuthenticated && !User.IsInRole(GlobalConstants.AdministratorRoleName))
     {
-        <a class="btn btn-dark mt-4" asp-controller="Review" asp-action="Create">Add Review</a>
+        <a class="btn btn-dark mt-4 ml-4" asp-controller="Review" asp-action="Create">Add Review</a>
     }
     <div id="reviews" class="review-section">
         <div class="review-list mt-1 bg-success">
