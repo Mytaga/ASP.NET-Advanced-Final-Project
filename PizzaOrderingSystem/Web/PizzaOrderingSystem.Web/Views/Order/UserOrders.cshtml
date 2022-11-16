@@ -16,7 +16,7 @@
                     <p class="text-dark mb-0">@order.TotalPrice</p>
                 </div>
             </div>
-            <a class="btn btn-dark mr-5" asp-controller="Order" asp-action="" asp-route-id="@order.OrderId">View</a>
+            <a class="btn btn-dark mr-5" asp-controller="Order" asp-action="UserOrderDetails" asp-route-id="@order.OrderId">View</a>
         </li>
     }
 </ul>
