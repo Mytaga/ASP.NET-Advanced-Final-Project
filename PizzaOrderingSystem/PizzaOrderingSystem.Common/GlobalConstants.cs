@@ -2,7 +2,7 @@
 {
     public static class GlobalConstants
     {
-        public const string SystemName = "Pizza Ordering System";
+        public const string SystemName = "PIZZA ORDERING SYSTEM";
 
         public const string AdministratorRoleName = "Admin";
         public const string UserRoleName = "User";
@@ -31,8 +31,13 @@
         public const string ViewProfileAction = "ViewProfile";
         public const string ConfirmOrderAction = "Confirm";
         public const string OrderDetailsAction = "Details";
-        public const string UpdateProficeAction = "Update";
+        public const string UpdateProfileAction = "Update";
+        public const string LoginAction = "Login";
 
-        public const string ShopImageUrl = "/img/yourpizzasmlogo.png";
+        public const string ShopImageUrl = "/img/PizzaShopLogo.jpg";
+
+        public const string HomeImageUrl1 = "img/CarouselPhoto1.jpeg";
+        public const string HomeImageUrl2 = "img/CarouselPhoto2.jpeg";
+        public const string HomeImageUrl3 = "img/CarouselPhoto3.jpeg";
     }
 }
