@@ -43,12 +43,12 @@ namespace PizzaOrderingSystem.Services.Data
             return await this.shopRepo
                 .AllAsNoTracking().Select(s => new ShopViewModel
                 {
-                Name = s.Name,
-                Description = s.Description,
-                PhoneNumber = s.PhoneNumber,
-                City = s.Address.City,
-                Street = s.Address.Street,
-                StreetNumber = s.Address.StreetNumber,
+                    Name = s.Name,
+                    Description = s.Description,
+                    PhoneNumber = s.PhoneNumber,
+                    City = s.Address.City,
+                    Street = s.Address.Street,
+                    StreetNumber = s.Address.StreetNumber,
                 })
                 .ToListAsync();
         }

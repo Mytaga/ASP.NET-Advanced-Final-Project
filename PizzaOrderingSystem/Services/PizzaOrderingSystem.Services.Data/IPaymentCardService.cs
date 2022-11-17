@@ -8,7 +8,9 @@ namespace PizzaOrderingSystem.Services.Data
     {
         Task AddAsync(AddCardViewModel viewModel);
 
-        Task<AddCardViewModel> GetAll(string userId);
+        Task<AddCardViewModel> GetAllАsync(string userId);
+
+        Task<CreditCard> GetByIdAsync(string id);
 
         Task Delete(CreditCard card);
     }
