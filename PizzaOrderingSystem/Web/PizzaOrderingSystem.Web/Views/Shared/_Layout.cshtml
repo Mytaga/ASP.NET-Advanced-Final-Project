@@ -19,7 +19,7 @@
     <header>
         <nav class="navbar navbar-expand navbar-light bg-transparent box-shadow mb-3 text-dark" style="font-size: 24px">
             <div class="container ml-5">
-                <a class="navbar-brand mr-4" style="font-size: 30px" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
+                <a class="navbar-brand mr-4" style="font-size: 30px" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -40,21 +40,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Shop" asp-action="Index">RESTAURATS</a>
-                        </li>
-                        @if (User.IsInRole(GlobalConstants.UserRoleName))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="ShoppingCart" asp-action="Index">
-                                    <span><i class="fas fa-shopping-cart"></i></span>
-                                </a>
-                            </li>
-                        }             
+                        </li>         
                     </ul>
-                   
+                    <partial name="_LoginPartial" />
                 </div>
-                
             </div>
-            <partial name="_LoginPartial" />
+            
         </nav>
     </header>
 

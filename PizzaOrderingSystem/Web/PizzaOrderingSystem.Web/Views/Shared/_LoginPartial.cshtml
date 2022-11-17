@@ -4,7 +4,7 @@
 @inject SignInManager<ApplicationUser> SignInManager
 
 
-<ul class="navbar-nav ms-auto mb-2 mb-lg-0 mr-4 text-dark">
+<ul class="navbar-nav ms-auto ml-4 text-dark" style="font-size: 22px">
     @if (this.SignInManager.IsSignedIn(this.User))
     {
         if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
@@ -22,11 +22,16 @@
         else
         {
             <li class="nav-item">
+                <a class="nav-link" asp-controller="ShoppingCart" asp-action="Index">
+                    <span><i class="fas fa-shopping-cart"></i></span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link text-dark" asp-controller="Account" asp-action="ViewProfile">
                     Hello @this.User.Identity.Name!
                     @*<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                    </svg>*@
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+            </svg>*@
                 </a>
             </li>
         }

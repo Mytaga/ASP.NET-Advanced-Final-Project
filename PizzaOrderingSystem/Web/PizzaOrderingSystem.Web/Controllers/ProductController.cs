@@ -99,6 +99,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
         [HttpPost]
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateProductInputModel model)
         {
             if (!this.ModelState.IsValid)
@@ -151,6 +152,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
         [HttpPost]
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, EditProductInputModel model)
         {
             if (!this.ModelState.IsValid)
@@ -185,6 +187,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
         [HttpPost]
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string id)
         {
             var product = await this.productService.GetByIdАsync(id);

@@ -41,6 +41,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
         [HttpPost]
         [Authorize(Roles = GlobalConstants.UserRoleName)]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateReviewInputModel model)
         {
             if (!this.ModelState.IsValid)
@@ -58,13 +59,14 @@ namespace PizzaOrderingSystem.Web.Controllers
 
         [HttpPost]
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string id)
         {
             var product = await this.reviewService.GetByIdAsync(id);
 
             if (product == null)
             {
-                return this.RedirectToAction(GlobalConstants.ErrorAction, GlobalConstants.HomeController);
+                return this.NotFound();
             }
 
             await this.reviewService.DeleteReview(product);

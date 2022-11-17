@@ -23,12 +23,13 @@ namespace PizzaOrderingSystem.Web.Controllers
         {
             string userId = this.User.Id();
 
-            AddCardViewModel viewModel = await this.paymentCardService.GetAll(userId);
+            AddCardViewModel viewModel = await this.paymentCardService.GetAllАsync(userId);
 
             return this.View(viewModel);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(AddCardViewModel model)
         {
             if (!this.ModelState.IsValid)
@@ -43,9 +44,19 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete()
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(string id)
         {
-            return this.View();
+            var card = await this.paymentCardService.GetByIdAsync(id);
+
+            if (card == null)
+            {
+                return this.NotFound();
+            }
+
+            await this.paymentCardService.Delete(card);
+
+            return this.RedirectToAction(GlobalConstants.AddAction, GlobalConstants.PaymentCardController);
         }
     }
 }

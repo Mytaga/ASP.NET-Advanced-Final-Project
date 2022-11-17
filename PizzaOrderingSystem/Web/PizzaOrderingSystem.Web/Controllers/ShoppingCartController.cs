@@ -53,6 +53,11 @@ namespace PizzaOrderingSystem.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Add(string id)
         {
+            if (!this.User.Identity.IsAuthenticated)
+            {
+                return this.RedirectToAction(GlobalConstants.LoginAction, GlobalConstants.AccountController);
+            }
+
             var product = await this.productService.GetByIdАsync(id);
 
             if (product != null)

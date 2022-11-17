@@ -26,6 +26,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateCategoryInputModel model)
         {
             if (!this.ModelState.IsValid)

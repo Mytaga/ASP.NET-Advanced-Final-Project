@@ -13,7 +13,7 @@
         <h1 class="mt-4">Reviews</h1>
     </div>
     <hr />
-    @if (User.Identity.IsAuthenticated && !User.IsInRole(GlobalConstants.AdministratorRoleName))
+    @if (User.IsInRole(GlobalConstants.UserRoleName))
     {
         <a class="btn btn-dark mt-4 ml-4" asp-controller="Review" asp-action="Create">Add Review</a>
     }
@@ -31,7 +31,7 @@
                                 <h4>
                                     @item.AuthorName
                                 </h4>
-                                <div class="review-description">
+                                <div class="review-description text-dark">
                                     <p>
                                         @item.Content
                                     </p>

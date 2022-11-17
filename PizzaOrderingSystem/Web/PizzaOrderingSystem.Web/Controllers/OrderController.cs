@@ -7,7 +7,6 @@ using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Web.Extensions;
 using PizzaOrderingSystem.Web.ViewModels.OrderViewModels;
 using System.Globalization;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Web.Controllers
@@ -37,7 +36,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             if (user.Address == null)
             {
-                return this.RedirectToAction(GlobalConstants.UpdateProficeAction, GlobalConstants.AccountController);
+                return this.RedirectToAction(GlobalConstants.UpdateProfileAction, GlobalConstants.AccountController);
             }
 
             CreateOrderViewModel viewModel = new CreateOrderViewModel()
@@ -55,6 +54,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateOrderViewModel viewModel)
         {
             if (!this.ModelState.IsValid)

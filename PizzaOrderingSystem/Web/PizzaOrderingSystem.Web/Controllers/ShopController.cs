@@ -36,6 +36,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
         [HttpPost]
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateShopViewModel viewModel)
         {
             if (!this.ModelState.IsValid)

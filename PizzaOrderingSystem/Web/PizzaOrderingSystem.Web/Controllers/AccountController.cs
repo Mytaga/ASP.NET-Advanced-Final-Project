@@ -37,6 +37,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
         [HttpPost]
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (!this.ModelState.IsValid)
@@ -84,6 +85,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
         [HttpPost]
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!this.ModelState.IsValid)
@@ -114,6 +116,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await this.signInManager.SignOutAsync();
@@ -172,6 +175,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(UpdateProfileViewModel model)
         {
             if (!this.ModelState.IsValid)
