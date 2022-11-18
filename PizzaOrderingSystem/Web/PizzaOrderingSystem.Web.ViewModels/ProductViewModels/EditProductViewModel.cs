@@ -26,6 +26,6 @@ namespace PizzaOrderingSystem.Web.ViewModels.ProductViewModels
         [Display(Name = "Image")]
         public IFormFile ImageUrl { get; set; }
 
-        public ICollection<ListProductCategoriesViewModel> Categories { get; set; }
+        public IEnumerable<ListProductCategoriesViewModel> Categories { get; set; }
     }
 }
