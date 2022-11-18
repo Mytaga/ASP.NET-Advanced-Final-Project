@@ -34,12 +34,12 @@ namespace PizzaOrderingSystem.Web.Controllers
                 return this.RedirectToAction(GlobalConstants.CreateAction);
             }
 
-            if (this.categoryService.ExistByName(model.Name))
+            if (await this.categoryService.ExistByNameAsync(model.Name))
             {
                 return this.RedirectToAction(nameof(this.Create));
             }
 
-            await this.categoryService.AddCategory(model);
+            await this.categoryService.AddCategoryAsync(model);
 
             return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ProductController);
         }

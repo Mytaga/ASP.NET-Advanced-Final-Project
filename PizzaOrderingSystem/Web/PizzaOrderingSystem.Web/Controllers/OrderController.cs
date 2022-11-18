@@ -72,22 +72,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         {
             var order = await this.orderService.GetLastOrderAsync();
 
-            OrderDetailsViewModel viewModel = new OrderDetailsViewModel()
-            {
-                OrderId = order.Id,
-                TimeOfOrder = order.TimeOfOrder.ToString("f", CultureInfo.InvariantCulture),
-                TotalPrice = order.TotalPrice.ToString("C"),
-                DeliveryType = order.DeliveryType.ToString(),
-                Status = order.Status.ToString(),
-                PaymentType = order.PaymentType.ToString(),
-                Products = order.OrderProducts,
-                Recipient = order.User.FirstName + " " + order.User.LastName,
-                RecipientPhone = order.User.PhoneNumber,
-                RecipientCity = order.User.Address.City,
-                RecipientStreet = order.User.Address.Street,
-                RecipientStreetNumber = order.User.Address.StreetNumber.ToString(),
-                RecipientPostalCode = order.User.Address.PostCode.ToString(),
-            };
+            var viewModel = this.orderService.GetOrderDetails(order);
 
             await this.cartService.ClearCartAsync();
 
@@ -98,7 +83,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         public async Task<IActionResult> UserOrders()
         {
             var userId = this.User.Id();
-            var viewModel = await this.orderService.GetUserOrders(userId);
+            var viewModel = await this.orderService.GetUserOrdersAsync(userId);
 
             return this.View(viewModel);
         }

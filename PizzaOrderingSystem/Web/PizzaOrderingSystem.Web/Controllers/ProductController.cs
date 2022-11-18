@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Data;
@@ -9,7 +10,6 @@ using PizzaOrderingSystem.Web.ViewModels.ProductViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Web.Controllers
@@ -31,7 +31,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index(string search)
         {
-            var viewModel = await this.productService.GetAllByName(search);
+            var viewModel = await this.productService.GetAllByNameAsync(search);
 
             return this.View(viewModel);
         }
@@ -40,7 +40,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> IndexPizza(string search)
         {
-            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.PizzaCategory, search);
+            var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.PizzaCategory, search);
 
             return this.View(viewModel);
         }
@@ -49,7 +49,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> IndexSalads(string search)
         {
-            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.SaladCategory, search);
+            var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.SaladCategory, search);
 
             return this.View(viewModel);
         }
@@ -58,7 +58,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> IndexDesserts(string search)
         {
-            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.DessertCategory, search);
+            var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.DessertCategory, search);
 
             return this.View(viewModel);
         }
@@ -67,7 +67,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> IndexDrinks(string search)
         {
-            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.DrinkCategory, search);
+            var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.DrinkCategory, search);
 
             return this.View(viewModel);
         }
@@ -76,21 +76,19 @@ namespace PizzaOrderingSystem.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> IndexSauces(string search)
         {
-            var viewModel = await this.productService.GetAllByCategory(GlobalConstants.SauceCategory, search);
+            var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.SauceCategory, search);
 
             return this.View(viewModel);
         }
 
         [HttpGet]
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ICollection<ListProductCategoriesViewModel> allCategories =
-                this.categoryService.All()
-                .To<ListProductCategoriesViewModel>()
-                .ToArray();
-
             CreateProductViewModel viewModel = new CreateProductViewModel();
+
+            IEnumerable<ListProductCategoriesViewModel> allCategories = await
+                this.categoryService.AllAsync();
 
             viewModel.Categories = allCategories;
 
@@ -107,7 +105,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 return this.RedirectToAction(nameof(this.Create));
             }
 
-            if (!this.categoryService.ExistById(model.CategoryId))
+            if (!await this.categoryService.ExistByIdAsync(model.CategoryId))
             {
                 return this.RedirectToAction(nameof(this.Create));
             }
@@ -117,7 +115,7 @@ namespace PizzaOrderingSystem.Web.Controllers
             Product product = AutoMapperConfig.MapperInstance.Map<Product>(model);
             product.ImageUrl = uniqueFileName;
 
-            await this.productService.AddProduct(product);
+            await this.productService.AddProductAsync(product);
 
             return this.RedirectToAction(nameof(this.Index));
         }
@@ -140,10 +138,8 @@ namespace PizzaOrderingSystem.Web.Controllers
                 Description = product.Description,
             };
 
-            ICollection<ListProductCategoriesViewModel> allCategories =
-               this.categoryService.All()
-               .To<ListProductCategoriesViewModel>()
-               .ToArray();
+            var allCategories = await
+               this.categoryService.AllAsync();
 
             viewModel.Categories = allCategories;
 
@@ -160,7 +156,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 return this.RedirectToAction(nameof(this.Edit));
             }
 
-            if (!this.categoryService.ExistById(model.CategoryId))
+            if (!await this.categoryService.ExistByIdAsync(model.CategoryId))
             {
                 return this.RedirectToAction(nameof(this.Edit));
             }
@@ -180,7 +176,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 product.ImageUrl = uniqueFileName;
             }
 
-            await this.productService.EditProduct(product);
+            await this.productService.EditProductAsync(product);
 
             return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ProductController);
         }
@@ -197,7 +193,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 return this.NotFound();
             }
 
-            await this.productService.DeleteProduct(product);
+            await this.productService.DeleteProductAsync(product);
 
             return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ProductController);
         }
@@ -212,7 +208,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 return this.RedirectToAction(GlobalConstants.ErrorAction, GlobalConstants.HomeController);
             }
 
-            DetailsProductViewModel viewModel = AutoMapperConfig.MapperInstance.Map<DetailsProductViewModel>(product);
+            var viewModel = this.productService.GetProductDetails(product);
 
             return this.View(viewModel);
         }
