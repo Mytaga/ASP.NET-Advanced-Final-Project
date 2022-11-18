@@ -1,4 +1,5 @@
 ﻿using PizzaOrderingSystem.Data.Common.Models;
+using PizzaOrderingSystem.Data.Models.Enums;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -15,9 +16,11 @@ namespace PizzaOrderingSystem.Data.Models
 
         public DateTime SaleDate { get; set; }
 
-        [ForeignKey(nameof(Shop))]
-        public string ShopId { get; set; }
+        [ForeignKey(nameof(Order))]
+        public string OrderId { get; set; }
 
-        public virtual Shop Shop { get; set; }
+        public virtual Order Order { get; set; }
+
+        public PaymentType PaymentType { get; set; }
     }
 }

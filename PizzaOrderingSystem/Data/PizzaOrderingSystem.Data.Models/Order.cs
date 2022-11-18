@@ -31,6 +31,11 @@ namespace PizzaOrderingSystem.Data.Models
 
         public virtual ApplicationUser User { get; set; }
 
+        [ForeignKey(nameof(Sale))]
+        public string SaleId { get; set; }
+
+        public virtual Sale Sale { get; set; }
+
         public virtual ICollection<CartItem> OrderProducts { get; set; }
     }
 }
