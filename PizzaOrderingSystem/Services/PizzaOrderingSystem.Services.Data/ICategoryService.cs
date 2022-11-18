@@ -1,21 +1,20 @@
 ﻿using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Web.ViewModels.CategoryViewModels;
-using System.Linq;
+using PizzaOrderingSystem.Web.ViewModels.ProductViewModels;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Services.Data
 {
     public interface ICategoryService
     {
-        IQueryable<Category> All();
+        Task<IEnumerable<ListProductCategoriesViewModel>> AllAsync();
 
-        bool ExistByName(string name);
+        Task<bool> ExistByNameAsync(string name);
 
-        bool ExistById(int id);
+        Task<bool> ExistByIdAsync(int id);
 
-        Task AddCategory(CreateCategoryInputModel model);
-
-        Category GetById(int id);
+        Task AddCategoryAsync(CreateCategoryInputModel model);
 
         Task<Category> GetByIdAsync(int id);
     }

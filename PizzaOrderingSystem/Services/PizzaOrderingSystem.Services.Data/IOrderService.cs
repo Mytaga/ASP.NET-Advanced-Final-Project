@@ -11,8 +11,10 @@ namespace PizzaOrderingSystem.Services.Data
 
         Task<Order> GetLastOrderAsync();
 
-        Task<IEnumerable<OrderViewModel>> GetUserOrders(string userId);
+        Task<IEnumerable<OrderViewModel>> GetUserOrdersAsync(string userId);
 
         Task<OrderDetailsViewModel> GetUserOrderDetailsAsync(string userId, string prderId);
+
+        OrderDetailsViewModel GetOrderDetails(Order order);
     }
 }

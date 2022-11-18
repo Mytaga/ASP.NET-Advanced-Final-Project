@@ -1,14 +1,14 @@
 ﻿using PizzaOrderingSystem.Data.Models;
-using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Services.Data
 {
     public interface ICartItemService
     {
-        IQueryable<CartItem> GetAll();
+        Task<IEnumerable<CartItem>> GetAllAsync();
 
-        IQueryable<CartItem> GetAllByOrder(string orderId);
+        Task<IEnumerable<CartItem>> GetAllByOrderAsync(string orderId);
 
         Task<CartItem> GetByIdАsync(string id);
     }

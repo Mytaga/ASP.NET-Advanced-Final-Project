@@ -3,10 +3,7 @@ using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Mapping;
 using PizzaOrderingSystem.Web.ViewModels.ProductViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Services.Data
@@ -21,30 +18,25 @@ namespace PizzaOrderingSystem.Services.Data
             this.productRepo = productRepo;
         }
 
-        public async Task AddProduct(Product product)
+        public async Task AddProductAsync(Product product)
         {
             await this.productRepo.AddAsync(product);
             await this.productRepo.SaveChangesAsync();
         }
 
-        public async Task DeleteProduct(Product product)
+        public async Task DeleteProductAsync(Product product)
         {
             this.productRepo.Delete(product);
             await this.productRepo.SaveChangesAsync();
         }
 
-        public async Task EditProduct(Product product)
+        public async Task EditProductAsync(Product product)
         {
             this.productRepo.Update(product);
             await this.productRepo.SaveChangesAsync();
         }
 
-        public bool ExistById(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<AllProductsViewModel> GetAllByCategory(string categoryName = EmptyString, string searchName = EmptyString)
+        public async Task<AllProductsViewModel> GetAllByCategoryAsync(string categoryName = EmptyString, string searchName = EmptyString)
         {
             var products = this.productRepo.AllAsNoTracking()
                 .Where(p => p.Category.Name == categoryName);
@@ -66,7 +58,7 @@ namespace PizzaOrderingSystem.Services.Data
             return viewModel;
         }
 
-        public async Task<AllProductsViewModel> GetAllByName(string searchName = EmptyString)
+        public async Task<AllProductsViewModel> GetAllByNameAsync(string searchName = EmptyString)
         {
             var products = this.productRepo.AllAsNoTracking();
 
@@ -86,22 +78,17 @@ namespace PizzaOrderingSystem.Services.Data
             return viewModel;
         }
 
-        public ICollection<string> GetAllProductsCategories()
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<Product> GetByIdАsync(string id)
         {
             return await this.productRepo.All()
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public Product GetById(string id)
+        public DetailsProductViewModel GetProductDetails(Product product)
         {
-            return this.productRepo
-               .All()
-               .FirstOrDefault(f => f.Id == id);
+            DetailsProductViewModel viewModel = AutoMapperConfig.MapperInstance.Map<DetailsProductViewModel>(product);
+
+            return viewModel;
         }
     }
 }

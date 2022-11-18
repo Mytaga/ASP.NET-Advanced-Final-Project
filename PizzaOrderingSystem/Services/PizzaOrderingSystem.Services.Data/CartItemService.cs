@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿ using Microsoft.EntityFrameworkCore;
 using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,14 +16,14 @@ namespace PizzaOrderingSystem.Services.Data
             this.cartItemRepo = cartItemRepo;
         }
 
-        public IQueryable<CartItem> GetAll()
+        public async Task<IEnumerable<CartItem>> GetAllAsync()
         {
-            return this.cartItemRepo.All();
+            return await this.cartItemRepo.AllAsNoTracking().ToListAsync();
         }
 
-        public IQueryable<CartItem> GetAllByOrder(string orderId)
+        public async Task<IEnumerable<CartItem>> GetAllByOrderAsync(string orderId)
         {
-            return this.cartItemRepo.All().Where(c => c.OrderId == orderId);
+            return await this.cartItemRepo.AllAsNoTracking().Where(c => c.OrderId == orderId).ToListAsync();
         }
 
         public async Task<CartItem> GetByIdАsync(string id)
