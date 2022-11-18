@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaOrderingSystem.Data;
 
@@ -11,9 +12,10 @@ using PizzaOrderingSystem.Data;
 namespace PizzaOrderingSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221116205536_RemovedRequiredAttributeCartItemShoppingCartId")]
+    partial class RemovedRequiredAttributeCartItemShoppingCartId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -463,9 +465,6 @@ namespace PizzaOrderingSystem.Data.Migrations
                     b.Property<int>("PaymentType")
                         .HasColumnType("int");
 
-                    b.Property<string>("SaleId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -482,8 +481,6 @@ namespace PizzaOrderingSystem.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
-
-                    b.HasIndex("SaleId");
 
                     b.HasIndex("UserId");
 
@@ -599,12 +596,6 @@ namespace PizzaOrderingSystem.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("OrderId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("PaymentType")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("SaleDate")
                         .HasColumnType("datetime2");
 
@@ -614,8 +605,6 @@ namespace PizzaOrderingSystem.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
-
-                    b.HasIndex("OrderId");
 
                     b.HasIndex("ShopId");
 
@@ -809,17 +798,11 @@ namespace PizzaOrderingSystem.Data.Migrations
 
             modelBuilder.Entity("PizzaOrderingSystem.Data.Models.Order", b =>
                 {
-                    b.HasOne("PizzaOrderingSystem.Data.Models.Sale", "Sale")
-                        .WithMany()
-                        .HasForeignKey("SaleId");
-
                     b.HasOne("PizzaOrderingSystem.Data.Models.ApplicationUser", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Sale");
 
                     b.Navigation("User");
                 });
@@ -848,15 +831,11 @@ namespace PizzaOrderingSystem.Data.Migrations
 
             modelBuilder.Entity("PizzaOrderingSystem.Data.Models.Sale", b =>
                 {
-                    b.HasOne("PizzaOrderingSystem.Data.Models.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId");
-
-                    b.HasOne("PizzaOrderingSystem.Data.Models.Shop", null)
+                    b.HasOne("PizzaOrderingSystem.Data.Models.Shop", "Shop")
                         .WithMany("Sales")
                         .HasForeignKey("ShopId");
 
-                    b.Navigation("Order");
+                    b.Navigation("Shop");
                 });
 
             modelBuilder.Entity("PizzaOrderingSystem.Data.Models.Shop", b =>
