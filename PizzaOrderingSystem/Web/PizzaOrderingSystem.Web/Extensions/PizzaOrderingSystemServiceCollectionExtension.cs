@@ -30,6 +30,7 @@ namespace PizzaOrderingSystem.Web.Extensions
             services.AddScoped<IPaymentCardService, PaymentCardService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IShopService, ShopService>();
+            services.AddScoped<ISaleService, SaleService>();
 
             services.AddScoped(sp => ShoppingCart.GetCart(sp));
 
