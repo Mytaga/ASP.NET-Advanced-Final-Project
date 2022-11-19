@@ -14,15 +14,20 @@ namespace PizzaOrderingSystem.Services.Data
     {
         private readonly IDeletableEntityRepository<Order> orderRepo;
         private readonly ICartService cartService;
+        private readonly ISaleService saleService;
 
-        public OrderService(IDeletableEntityRepository<Order> orderRepo, ICartService cartService)
+        public OrderService(IDeletableEntityRepository<Order> orderRepo, ICartService cartService, ISaleService saleService)
         {
             this.orderRepo = orderRepo;
             this.cartService = cartService;
+            this.saleService = saleService;
         }
 
         public async Task AddAsync(CreateOrderViewModel viewModel)
         {
+            Sale sale = new Sale();
+            await this.saleService.AddAsync(sale);
+
             Order order = new Order()
             {
                 TimeOfOrder = viewModel.TimeOfOrder,
@@ -32,7 +37,10 @@ namespace PizzaOrderingSystem.Services.Data
                 PaymentType = viewModel.PaymentType,
                 UserId = viewModel.UserId,
                 OrderProducts = await this.cartService.GetCartProductsAsync(),
+                Sale = sale,
             };
+
+            sale.OrderId = order.Id;
 
             await this.orderRepo.AddAsync(order);
             await this.orderRepo.SaveChangesAsync();
