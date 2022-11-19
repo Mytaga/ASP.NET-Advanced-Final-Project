@@ -6,7 +6,6 @@ using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Web.Extensions;
 using PizzaOrderingSystem.Web.ViewModels.OrderViewModels;
-using System.Globalization;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Web.Controllers

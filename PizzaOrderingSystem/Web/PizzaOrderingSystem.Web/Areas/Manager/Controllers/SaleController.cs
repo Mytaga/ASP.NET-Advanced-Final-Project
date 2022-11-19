@@ -14,6 +14,7 @@
             this.saleService = saleService;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var viewModel = await this.saleService.GetAllSalesAsync();
@@ -22,6 +23,7 @@
 
         public async Task<IActionResult> UpdateSales()
         {
+            await this.saleService.UpdateAsync();
             return this.RedirectToAction(GlobalConstants.IndexAction);
         }
     }
