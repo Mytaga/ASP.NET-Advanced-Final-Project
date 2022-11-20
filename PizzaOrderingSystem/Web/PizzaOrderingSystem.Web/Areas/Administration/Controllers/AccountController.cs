@@ -2,12 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
-using PizzaOrderingSystem.Web.Areas.Administration.Controllers;
 using System.Threading.Tasks;
 
-namespace PizzaOrderingSystem.Web.Areas.Manager.Controllers
+namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
 {
-    public class AccountController : ManagerController
+    public class AccountController : AdministrationController
     {
         private readonly SignInManager<ApplicationUser> signInManager;
 
