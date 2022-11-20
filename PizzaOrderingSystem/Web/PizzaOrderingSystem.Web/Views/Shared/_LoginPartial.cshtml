@@ -16,7 +16,7 @@
         else if (this.User.IsInRole(GlobalConstants.ManagerRoleName))
         {
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Manager" asp-controller="Sale" asp-action="Index" title="Manager">Manager</a>
+                <a class="nav-link btn btn-link text-dark" asp-area="Manager" asp-controller="Sale" asp-action="Index" title="Manager">Manager</a>
             </li>
         }
         else
@@ -27,16 +27,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-controller="Account" asp-action="ViewProfile">
+                <a class="nav-link btn btn-link text-dark" asp-controller="Account" asp-action="ViewProfile">
                     Hello @this.User.Identity.Name!
-                    @*<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-            </svg>*@
                 </a>
             </li>
         }
         <li class="nav-item">
-            <form class="form-inline" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Home")">
+            <form class="form-inline" asp-controller="Account" asp-action="Logout">
                 <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
             </form>
         </li>
