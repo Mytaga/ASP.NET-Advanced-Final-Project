@@ -105,7 +105,7 @@ namespace PizzaOrderingSystem.Common
             public const int ShopDescriptionMinLength = 20;
             public const int ShopDescriptionMaxLength = 150;
             public const int ShopPhoneMinLength = 10;
-            public const int ShopPhoneMaxLength = 13;
+            public const int ShopPhoneMaxLength = 20;
 
             public const string NameRequiredError = "Name is required";
             public const string NameMinLengthError = "Last name must be at least 3 letters";
@@ -116,7 +116,7 @@ namespace PizzaOrderingSystem.Common
             public const string DescriptionMaxLengthError = "Description must be at no more than 150 letters";
 
             public const string PhoneMinLengthError = "Phone number must be at least 10 digits";
-            public const string PhoneMaxLengthError = "Phone number must be no more than 13 digits";
+            public const string PhoneMaxLengthError = "Phone number must be no more than 20 digits";
 
         }
 

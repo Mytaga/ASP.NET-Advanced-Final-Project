@@ -22,3 +22,39 @@ C:\Users\PTO\Downloads\ASP.NET Advanced Final Project\PizzaOrderingSystem\PizzaO
 C:\Users\PTO\Downloads\ASP.NET Advanced Final Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\refint\PizzaOrderingSystem.Common.dll
 C:\Users\PTO\Downloads\ASP.NET Advanced Final Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.pdb
 C:\Users\PTO\Downloads\ASP.NET Advanced Final Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\ref\PizzaOrderingSystem.Common.dll
+C:\Users\PTO\Desktop\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\bin\Debug\net6.0\PizzaOrderingSystem.Common.deps.json
+C:\Users\PTO\Desktop\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\bin\Debug\net6.0\PizzaOrderingSystem.Common.dll
+C:\Users\PTO\Desktop\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\bin\Debug\net6.0\PizzaOrderingSystem.Common.pdb
+C:\Users\PTO\Desktop\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.csproj.AssemblyReference.cache
+C:\Users\PTO\Desktop\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PTO\Desktop\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.AssemblyInfoInputs.cache
+C:\Users\PTO\Desktop\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.AssemblyInfo.cs
+C:\Users\PTO\Desktop\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.csproj.CoreCompileInputs.cache
+C:\Users\PTO\Desktop\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.dll
+C:\Users\PTO\Desktop\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\refint\PizzaOrderingSystem.Common.dll
+C:\Users\PTO\Desktop\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.pdb
+C:\Users\PTO\Desktop\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\ref\PizzaOrderingSystem.Common.dll
+C:\Users\mitko\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\bin\Debug\net6.0\PizzaOrderingSystem.Common.deps.json
+C:\Users\mitko\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\bin\Debug\net6.0\PizzaOrderingSystem.Common.dll
+C:\Users\mitko\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\bin\Debug\net6.0\PizzaOrderingSystem.Common.pdb
+C:\Users\mitko\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.csproj.AssemblyReference.cache
+C:\Users\mitko\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mitko\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.AssemblyInfoInputs.cache
+C:\Users\mitko\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.AssemblyInfo.cs
+C:\Users\mitko\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.csproj.CoreCompileInputs.cache
+C:\Users\mitko\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.dll
+C:\Users\mitko\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\refint\PizzaOrderingSystem.Common.dll
+C:\Users\mitko\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.pdb
+C:\Users\mitko\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\ref\PizzaOrderingSystem.Common.dll
+C:\Users\PTO\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\bin\Debug\net6.0\PizzaOrderingSystem.Common.deps.json
+C:\Users\PTO\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\bin\Debug\net6.0\PizzaOrderingSystem.Common.dll
+C:\Users\PTO\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\bin\Debug\net6.0\PizzaOrderingSystem.Common.pdb
+C:\Users\PTO\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.csproj.AssemblyReference.cache
+C:\Users\PTO\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PTO\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.AssemblyInfoInputs.cache
+C:\Users\PTO\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.AssemblyInfo.cs
+C:\Users\PTO\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.csproj.CoreCompileInputs.cache
+C:\Users\PTO\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.dll
+C:\Users\PTO\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\refint\PizzaOrderingSystem.Common.dll
+C:\Users\PTO\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\PizzaOrderingSystem.Common.pdb
+C:\Users\PTO\Downloads\ASP.NET-Advanced-Final-Project\PizzaOrderingSystem\PizzaOrderingSystem.Common\obj\Debug\net6.0\ref\PizzaOrderingSystem.Common.dll
