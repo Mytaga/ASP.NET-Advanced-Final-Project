@@ -8,6 +8,9 @@
         public const string UserRoleName = "User";
         public const string ManagerRoleName = "Manager";
 
+        public const string AdministrationArea = "Administration";
+        public const string ManagerArea = "Manager";
+
         public const string AdminEmail = "mitko.kralev@abv.bg";
         public const string ManagerEmail = "manager@onlinepizza.bg";
 
