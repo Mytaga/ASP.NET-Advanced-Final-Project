@@ -26,10 +26,10 @@
     @foreach (var shop in Model)
     {
         <div class="col">
-            <div class="card h-100 bg-success">
+            <div class="card h-100 bg-dark text-white">
                 <img src=@shop.ImageUrl class="card-img-top" alt="Image" />
                 <div class="card-body">
-                    <h4 class="card-title text-dark">@shop.Name</h4>
+                    <h4 class="card-title text-white">@shop.Name</h4>
                     <h5 class="card-title mt-3">@shop.Description</h5>
                     <h5 class="card-title mt-3">Phone Number: @shop.PhoneNumber</h5>
                     <h5 class="card-title mt-3">Address: @shop.City - bul @shop.Street  @shop.StreetNumber</h5>

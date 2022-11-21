@@ -9,5 +9,6 @@
     [Area(GlobalConstants.AdministrationArea)]
     public class AdministrationController : BaseController
     {
+
     }
 }
