@@ -3,4 +3,14 @@
     this.ViewData["Title"] = "Manager dashboard";
 }
 
-<h1>@this.ViewData["Title"]</h1>
+<h1>Welcome to Manager Area</h1>
+<hr />
+<p class="text-black">Here you can track all your sales and filter them by month and type of payment.</p>
+<p class="text-black">If you want to update, delete or addd any information about products ot restaurants you must contact the admin </p>
+<img src="/img/big-boss-logo-design-inspirations_625622-12.webp" class="mt-3"/>
+<div>
+    <a class="btn btn-dark mt-3 btn-lg" asp-area="Manager" asp-controller="Sale" asp-action="Index">Check Sales</a>
+</div>
+
+
+

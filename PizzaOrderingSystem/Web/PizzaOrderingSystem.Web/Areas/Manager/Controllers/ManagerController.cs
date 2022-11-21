@@ -6,7 +6,7 @@
     using PizzaOrderingSystem.Web.Controllers;
 
     [Authorize(Roles = GlobalConstants.ManagerRoleName)]
-    [Area("Manager")]
+    [Area(GlobalConstants.ManagerArea)]
     public class ManagerController : BaseController
     {
 
