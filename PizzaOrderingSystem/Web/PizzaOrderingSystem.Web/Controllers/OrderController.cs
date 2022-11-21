@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Data;
+using PizzaOrderingSystem.Services.Exceptions;
 using PizzaOrderingSystem.Web.Extensions;
 using PizzaOrderingSystem.Web.ViewModels.OrderViewModels;
 using System.Threading.Tasks;
@@ -16,14 +17,14 @@ namespace PizzaOrderingSystem.Web.Controllers
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ICartService cartService;
         private readonly IOrderService orderService;
-        private readonly ICartItemService cartItemService;
+        private readonly IGuard guard;
 
-        public OrderController(UserManager<ApplicationUser> userManager, ICartService cartService, IOrderService orderService, ICartItemService cartItemService)
+        public OrderController(UserManager<ApplicationUser> userManager, ICartService cartService, IOrderService orderService, IGuard guard)
         {
             this.userManager = userManager;
             this.cartService = cartService;
             this.orderService = orderService;
-            this.cartItemService = cartItemService;
+            this.guard = guard;
         }
 
         [HttpGet]
@@ -33,10 +34,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             var user = await this.userManager.FindByIdAsync(userId);
 
-            if (user.Address == null)
-            {
-                return this.RedirectToAction(GlobalConstants.UpdateProfileAction, GlobalConstants.AccountController);
-            }
+            this.guard.AgainstNull(user.Address, ErrorConstants.AddressMissing);
 
             CreateOrderViewModel viewModel = new CreateOrderViewModel()
             {
@@ -67,7 +65,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details()
         {
             var order = await this.orderService.GetLastOrderAsync();
 
@@ -91,6 +89,9 @@ namespace PizzaOrderingSystem.Web.Controllers
         public async Task<IActionResult> UserOrderDetails(string id)
         {
             var userId = this.User.Id();
+
+            this.guard.AgainstNull(id, ErrorConstants.OrderMissing);
+
             var viewModel = await this.orderService.GetUserOrderDetailsAsync(userId, id);
 
             return this.View(viewModel);

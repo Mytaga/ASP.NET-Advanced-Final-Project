@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
+using PizzaOrderingSystem.Services.Exceptions;
 using PizzaOrderingSystem.Web.ViewModels.Account;
 using System;
 using System.IO;
@@ -17,13 +18,20 @@ namespace PizzaOrderingSystem.Web.Controllers
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly RoleManager<ApplicationRole> roleManager;
         private readonly IWebHostEnvironment webHostEnvironment;
+        private readonly IGuard guard;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationRole> roleManager, IWebHostEnvironment webHostEnvironment)
+        public AccountController(
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            RoleManager<ApplicationRole> roleManager,
+            IWebHostEnvironment webHostEnvironment, 
+            IGuard guard)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
             this.webHostEnvironment = webHostEnvironment;
+            this.guard = guard;
         }
 
         [HttpGet]
