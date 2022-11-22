@@ -8,21 +8,21 @@
 <section class="p-4 p-md-5">
     <div class="row d-flex justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-5">
-            <div class="card rounded-4">
+            <div class="card rounded-4 bg-dark">
                 <div class="card-body p-3">
-                    <div class="text-center mb-4">
+                    <div class="text-center mb-4 text-white">
                         <h3>Payment Settings</h3>
                     </div>
-                    <p class="fw-bold mb-4 pb-2">Saved cards:</p>
+                    <p class="fw-bold mb-4 pb-2 text-white">Saved cards:</p>
                     @foreach (var card in Model.SavedCards)
                     {
-                        <div class="d-flex flex-row align-items-center mb-4 pb-1">
+                        <div class="d-flex flex-row align-items-center mb-4 pb-1 text-white">
                             <img class="img-fluid" src=@card.ImageUrl />
-                            <div class="flex-fill mx-3">
+                            <div class="flex-fill mx-3 text-white">
                                 <div class="form-outline">
-                                    <input type="text" id="formControlLgXc" class="form-control form-control-lg"
+                                    <input type="text" id="formControlLgXc" class="form-control form-control-lg text-white"
                                        value="@card.CardNumber" />
-                                    <label class="form-label" for="formControlLgXc">Card Number</label>
+                                    <label class="form-label text-white" for="formControlLgXc">Card Number</label>
                                 </div>
                             </div>
                             <partial name="_DeleteCardModalPartial" model="card" />
@@ -30,38 +30,38 @@
                     }
                     <form asp-action="Add">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>                    
-                        <p class="fw-bold mb-4">Add new card:</p>
+                        <p class="fw-bold mb-4 text-white">Add new card:</p>
                         <div class="form-outline mb-4">
-                            <input asp-for="CardHolder" type="text" id="formControlLgXsd" class="form-control form-control-lg" />
-                            <label asp-for="CardHolder" class="form-label" for="formControlLgXsd">Cardholder's Name</label>
+                            <input asp-for="CardHolder" type="text" id="formControlLgXsd" class="form-control form-control-lg text-white" />
+                            <label asp-for="CardHolder" class="form-label text-white" for="formControlLgXsd">Cardholder's Name</label>
                             <span asp-validation-for="CardHolder" class="text-danger"></span>
                         </div>
                         <div class="row mb-4">
                             <div class="col-7">
                                 <div class="form-outline">
-                                    <input asp-for="CardNumber" type="text" id="formControlLgXM" class="form-control form-control-lg" />
-                                    <label asp-for="CardNumber" class="form-label" for="formControlLgXM">Card Number</label>
+                                    <input asp-for="CardNumber" type="text" id="formControlLgXM" class="form-control form-control-lg text-white" />
+                                    <label asp-for="CardNumber" class="form-label text-white" for="formControlLgXM">Card Number</label>
                                     <span asp-validation-for="CardNumber" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-3">
                                 <div class="form-outline">
-                                    <input asp-for="ExpirationDate" type="text" id="formControlLgExpk" class="form-control form-control-lg"
+                                    <input asp-for="ExpirationDate" type="text" id="formControlLgExpk" class="form-control form-control-lg text-white"
                                            placeholder="MM/YY" />
-                                    <label asp-for="ExpirationDate" class="form-label" for="formControlLgExpk">Expire</label>
+                                    <label asp-for="ExpirationDate" class="form-label text-white" for="formControlLgExpk">Expire</label>
                                     <span asp-validation-for="ExpirationDate" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="form-outline">
-                                    <input asp-for="Cvc" type="password" id="formControlLgcvv" class="form-control form-control-lg" />
-                                    <label asp-for="Cvc" class="form-label" for="formControlLgcvv">CVC</label>
+                                    <input asp-for="Cvc" type="password" id="formControlLgcvv" class="form-control form-control-lg text-white" />
+                                    <label asp-for="Cvc" class="form-label text-white" for="formControlLgcvv">CVC</label>
                                     <span asp-validation-for="Cvc" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
-                        <input type="submit" value="Add Card" class="btn btn-dark" />
-                        <a class="btn btn-dark" asp-controller="Account" asp-action="ViewProfile">Back</a>
+                        <input type="submit" value="Add Card" class="btn btn-white" />
+                        <a class="btn btn-white" asp-controller="Account" asp-action="ViewProfile">Back</a>
                     </form>
                 </div>
             </div>

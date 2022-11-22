@@ -11,12 +11,10 @@ namespace PizzaOrderingSystem.Web.Areas.Manager.Controllers
     public class ProductController : ManagerController
     {
         private readonly IProductService productService;
-        private readonly ICategoryService categoryService;
 
         public ProductController(IProductService productService, ICategoryService categoryService)
         {
             this.productService = productService;
-            this.categoryService = categoryService;
         }
 
         [HttpGet]

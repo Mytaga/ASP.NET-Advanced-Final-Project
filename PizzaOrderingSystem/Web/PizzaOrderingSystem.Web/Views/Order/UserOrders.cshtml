@@ -5,23 +5,23 @@
     ViewData["Title"] = "User Orders";
 }
 
-<ul class="list-group list-group-light bg-success">
+<ul class="list-group list-group-light bg-dark">
     @foreach (var order in Model)
     {
-        <li class="list-group-item d-flex justify-content-between align-items-center bg-success ">
+        <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-white">
             <div class="d-flex align-items-center">
                 <div class="ms-4">
                     <p class="fw-bold mb-1">Order Number: @order.OrderId</p>
                     <p class="fw-bold mb-1">@order.TimeOfOrder</p>
-                    <p class="text-dark mb-0">@order.TotalPrice</p>
+                    <p class="text-white mb-0">@order.TotalPrice</p>
                 </div>
             </div>
-            <a class="btn btn-dark mr-5" asp-controller="Order" asp-action="UserOrderDetails" asp-route-id="@order.OrderId">View</a>
+            <a class="btn btn-white mr-5" asp-controller="Order" asp-action="UserOrderDetails" asp-route-id="@order.OrderId">View</a>
         </li>
     }
 </ul>
 
 
 <div>
-    <a class="btn btn-dark mt-3" asp-controller="Account" asp-action="ViewProfile">Back</a>
+    <a class="btn btn-white mt-3" asp-controller="Account" asp-action="ViewProfile">Back</a>
 </div>

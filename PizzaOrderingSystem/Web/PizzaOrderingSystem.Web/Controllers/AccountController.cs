@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
-using PizzaOrderingSystem.Services.Exceptions;
 using PizzaOrderingSystem.Web.ViewModels.Account;
 using System;
 using System.IO;
@@ -18,20 +17,17 @@ namespace PizzaOrderingSystem.Web.Controllers
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly RoleManager<ApplicationRole> roleManager;
         private readonly IWebHostEnvironment webHostEnvironment;
-        private readonly IGuard guard;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             RoleManager<ApplicationRole> roleManager,
-            IWebHostEnvironment webHostEnvironment, 
-            IGuard guard)
+            IWebHostEnvironment webHostEnvironment)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
             this.webHostEnvironment = webHostEnvironment;
-            this.guard = guard;
         }
 
         [HttpGet]
@@ -112,6 +108,15 @@ namespace PizzaOrderingSystem.Web.Controllers
                     if (model.ReturnUrl != null)
                     {
                         return this.Redirect(model.ReturnUrl);
+                    }
+
+                    if (user.Email == GlobalConstants.AdminEmail)
+                    {
+                        return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController, new { area = GlobalConstants.AdministrationArea });
+                    }
+                    else if (user.Email == GlobalConstants.ManagerEmail)
+                    {
+                        return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController, new { area = GlobalConstants.ManagerArea });
                     }
 
                     return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController);

@@ -1,0 +1,51 @@
+﻿@using PizzaOrderingSystem.Common
+@model PizzaOrderingSystem.Web.ViewModels.ReviewViewModels.AllReviewsViewModel
+
+
+@{
+    ViewData["Title"] = "Reviews";
+}
+
+
+<div class="container mt-0 bg-dark" style="border-radius: 1rem;">
+    <hr />
+    <div class="mt-3 ml-4 text-white">
+        <h1 class="mt-4">Reviews</h1>
+    </div>
+    <hr class="bg-white"/>
+    @if (User.IsInRole(GlobalConstants.UserRoleName))
+    {
+        <a class="btn btn-white mt-4 ml-4" asp-controller="Review" asp-action="Create">Add Review</a>
+    }
+    <div id="reviews" class="review-section">
+        <div class="review-list mt-1 bg-dark">
+            <ul>
+                <li>
+                    <h4 class="m-0 text-white">@Model.Reviews.Count Reviews</h4>
+                </li>
+                @foreach (var item in Model.Reviews)
+                {
+                    <li>
+                        <div class="d-flex">
+                            <div class="right">
+                                <h4 class="text-white">
+                                    @item.AuthorName
+                                </h4>
+                                <div class="review-description text-white">
+                                    <p>
+                                        @item.Content
+                                    </p>
+                                </div>
+                                <span class="publish py-3 d-inline-block w-100 text-white">@item.PublishedOn</span>
+                            </div>
+                        </div>
+                        @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+                        {
+                            <partial name="_DeleteReviewModalPartial" model="item" />
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

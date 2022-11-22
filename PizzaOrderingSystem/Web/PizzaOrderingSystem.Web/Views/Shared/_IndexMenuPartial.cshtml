@@ -1,7 +1,7 @@
 ﻿@using PizzaOrderingSystem.Common
 @model PizzaOrderingSystem.Web.ViewModels.ProductViewModels.AllProductsViewModel
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white" style="font-size: 25px">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white" style="font-size: 20px">
     <div class="container-fluid">
         <a class="navbar-brand ms-lg-3 text-white" asp-action="Index" style="font-size: 25px">MENU</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -47,10 +47,10 @@
         @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
         {
             <p>
-                <a class="btn btn-dark" asp-controller="Product" asp-action="Create">Create new product</a>
+                <a class="btn btn-dark btn-lg" asp-controller="Product" asp-action="Create">Create new product</a>
             </p>
             <p>
-                <a class="btn btn-dark" asp-controller="Category" asp-action="Create">Create new category</a>
+                <a class="btn btn-dark btn-lg" asp-controller="Category" asp-action="Create">Create new category</a>
             </p>
         }
     </div>
@@ -79,7 +79,7 @@
                         }
                         @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
                         {
-                            <a class="btn btn-dark" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-white" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
                             <partial name="_DeleteProductModalPartial" model="@item" />
                         }
                     </div>  
