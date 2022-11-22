@@ -38,6 +38,8 @@
         public const string LoginAction = "Login";
 
         public const string ShopImageUrl = "/img/PizzaShopLogo.jpg";
+        public const string ShopImageFullUrl = "C:/Users/mitko/Downloads/ASP.NET-Advanced-Final-Project/PizzaOrderingSystem/Web/PizzaOrderingSystem.Web/wwwroot/img/PizzaShopLogo.jpg";
+        public const string MasterCardLogo = "https://img.icons8.com/color/48/000000/mastercard-logo.png";
 
         public const string HomeImageUrl1 = "img/CarouselPhoto1.jpeg";
         public const string HomeImageUrl2 = "img/CarouselPhoto2.jpeg";
