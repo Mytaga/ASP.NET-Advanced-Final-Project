@@ -17,6 +17,7 @@
  - Dependency Injection
  - Data Validation, both Client-side and Server-side
  - Data Validation in the Models and Input View Models
+ - Syncfusion PDF
  - Responsive Design
  - MDB Bootstrap 4.0
  - jQuery
