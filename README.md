@@ -19,7 +19,7 @@
  - Data Validation in the Models and Input View Models
  - Syncfusion PDF
  - Responsive Design
- - MDB Bootstrap 4.0
+ - MDB Bootstrap 5.0
  - jQuery
 
 
