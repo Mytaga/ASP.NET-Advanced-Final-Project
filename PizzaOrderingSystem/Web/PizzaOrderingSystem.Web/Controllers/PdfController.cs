@@ -1,14 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using PizzaOrderingSystem.Common;
+using PizzaOrderingSystem.Services.Data;
+using Syncfusion.Drawing;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
-using Syncfusion.Drawing;
 using System.IO;
-using PizzaOrderingSystem.Common;
-using System.Data;
-using Microsoft.AspNetCore.Authorization;
-using PizzaOrderingSystem.Services.Data;
 using System.Threading.Tasks;
-using System;
 
 namespace PizzaOrderingSystem.Web.Controllers
 {
@@ -33,6 +31,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             //Creates a new PDF document
             PdfDocument document = new PdfDocument();
+
             //Adds page settings
             document.PageSettings.Orientation = PdfPageOrientation.Landscape;
             document.PageSettings.Margins.All = 50;
@@ -42,7 +41,7 @@ namespace PizzaOrderingSystem.Web.Controllers
             PdfGraphics graphics = page.Graphics;
 
             //Loads the image as stream
-            FileStream imageStream = new FileStream(GlobalConstants.ShopImageFullUrl, FileMode.Open, FileAccess.Read);
+            FileStream imageStream = new FileStream(GlobalConstants.ShopImageFullUrlOffice, FileMode.Open, FileAccess.Read);
             RectangleF bounds = new RectangleF(176, 0, 390, 130);
             PdfImage image = PdfImage.FromStream(imageStream);
 
@@ -74,7 +73,10 @@ namespace PizzaOrderingSystem.Web.Controllers
             PdfFont timesRoman = new PdfStandardFont(PdfFontFamily.TimesRoman, 10);
 
             //Creates text elements to add the address and draw it to the page.
-            element = new PdfTextElement("BILL TO ", timesRoman);
+            element = new PdfTextElement("BILL TO : " + order.User.FirstName.ToUpper() + " " + order.User.LastName.ToUpper(), timesRoman);
+            element.Brush = new PdfSolidBrush(new PdfColor(126, 155, 203));
+            result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 25));
+            element = new PdfTextElement("TOTAL PRICE WITH VAT : " + order.TotalPrice.ToString("C"), timesRoman);
             element.Brush = new PdfSolidBrush(new PdfColor(126, 155, 203));
             result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 25));
             PdfPen linePen = new PdfPen(new PdfColor(126, 151, 173), 0.70f);
@@ -94,9 +96,8 @@ namespace PizzaOrderingSystem.Web.Controllers
             //Download the PDF document in the browser
             FileStreamResult fileStreamResult = new FileStreamResult(stream, "application/pdf");
 
-            fileStreamResult.FileDownloadName = "Sample.pdf";
+            fileStreamResult.FileDownloadName = $"Invoice {order.Id}.pdf";
             return fileStreamResult;
         }
-
     }
 }
