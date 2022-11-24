@@ -23,14 +23,14 @@
                 </li>
             </ul>
             <form class="d-flex input-group w-auto" method="get" asp-controller="Product" asp-action="Index">
-                    @if (Model.SearchQuery == null)
-                    {
-                        <input type="text" class="form-control rounded" name="search" placeholder="Search....">
-                    }
-                    else
-                    {
-                        <input type="text" name="search" class="form-control" value="@Model.SearchQuery">
-                    }
+                @if (Model.SearchQuery == null)
+                {
+                    <input type="text" class="form-control rounded" name="search" placeholder="Search....">
+                }
+                else
+                {
+                    <input type="text" name="search" class="form-control" value="@Model.SearchQuery">
+                }
                 <span class="input-group-text text-white border-0" id="search-addon">
                     <button class="btn btn-lg btn-white" type="submit">
                         Search
@@ -80,11 +80,41 @@
                         @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
                         {
                             <a class="btn btn-white" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                            <partial name="_DeleteProductModalPartial" model="@item" />
+                            <form asp-action="Delete" asp-controller="Product" asp-route-id="@item.Id" method="post">
+                                <button type="submit" onclick="return deleteConfirm()" class="btn btn-danger">Delete</button>
+                            </form>
+                            @*<partial name="_DeleteProductModalPartial" model="@item" />*@
                         }
-                    </div>  
+                    </div>
                 </div>
             </div>
         </div>
     }
 </div>
+
+@section Scripts {
+    <script>
+        const deleteConfirm = function() {
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                        return true;
+                    )
+                }
+                return false;
+            })
+        }
+    </script>
+}
