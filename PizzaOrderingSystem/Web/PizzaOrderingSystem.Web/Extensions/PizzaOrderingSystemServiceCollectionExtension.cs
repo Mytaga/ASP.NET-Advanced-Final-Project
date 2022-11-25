@@ -6,6 +6,7 @@ using PizzaOrderingSystem.Data.Repositories;
 using PizzaOrderingSystem.Data;
 using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Services.Messaging;
+using PizzaOrderingSystem.Services.Exceptions;
 
 namespace PizzaOrderingSystem.Web.Extensions
 {
@@ -31,6 +32,8 @@ namespace PizzaOrderingSystem.Web.Extensions
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IShopService, ShopService>();
             services.AddScoped<ISaleService, SaleService>();
+            services.AddScoped<IGuard, Guard>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddScoped(sp => ShoppingCart.GetCart(sp));
 
