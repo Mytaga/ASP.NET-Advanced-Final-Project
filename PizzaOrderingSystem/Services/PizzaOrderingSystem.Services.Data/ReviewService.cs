@@ -41,7 +41,14 @@ namespace PizzaOrderingSystem.Services.Data
             return viewModel;
         }
 
-        public Review GetById(string id)
+		public async Task<int> GetAllReviewsCountAsync()
+		{
+            return await this.reviewRepo
+                .AllAsNoTracking()
+                .CountAsync();
+		}
+
+		public Review GetById(string id)
         {
             return this.reviewRepo.All().FirstOrDefault(r => r.Id == id);
         }

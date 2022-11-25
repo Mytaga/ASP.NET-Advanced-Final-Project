@@ -78,7 +78,14 @@ namespace PizzaOrderingSystem.Services.Data
             return viewModel;
         }
 
-        public async Task<Product> GetByIdАsync(string id)
+		public async Task<int> GetAllProductsCountAsync()
+		{
+            return await this.productRepo
+                .AllAsNoTracking()
+                .CountAsync();
+		}
+
+		public async Task<Product> GetByIdАsync(string id)
         {
             return await this.productRepo.All()
                 .FirstOrDefaultAsync(p => p.Id == id);

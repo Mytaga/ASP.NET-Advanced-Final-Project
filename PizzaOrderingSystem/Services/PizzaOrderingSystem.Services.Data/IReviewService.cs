@@ -15,5 +15,7 @@ namespace PizzaOrderingSystem.Services.Data
         Task<Review> GetByIdAsync(string id);
 
         Review GetById(string id);
+
+        Task<int> GetAllReviewsCountAsync();
     }
 }

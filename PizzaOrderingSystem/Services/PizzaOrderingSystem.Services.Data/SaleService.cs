@@ -38,7 +38,7 @@ namespace PizzaOrderingSystem.Services.Data
         {
             return await this.saleRepo
                 .AllAsNoTracking()
-                .Where(s => s.ModifiedOn != null)
+                .Where(s => s.Amount != 0.00M)
                 .Select(s => new SaleViewModel
                 {
                     Id = s.Id,

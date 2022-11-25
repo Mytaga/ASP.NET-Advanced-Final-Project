@@ -19,5 +19,7 @@ namespace PizzaOrderingSystem.Services.Data
         Task EditProductAsync(Product product);
 
         DetailsProductViewModel GetProductDetails(Product product);
+
+        Task<int> GetAllProductsCountAsync();
     }
 }
