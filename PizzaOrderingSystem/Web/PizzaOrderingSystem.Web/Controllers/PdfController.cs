@@ -57,7 +57,7 @@ namespace PizzaOrderingSystem.Web.Controllers
             PdfFont subHeadingFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 14);
 
             //Creates a text element to add the invoice number
-            PdfTextElement element = new PdfTextElement("INVOICE " + order.Id, subHeadingFont);
+            PdfTextElement element = new PdfTextElement("INVOICE : " + order.Id, subHeadingFont);
             element.Brush = PdfBrushes.White;
 
             //Draws the heading on the page
@@ -72,11 +72,14 @@ namespace PizzaOrderingSystem.Web.Controllers
             graphics.DrawString(currentDate, subHeadingFont, element.Brush, textPosition);
             PdfFont timesRoman = new PdfStandardFont(PdfFontFamily.TimesRoman, 10);
 
-            //Creates text elements to add the address and draw it to the page.
+            //Creates text elements to add the address and draw it to the page
             element = new PdfTextElement("BILL TO : " + order.User.FirstName.ToUpper() + " " + order.User.LastName.ToUpper(), timesRoman);
             element.Brush = new PdfSolidBrush(new PdfColor(126, 155, 203));
             result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 25));
             element = new PdfTextElement("TOTAL PRICE WITH VAT : " + order.TotalPrice.ToString("C"), timesRoman);
+            element.Brush = new PdfSolidBrush(new PdfColor(126, 155, 203));
+            result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 25));
+            element = new PdfTextElement("PAYMENT TYPE : " + order.PaymentType.ToString().ToUpper(), timesRoman);
             element.Brush = new PdfSolidBrush(new PdfColor(126, 155, 203));
             result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 25));
             PdfPen linePen = new PdfPen(new PdfColor(126, 151, 173), 0.70f);
