@@ -49,6 +49,8 @@ namespace PizzaOrderingSystem.Web
             {
                 options.LoginPath = "/Account/Login";
                 options.LogoutPath = "/Account/Logout";
+                options.ExpireTimeSpan= TimeSpan.FromMinutes(15);
+                options.SlidingExpiration = true;
             });
 
             services.AddControllersWithViews(
@@ -70,7 +72,7 @@ namespace PizzaOrderingSystem.Web
             services.AddSession(options =>
             {
                 options.Cookie.HttpOnly = true;
-                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.IdleTimeout = TimeSpan.FromMinutes(15);
                 options.Cookie.IsEssential = true;
             });
         }
