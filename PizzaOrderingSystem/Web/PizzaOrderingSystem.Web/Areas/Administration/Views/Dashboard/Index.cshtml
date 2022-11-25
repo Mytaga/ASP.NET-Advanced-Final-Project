@@ -5,3 +5,35 @@
 
 <h1 class="text-black">@this.ViewData["Title"]</h1>
 
+<div class="container py-5 bg-dark text-white">
+	<div class="row ml-4 fa-2x">
+		<div class="four col-md-3">
+			<div class="counter-box colored">
+				<i class="fa fa-thumbs-o-up"></i>
+				<span class="counter">@Model.ReviewsPublished</span>
+				<p>Reviews Published</p>
+			</div>
+		</div>
+		<div class="four col-md-3">
+			<div class="counter-box">
+				<i class="fa fa-group"></i>
+				<span class="counter">@Model.RegisteredUsers</span>
+				<p>Registered Clients</p>
+			</div>
+		</div>
+		<div class="four col-md-3">
+			<div class="counter-box">
+				<i class="fa  fa-shopping-cart"></i>
+				<span class="counter">@Model.AvailableProducts</span>
+				<p>Available Products</p>
+			</div>
+		</div>
+		<div class="four col-md-3">
+			<div class="counter-box">
+				<i class="fa  fa-user"></i>
+				<span class="counter">@Model.OrdersMade</span>
+				<p>Orders placed</p>
+			</div>
+		</div>
+	</div>
+</div>

@@ -3,19 +3,34 @@
     using Microsoft.AspNetCore.Mvc;
     using PizzaOrderingSystem.Services.Data;
     using PizzaOrderingSystem.Web.ViewModels.Administration.Dashboard;
+    using System.Threading.Tasks;
 
     public class DashboardController : AdministrationController
     {
-        private readonly ISettingsService settingsService;
+        private readonly IUserService userService;
+        private readonly IOrderService orderService;
+        private readonly IProductService productService;
+        private readonly IReviewService reviewService;
 
-        public DashboardController(ISettingsService settingsService)
+        public DashboardController(IUserService userService, IOrderService orderService, IProductService productService, IReviewService reviewService)
         {
-            this.settingsService = settingsService;
+            this.userService = userService;
+            this.orderService = orderService;
+            this.productService = productService;
+            this.reviewService = reviewService;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            var viewModel = new IndexViewModel { SettingsCount = this.settingsService.GetCount(), };
+            var viewModel = new IndexViewModel()
+            {
+                RegisteredUsers = await this.userService.GetUsersCountAsync(),
+                OrdersMade = await this.orderService.GetAllOrdersAsync(),
+                AvailableProducts = await this.productService.GetAllProductsCountAsync(),
+                ReviewsPublished = await this.reviewService.GetAllReviewsCountAsync(),
+            };
+
             return this.View(viewModel);
         }
     }
