@@ -35,10 +35,6 @@
                                 <span class="publish py-3 d-inline-block w-100 text-black">@item.PublishedOn</span>
                             </div>
                         </div>
-                        @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
-                        {
-                            <partial name="_DeleteReviewModalPartial" model="item" />
-                        }
                     </li>
                 }
             </ul>
