@@ -1,10 +1,10 @@
 ﻿@model PizzaOrderingSystem.Web.ViewModels.ReviewViewModels.ReviewViewModel
 
-<button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+<button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal-@Model.Id">
     Delete
 </button>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal-@Model.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
