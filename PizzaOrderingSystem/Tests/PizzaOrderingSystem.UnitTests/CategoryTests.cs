@@ -51,10 +51,51 @@
 		public async Task ExistByNameAsyncReturnsCorrectFalse()
 		{
 			await this.FillUpCategories(4);
-			string name = "Category4";
+			string name = "Category5";
 			bool result = await this.categoryService.ExistByNameAsync(name);
+			Assert.That(result == false, Is.False);
+		}
+
+		[Test]
+		public async Task ExistByIdAsyncReturnsCorrectTrue()
+		{
+			await this.FillUpCategories(4);
+			int id = 1;
+			bool result = await this.categoryService.ExistByIdAsync(id);
 			Assert.That(result == true, Is.True);
 		}
+
+		[Test]
+		public async Task ExistByIdAsyncReturnsCorrectFalse()
+		{
+			await this.FillUpCategories(4);
+			int id = 6;
+			bool result = await this.categoryService.ExistByIdAsync(id);
+			Assert.That(result == false, Is.False);
+		}
+
+		[Test]
+		public async Task GetByIdAsyncReturnsCorrectCategory()
+		{
+			await this.FillUpCategories(4);
+
+			var category = await this.dbContext.Categories.FindAsync(3);
+
+			var dbCategory = await this.categoryService.GetByIdAsync(3);
+
+			Assert.That(category, Is.EqualTo(dbCategory));
+		}
+
+		[Test]
+		public async Task GetByIdAsyncReturnsNullWithIncorrectId()
+		{
+			await this.FillUpCategories(4);
+
+			var dbCategory = await this.categoryService.GetByIdAsync(0);
+
+			Assert.That(dbCategory, Is.EqualTo(null));
+		}
+
 
 		private async Task FillUpCategories(int categoriesCount)
 		{
