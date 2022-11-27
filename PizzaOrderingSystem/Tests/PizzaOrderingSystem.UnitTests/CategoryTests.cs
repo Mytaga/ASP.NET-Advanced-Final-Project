@@ -44,7 +44,7 @@
 			await this.FillUpCategories(4);
 			string name = "Category1";
 			bool result = await this.categoryService.ExistByNameAsync(name);
-			Assert.That(result == true, Is.True);
+			Assert.That(result, Is.EqualTo(true));
 		}
 
 		[Test]
@@ -53,16 +53,25 @@
 			await this.FillUpCategories(4);
 			string name = "Category5";
 			bool result = await this.categoryService.ExistByNameAsync(name);
-			Assert.That(result == false, Is.False);
+			Assert.That(result, Is.EqualTo(false));
 		}
+
+		[Test]
+		public async Task AllAsyncReturnsCorrectNumberWithEmptyCollection()
+		{
+			await this.ClearCategories();
+			IEnumerable<ListProductCategoriesViewModel> categories = await this.categoryService.AllAsync();
+			Assert.That(categories.Count(), Is.EqualTo(0));
+		}		
 
 		[Test]
 		public async Task ExistByIdAsyncReturnsCorrectTrue()
 		{
 			await this.FillUpCategories(4);
-			int id = 1;
+			var category = this.dbContext.Categories.FirstOrDefaultAsync(c => c.Name.Contains("Category"));
+			var id = category.Id;
 			bool result = await this.categoryService.ExistByIdAsync(id);
-			Assert.That(result == true, Is.True);
+			Assert.That(result == false, Is.True);
 		}
 
 		[Test]
@@ -107,6 +116,18 @@
 						Name = $"Category{i}",
 					});
 			}
+		}
+
+		private async Task ClearCategories()
+		{
+			var categories = await this.dbContext.Categories.ToListAsync();
+
+			foreach (var category in categories)
+			{
+				this.dbContext.Remove(category);
+			}
+
+			await this.dbContext.SaveChangesAsync();
 		}
 	}
 }
