@@ -107,5 +107,15 @@ namespace PizzaOrderingSystem.Services.Data
 
             return total;
         }
+
+        public int GetShoppingCartItemCount()
+        {
+            return this.cartItemRepo
+                .All()
+                .Where(ci => ci.ShoppingCartId == this.shoppingCart.ShoppingCartId)
+                .Include(p => p.Product)
+                .ToList()
+                .Count();
+        }
     }
 }

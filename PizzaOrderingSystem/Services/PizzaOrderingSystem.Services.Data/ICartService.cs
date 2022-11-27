@@ -21,5 +21,7 @@ namespace PizzaOrderingSystem.Services.Data
         decimal GetShoppingCartTotal();
 
         Task<ICollection<CartItem>> GetCartProductsAsync();
+
+        int GetShoppingCartItemCount();
     }
 }
