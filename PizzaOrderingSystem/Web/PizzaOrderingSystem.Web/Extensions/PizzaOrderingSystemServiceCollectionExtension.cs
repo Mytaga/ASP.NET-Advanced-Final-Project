@@ -1,14 +1,13 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using PizzaOrderingSystem.Data.Common.Repositories;
+﻿using PizzaOrderingSystem.Data;
 using PizzaOrderingSystem.Data.Common;
+using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Data.Repositories;
-using PizzaOrderingSystem.Data;
 using PizzaOrderingSystem.Services.Data;
-using PizzaOrderingSystem.Services.Messaging;
 using PizzaOrderingSystem.Services.Exceptions;
+using PizzaOrderingSystem.Services.Messaging;
 
-namespace PizzaOrderingSystem.Web.Extensions
+namespace Microsoft.Extensions.DependencyInjection
 {
     public static class PizzaOrderingSystemServiceCollectionExtension
     {
