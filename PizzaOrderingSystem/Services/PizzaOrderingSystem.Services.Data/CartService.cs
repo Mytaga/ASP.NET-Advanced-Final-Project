@@ -82,7 +82,7 @@ namespace PizzaOrderingSystem.Services.Data
                 .ToListAsync();
         }
 
-        public async Task<ICollection<CartItem>> GetCartProductsAsync()
+        public async Task<IEnumerable<CartItem>> GetCartProductsAsync()
         {
             return await this.cartItemRepo
                 .All()
