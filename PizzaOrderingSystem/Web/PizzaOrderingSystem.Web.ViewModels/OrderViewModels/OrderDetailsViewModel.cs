@@ -29,6 +29,6 @@ namespace PizzaOrderingSystem.Web.ViewModels.OrderViewModels
 
         public string RecipientPostalCode{ get; set; }
 
-        public virtual ICollection<CartItem> Products { get; set; }
+        public virtual IEnumerable<CartItem> Products { get; set; }
     }
 }
