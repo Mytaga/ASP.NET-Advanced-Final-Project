@@ -51,7 +51,7 @@ namespace PizzaOrderingSystem.Services.Data
 
         public async Task DecreaseQuantity(CartItem item)
         {
-            if (item.Quantity > 0)
+            if (item.Quantity > 1)
             {
                 item.Quantity--;
                 this.cartItemRepo.Update(item);
@@ -61,6 +61,14 @@ namespace PizzaOrderingSystem.Services.Data
                 this.shoppingCart.Items.Remove(item);
                 this.cartItemRepo.Delete(item);
             }
+
+            await this.cartItemRepo.SaveChangesAsync();
+        }
+
+        public async Task IncreaseQuantity(CartItem item)
+        {
+            item.Quantity++;
+            this.cartItemRepo.Update(item);
 
             await this.cartItemRepo.SaveChangesAsync();
         }
@@ -81,14 +89,6 @@ namespace PizzaOrderingSystem.Services.Data
                 .Where(ci => ci.ShoppingCartId == this.shoppingCart.ShoppingCartId)
                 .Include(p => p.Product)
                 .ToListAsync();
-        }
-
-        public async Task IncreaseQuantity(CartItem item)
-        {
-            item.Quantity++;
-            this.cartItemRepo.Update(item);
-
-            await this.cartItemRepo.SaveChangesAsync();
         }
 
         public async Task RemoveFromCartAsync(CartItem item)
