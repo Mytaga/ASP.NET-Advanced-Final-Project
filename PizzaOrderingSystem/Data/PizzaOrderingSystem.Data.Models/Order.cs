@@ -36,6 +36,6 @@ namespace PizzaOrderingSystem.Data.Models
 
         public virtual Sale Sale { get; set; }
 
-        public virtual ICollection<CartItem> OrderProducts { get; set; }
+        public virtual IEnumerable<CartItem> OrderProducts { get; set; }
     }
 }
