@@ -8,3 +8,4 @@ global using Moq;
 global using Microsoft.EntityFrameworkCore;
 global using PizzaOrderingSystem.Web.ViewModels.CategoryViewModels;
 global using PizzaOrderingSystem.Web.ViewModels.ProductViewModels;
+global using PizzaOrderingSystem.Web.ViewModels.ShopViewModels;
