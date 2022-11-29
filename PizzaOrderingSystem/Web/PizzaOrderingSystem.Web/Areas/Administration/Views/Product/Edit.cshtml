@@ -1,0 +1,56 @@
+﻿@model PizzaOrderingSystem.Web.ViewModels.ProductViewModels.EditProductViewModel
+
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4 bg-dark text-white" style="border-radius: 1rem;">
+        <h4 class="mt-3">Edit Product</h4>
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Name</label>
+                <input asp-for="Name" class="form-control" type="text" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label">Price</label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">Description</label>
+                <input asp-for="Description" class="form-control" type="text" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="ImageUrl" class="form-label text-white"></label>
+                <div>
+                    <input asp-for="ImageUrl" class="form-control">
+                </div>
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="CategoryId" class="control-label">Category</label>
+                <select id="CategoryId" name="CategoryId" class="form-control" asp-items="ViewBag.CategoryId">
+                    @foreach (var item in Model.Categories)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group mt-3 mb-3">
+                <input type="submit" value="Save" class="btn btn-white" />
+                <a class="btn btn-white" asp-action="Index">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

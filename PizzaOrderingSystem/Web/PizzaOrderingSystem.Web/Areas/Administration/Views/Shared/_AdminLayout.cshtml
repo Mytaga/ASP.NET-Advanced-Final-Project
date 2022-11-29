@@ -1,0 +1,74 @@
+﻿@using PizzaOrderingSystem.Common
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@this.ViewData["Title"] - @GlobalConstants.SystemNameAdmin </title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" asp-append-version="true">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" asp-append-version="true" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" asp-append-version="true"/>
+</head>
+<body class="bg-white" style="background-image: none">
+    <header>
+        <nav class="navbar navbar-expand navbar-light bg-dark box-shadow mb-3 text-white" style="font-size: 22px">
+            <div class="container ml-6">
+                <a class="navbar-brand mr-4 text-white" style="font-size: 30px" asp-area="Administration" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ml-4">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-link text-white" asp-area="Administration" asp-controller="Home" asp-action="Index">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-link text-white" asp-area="Administration" asp-controller="Product" asp-action="Index">MENU</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-link text-white" asp-area="Administration" asp-controller="Review" asp-action="Index">REVIEWS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-link text-white" asp-area="Administration" asp-controller="AboutUs" asp-action="Index">ABOUT US</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-link text-white" asp-area="Administration" asp-controller="Shop" asp-action="Index">RESTAURATS</a>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+
+        </nav>
+    </header>
+
+    <div class="container">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @this.RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer text-white">
+        <div class="container">
+            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
+    <script src="~/js/site.min.js" asp-append-version="true"></script>
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"></script>
+    @await this.RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
