@@ -1,0 +1,28 @@
+﻿@using PizzaOrderingSystem.Common
+@model IEnumerable<PizzaOrderingSystem.Web.ViewModels.ShopViewModels.ShopViewModel>
+
+@{
+    ViewData["Title"] = "Restaurants";
+}
+
+<div id="map-container-google-1" class="z-depth-1 map-container mb-4" style="height: 500px">
+    <iframe src="https://maps.google.com/maps?q=sofia-rakovska-56&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
+            style="border:0" allowfullscreen></iframe>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4 ">
+    @foreach (var shop in Model)
+    {
+        <div class="col">
+            <div class="card h-100 bg-success">
+                <img src=@shop.ImageUrl class="card-img-top" alt="Image" />
+                <div class="card-body">
+                    <h4 class="card-title text-dark">@shop.Name</h4>
+                    <h5 class="card-title mt-3">@shop.Description</h5>
+                    <h5 class="card-title mt-3">Phone Number: @shop.PhoneNumber</h5>
+                    <h5 class="card-title mt-3">Address: @shop.City - bul @shop.Street  @shop.StreetNumber</h5>
+                </div>
+            </div>
+        </div>
+    }
+</div>

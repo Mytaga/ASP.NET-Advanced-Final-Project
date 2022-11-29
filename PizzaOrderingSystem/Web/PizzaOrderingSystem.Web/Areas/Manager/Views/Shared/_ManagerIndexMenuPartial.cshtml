@@ -1,0 +1,21 @@
+﻿@using PizzaOrderingSystem.Common
+@model PizzaOrderingSystem.Web.ViewModels.ProductViewModels.AllProductsViewModel
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var item in Model.Products)
+    {
+        <div class="col">
+            <div class="card h-100 bg-dark text-white mb-3" style="max-width: 28rem">
+                <img src="~/img/@item.ImageUrl" class="img-fluid rounded-start" alt="image">
+                <div class="card-body">
+                    <h5 class="card-title text-white">@item.Name</h5>
+                    <h5 class="card-title">$ @item.Price</h5>
+                    <p class="card-text">@item.Description</p>
+                    <div class="mt-4">
+                        <a class="btn btn-white" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
