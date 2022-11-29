@@ -1,4 +1,5 @@
-﻿
+﻿using PizzaOrderingSystem.Web.ViewModels.ShopViewModels;
+
 namespace PizzaOrderingSystem.UnitTests
 {
     public class ShopTests
@@ -11,7 +12,7 @@ namespace PizzaOrderingSystem.UnitTests
         private CreateShopViewModel shop;
 
         [SetUp]
-        public async Task SetUp()
+        public void SetUp()
         {
             this.options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase(databaseName: "PizzaTestDb");
@@ -38,12 +39,39 @@ namespace PizzaOrderingSystem.UnitTests
                 Description = "TestDescription",
                 City = address.City,
                 Street = address.Street,
-                StreetNumber= address.StreetNumber,
+                StreetNumber = address.StreetNumber,
             };
 
             await this.shopService.CreateAsync(shop);
 
             Assert.That(this.dbContext.Shops.Count(), Is.EqualTo(1));
+        }
+
+
+        [Test]
+        public async Task CreateAsyncAddsCorrectShop()
+        {
+            var address = new Address()
+            {
+                City = "Sofia2",
+                Street = "TestStreet",
+                StreetNumber = 2,
+                PostCode = "1232",
+            };
+
+            shop = new CreateShopViewModel()
+            {
+                Name = "Test2",
+                PhoneNumber = "0898892782",
+                Description = "TestDescription",
+                City = address.City,
+                Street = address.Street,
+                StreetNumber = address.StreetNumber,
+            };
+
+            await this.shopService.CreateAsync(shop);
+
+            Assert.That(await this.dbContext.Shops.AnyAsync(s => s.Name == "Test2"), Is.True);
         }
 
         [Test]
@@ -53,7 +81,7 @@ namespace PizzaOrderingSystem.UnitTests
 
             await this.shopService.GetAllAsync();
 
-            Assert.That(this.dbContext.Shops.Count(), Is.EqualTo(4));
+            Assert.That(this.dbContext.Shops.Count(), Is.EqualTo(5));
         }
 
         [Test]
