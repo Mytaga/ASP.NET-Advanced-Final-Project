@@ -41,21 +41,6 @@
     </div>
 </nav>
 
-<div class="row mt-4">
-    <div class="col-md-3">
-
-        @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
-        {
-            <p>
-                <a class="btn btn-dark btn-lg" asp-controller="Product" asp-action="Create">Create new product</a>
-            </p>
-            <p>
-                <a class="btn btn-dark btn-lg" asp-controller="Category" asp-action="Create">Create new category</a>
-            </p>
-        }
-    </div>
-</div>
-
 <div class="row row-cols-1 row-cols-md-3 g-4">
     @foreach (var item in Model.Products)
     {
@@ -77,15 +62,6 @@
                                 Add
                             </a>
                         }
-                        @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
-                        {
-                            <a class="btn btn-white" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                            <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal-@item.Id" >
-                                Delete
-                            </button>
-                            <partial name="_DeleteProductModalPartial" model="item" />
-                        }
-
                     </div>
                 </div>
             </div>
