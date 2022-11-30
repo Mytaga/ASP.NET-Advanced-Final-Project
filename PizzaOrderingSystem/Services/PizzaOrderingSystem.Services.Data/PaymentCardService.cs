@@ -47,7 +47,12 @@ namespace PizzaOrderingSystem.Services.Data
 
             AddCardViewModel viewModel = new AddCardViewModel
             {
-                SavedCards = await cards.To<PaymentCardViewModel>().ToListAsync(),
+                SavedCards = await cards.Select(c => new PaymentCardViewModel()
+                {
+                    CardNumber = c.CardNumber,
+                    Id = c.Id,
+                })
+                .ToListAsync(),
             };
 
             return viewModel;

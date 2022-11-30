@@ -2,20 +2,19 @@
 using PizzaOrderingSystem.Web.ViewModels.ReviewViewModels;
 using System.Threading.Tasks;
 
+
 namespace PizzaOrderingSystem.Services.Data
 {
     public interface IReviewService
     {
-        Task<AllReviewsViewModel> GetAll();
+        Task<AllReviewsViewModel> GetAllAsync();
 
-        Task AddReview(Review review);
+        Task AddReview(CreateReviewInputModel review, string userId);
 
         Task DeleteReview(Review review);
 
-        Task<Review> GetByIdAsync(string id);
-
-        Review GetById(string id);
-
         Task<int> GetAllReviewsCountAsync();
+
+        Task<Review> GetByIdAsync(string id);
     }
 }

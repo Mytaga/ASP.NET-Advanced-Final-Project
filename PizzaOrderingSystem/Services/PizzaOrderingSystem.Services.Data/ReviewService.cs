@@ -18,8 +18,16 @@ namespace PizzaOrderingSystem.Services.Data
             this.reviewRepo = reviewRepo;
         }
 
-        public async Task AddReview(Review review)
+        public async Task AddReview(CreateReviewInputModel model, string userId)
         {
+            Review review = new Review()
+            {
+                AuthorName = model.AuthorName,
+                Content= model.Content,
+                PublishedOn = model.PublishedOn,
+                UserId = userId,
+            };
+
             await this.reviewRepo.AddAsync(review);
             await this.reviewRepo.SaveChangesAsync();
         }
@@ -30,7 +38,7 @@ namespace PizzaOrderingSystem.Services.Data
             await this.reviewRepo.SaveChangesAsync();
         }
 
-        public async Task<AllReviewsViewModel> GetAll()
+        public async Task<AllReviewsViewModel> GetAllAsync()
         {
             var reviews = this.reviewRepo.AllAsNoTracking();
             AllReviewsViewModel viewModel = new AllReviewsViewModel()
@@ -48,14 +56,11 @@ namespace PizzaOrderingSystem.Services.Data
                 .CountAsync();
 		}
 
-		public Review GetById(string id)
+        public Task<Review> GetByIdAsync(string id)
         {
-            return this.reviewRepo.All().FirstOrDefault(r => r.Id == id);
-        }
-
-        public async Task<Review> GetByIdAsync(string id)
-        {
-            return await this.reviewRepo.All().FirstOrDefaultAsync(r => r.Id == id);
+            return this.reviewRepo
+                .All()
+                .FirstOrDefaultAsync(r => r.Id == id);  
         }
     }
 }
