@@ -13,7 +13,7 @@ namespace PizzaOrderingSystem.Web.ViewModels.ReviewViewModels
 
         public string Content { get; set; }
 
-        public string PublishedOn => DateTime.Now.ToString("f", CultureInfo.InvariantCulture);
+        public string PublishedOn { get; set; }
 
         public string UserId { get; set; }
     }
