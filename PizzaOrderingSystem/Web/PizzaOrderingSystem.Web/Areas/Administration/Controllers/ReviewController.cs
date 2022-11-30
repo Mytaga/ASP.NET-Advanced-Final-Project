@@ -17,7 +17,7 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var viewModel = await this.reviewService.GetAll();
+            var viewModel = await this.reviewService.GetAllAsync();
 
             return this.View(viewModel);
         }
@@ -26,14 +26,14 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string id)
         {
-            var product = await this.reviewService.GetByIdAsync(id);
+            var review = await this.reviewService.GetByIdAsync(id);
 
-            if (product == null)
+            if (review == null)
             {
                 return this.NotFound();
             }
 
-            await this.reviewService.DeleteReview(product);
+            await this.reviewService.DeleteReview(review);
 
             return this.RedirectToAction(GlobalConstants.IndexAction);
         }
