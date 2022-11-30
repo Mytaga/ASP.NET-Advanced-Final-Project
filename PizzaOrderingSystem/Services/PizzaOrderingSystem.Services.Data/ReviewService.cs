@@ -4,6 +4,7 @@ using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Mapping;
 using PizzaOrderingSystem.Web.ViewModels.ReviewViewModels;
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -41,9 +42,17 @@ namespace PizzaOrderingSystem.Services.Data
         public async Task<AllReviewsViewModel> GetAllAsync()
         {
             var reviews = this.reviewRepo.AllAsNoTracking();
+
             AllReviewsViewModel viewModel = new AllReviewsViewModel()
             {
-                Reviews = await reviews.To<ReviewViewModel>().ToListAsync(),
+                Reviews = await reviews.Select(r => new ReviewViewModel()
+                {
+                    AuthorName = r.AuthorName,
+                    Content = r.Content,
+                    PublishedOn = r.PublishedOn.ToString("f", CultureInfo.InvariantCulture),
+                    UserId = r.UserId,
+                })
+                .ToListAsync(),
             };
 
             return viewModel;
