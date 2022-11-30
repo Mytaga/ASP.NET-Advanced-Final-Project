@@ -23,7 +23,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var viewModel = await this.reviewService.GetAll();
+            var viewModel = await this.reviewService.GetAllAsync();
 
             return this.View(viewModel);
         }
@@ -49,10 +49,9 @@ namespace PizzaOrderingSystem.Web.Controllers
                 return this.RedirectToAction(nameof(this.Create));
             }
 
-            Review review = AutoMapperConfig.MapperInstance.Map<Review>(model);
-            review.UserId = this.User.Id();
+            string userId = this.User.Id();
 
-            await this.reviewService.AddReview(review);
+            await this.reviewService.AddReview(model, userId);
 
             return this.RedirectToAction(GlobalConstants.IndexAction);
         }
