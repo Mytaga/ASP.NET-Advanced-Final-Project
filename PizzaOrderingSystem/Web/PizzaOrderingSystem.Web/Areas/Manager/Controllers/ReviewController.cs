@@ -19,7 +19,7 @@ namespace PizzaOrderingSystem.Web.Areas.Manager.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var viewModel = await this.reviewService.GetAll();
+            var viewModel = await this.reviewService.GetAllAsync();
 
             return this.View(viewModel);
         }
