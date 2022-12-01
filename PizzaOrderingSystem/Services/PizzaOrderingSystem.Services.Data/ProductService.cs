@@ -18,8 +18,17 @@ namespace PizzaOrderingSystem.Services.Data
             this.productRepo = productRepo;
         }
 
-        public async Task AddProductAsync(Product product)
+        public async Task AddProductAsync(CreateProductInputModel model, string imageUrl)
         {
+            Product product = new Product()
+            {
+                Name = model.Name,
+                Price = model.Price,
+                Description = model.Description,
+                ImageUrl = imageUrl,
+                CategoryId = model.CategoryId,
+            };
+
             await this.productRepo.AddAsync(product);
             await this.productRepo.SaveChangesAsync();
         }

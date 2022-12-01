@@ -12,7 +12,7 @@ namespace PizzaOrderingSystem.Services.Data
 
         Task<Product> GetByIdАsync(string id);
 
-        Task AddProductAsync(Product product);
+        Task AddProductAsync(CreateProductInputModel product, string imageUrl);
 
         Task DeleteProductAsync(Product product);
 
