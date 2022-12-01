@@ -31,7 +31,24 @@ namespace PizzaOrderingSystem.UnitTests
 
 			await this.addressService.AddAddressAsync(Address);
 
-			Assert.True(this.dbContext.Addresses.Count() == 1);
+			Assert.True(this.dbContext.Addresses.Count() == 2);
 		}
+
+		[Test]
+		public async Task AddAddressAsyncShouldAddCorrectAddress()
+		{
+            var Address = new Address()
+            {
+                City = "B",
+                Street = "Sa",
+                StreetNumber = 12,
+                Floor = 11,
+                PostCode = "1334",
+            };
+
+            await this.addressService.AddAddressAsync(Address);
+
+			Assert.That(this.addressRepo.All().Any(a => a.City == Address.City), Is.True);
+        }
 	}
 }
