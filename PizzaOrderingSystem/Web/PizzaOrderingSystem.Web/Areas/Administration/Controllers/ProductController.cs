@@ -117,17 +117,7 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
                 return this.NotFound();
             }
 
-            EditProductViewModel viewModel = new EditProductViewModel()
-            {
-                Name = product.Name,
-                Price = product.Price,
-                Description = product.Description,
-            };
-
-            var allCategories = await
-               this.categoryService.AllAsync();
-
-            viewModel.Categories = allCategories;
+            var viewModel = await this.productService.GetEditModel(product);
 
             return this.View(viewModel);
         }
@@ -146,24 +136,11 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
                 return this.RedirectToAction(nameof(this.Edit));
             }
 
-            Product product = await this.productService.GetByIdАsync(id);
-            Category category = await this.categoryService.GetByIdAsync(model.CategoryId);
-
             string uniqueFileName = this.UploadFile(model);
 
-            product.Name = model.Name;
-            product.Price = model.Price;
-            product.Description = model.Description;
-            product.Category = category;
+            await this.productService.EditProductAsync(model, id, uniqueFileName);
 
-            if (uniqueFileName != null)
-            {
-                product.ImageUrl = uniqueFileName;
-            }
-
-            await this.productService.EditProductAsync(product);
-
-            return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ProductController);
+            return this.RedirectToAction(GlobalConstants.IndexAction);
         }
 
         [HttpPost]
@@ -179,7 +156,7 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
 
             await this.productService.DeleteProductAsync(product);
 
-            return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ProductController);
+            return this.RedirectToAction(GlobalConstants.IndexAction);
         }
 
         [HttpGet]
