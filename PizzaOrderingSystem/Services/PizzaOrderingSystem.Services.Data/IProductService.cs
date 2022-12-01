@@ -16,10 +16,12 @@ namespace PizzaOrderingSystem.Services.Data
 
         Task DeleteProductAsync(Product product);
 
-        Task EditProductAsync(Product product);
+        Task EditProductAsync(EditProductInputModel model, string id, string imageUrl);
 
         DetailsProductViewModel GetProductDetails(Product product);
 
         Task<int> GetAllProductsCountAsync();
+
+        Task<EditProductViewModel> GetEditModel(Product product);
     }
 }

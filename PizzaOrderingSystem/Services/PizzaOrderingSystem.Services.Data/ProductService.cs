@@ -12,10 +12,12 @@ namespace PizzaOrderingSystem.Services.Data
     {
         private const string EmptyString = "";
         private readonly IDeletableEntityRepository<Product> productRepo;
+        private readonly ICategoryService categoryService;
 
-        public ProductService(IDeletableEntityRepository<Product> productRepo)
+        public ProductService(IDeletableEntityRepository<Product> productRepo, ICategoryService categoryService)
         {
             this.productRepo = productRepo;
+            this.categoryService = categoryService;
         }
 
         public async Task AddProductAsync(CreateProductInputModel model, string imageUrl)
@@ -39,8 +41,22 @@ namespace PizzaOrderingSystem.Services.Data
             await this.productRepo.SaveChangesAsync();
         }
 
-        public async Task EditProductAsync(Product product)
+        public async Task EditProductAsync(EditProductInputModel model, string id, string imageUrl)
         {
+            Product product = await this.productRepo.All().FirstOrDefaultAsync(p => p.Id == id);
+
+            Category category = await this.categoryService.GetByIdAsync(model.CategoryId);
+
+            product.Name = model.Name;
+            product.Price = model.Price;
+            product.Description = model.Description;
+            product.Category = category;
+
+            if (imageUrl != null)
+            {
+                product.ImageUrl = imageUrl;
+            }
+
             this.productRepo.Update(product);
             await this.productRepo.SaveChangesAsync();
         }
@@ -98,6 +114,22 @@ namespace PizzaOrderingSystem.Services.Data
         {
             return await this.productRepo.All()
                 .FirstOrDefaultAsync(p => p.Id == id);
+        }
+
+        public async Task<EditProductViewModel> GetEditModel(Product product)
+        {
+            var allCategories = await
+               this.categoryService.AllAsync();
+
+            EditProductViewModel viewModel = new EditProductViewModel()
+            {
+                Name = product.Name,
+                Price = product.Price,
+                Description = product.Description,
+                Categories = allCategories,
+            };
+
+            return viewModel;
         }
 
         public DetailsProductViewModel GetProductDetails(Product product)
