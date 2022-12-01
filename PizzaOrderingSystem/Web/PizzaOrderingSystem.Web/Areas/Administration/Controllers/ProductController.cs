@@ -102,10 +102,7 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
 
             string uniqueFileName = this.UploadFile(model);
 
-            Product product = AutoMapperConfig.MapperInstance.Map<Product>(model);
-            product.ImageUrl = uniqueFileName;
-
-            await this.productService.AddProductAsync(product);
+            await this.productService.AddProductAsync(model, uniqueFileName);
 
             return this.RedirectToAction(nameof(this.Index));
         }
