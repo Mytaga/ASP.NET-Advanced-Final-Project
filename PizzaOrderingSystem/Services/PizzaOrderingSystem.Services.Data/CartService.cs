@@ -20,16 +20,24 @@ namespace PizzaOrderingSystem.Services.Data
 
         public async Task AddToCartAsync(Product product)
         {
-
-            var shoppingCartItem = new CartItem()
+            if (this.cartItemRepo.All().Any(i => i.ProductId == product.Id && i.ShoppingCartId == shoppingCart.ShoppingCartId))
             {
-                ShoppingCartId = this.shoppingCart.ShoppingCartId,
-                Quantity = 1,
-                Product = product,
-                ProductId = product.Id,
-            };
+                var item = await this.cartItemRepo.All().FirstOrDefaultAsync(i => i.ProductId == product.Id && i.ShoppingCartId == shoppingCart.ShoppingCartId);
+                item.Quantity++;
+                this.cartItemRepo.Update(item);
+            }
+            else
+            {
+                var shoppingCartItem = new CartItem()
+                {
+                    ShoppingCartId = this.shoppingCart.ShoppingCartId,
+                    Quantity = 1,
+                    Product = product,
+                    ProductId = product.Id,
+                };
 
-            await this.cartItemRepo.AddAsync(shoppingCartItem);
+                await this.cartItemRepo.AddAsync(shoppingCartItem);
+            }
 
             await this.cartItemRepo.SaveChangesAsync();
         }
