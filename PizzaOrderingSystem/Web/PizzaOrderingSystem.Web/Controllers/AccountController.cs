@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
+using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Web.ViewModels.Account;
 using System;
 using System.IO;
@@ -17,17 +18,20 @@ namespace PizzaOrderingSystem.Web.Controllers
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly RoleManager<ApplicationRole> roleManager;
         private readonly IWebHostEnvironment webHostEnvironment;
+        private readonly IUserService userService;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             RoleManager<ApplicationRole> roleManager,
-            IWebHostEnvironment webHostEnvironment)
+            IWebHostEnvironment webHostEnvironment,
+            IUserService userService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
             this.webHostEnvironment = webHostEnvironment;
+            this.userService = userService;
         }
 
         [HttpGet]
@@ -71,6 +75,8 @@ namespace PizzaOrderingSystem.Web.Controllers
             {
                 this.ModelState.AddModelError(string.Empty, item.Description);
             }
+
+            TempData["message"] = "Congratulations you have successfully registered as a user!";
 
             return this.View(model);
         }
@@ -125,6 +131,8 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             this.ModelState.AddModelError(string.Empty, ErrorConstants.InvalidLogin);
 
+            TempData["message"] = "You have successfully logged in!";
+
             return this.View(model);
         }
 
@@ -133,6 +141,8 @@ namespace PizzaOrderingSystem.Web.Controllers
         public async Task<IActionResult> Logout()
         {
             await this.signInManager.SignOutAsync();
+
+            TempData["message"] = "You have successfully logged out!";
 
             return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController);
         }
@@ -143,24 +153,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         {
             var user = await this.userManager.GetUserAsync(this.User);
 
-            var viewModel = new ProfileViewModel()
-            {
-                UserName = user.UserName,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email,
-                ImageUrl = user.ImageUrl,
-                PhoneNumber = user.PhoneNumber,
-            };
-
-            if (user.Address != null)
-            {
-                viewModel.City = user.Address.City;
-                viewModel.Street = user.Address.Street;
-                viewModel.StreetNumber = user.Address.StreetNumber;
-                viewModel.Floor = user.Address.Floor;
-                viewModel.PostCode = user.Address.PostCode;
-            }
+            var viewModel = this.userService.GetUser(user);
 
             return this.View(viewModel);
         }
@@ -182,7 +175,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 viewModel.StreetNumber = user.Address.StreetNumber;
                 viewModel.Floor = user.Address.Floor;
                 viewModel.PostCode = user.Address.PostCode;
-            }
+            }           
 
             return this.View(viewModel);
         }
@@ -220,6 +213,8 @@ namespace PizzaOrderingSystem.Web.Controllers
             user.Address = address;
 
             await this.userManager.UpdateAsync(user);
+
+            TempData["message"] = "You have successfully updated your user info!";
 
             return this.RedirectToAction(GlobalConstants.ViewProfileAction, GlobalConstants.AccountController);
         }
