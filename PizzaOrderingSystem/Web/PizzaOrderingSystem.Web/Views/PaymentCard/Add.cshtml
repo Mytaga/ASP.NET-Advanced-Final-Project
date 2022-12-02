@@ -25,6 +25,9 @@
                                     <label class="form-label text-white" for="formControlLgXc">Card Number</label>
                                 </div>
                             </div>
+                            <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal-@card.Id">
+                                Delete
+                            </button>
                             <partial name="_DeleteCardModalPartial" model="card" />
                         </div>
                     }
