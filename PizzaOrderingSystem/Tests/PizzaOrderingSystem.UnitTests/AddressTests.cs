@@ -20,7 +20,7 @@ namespace PizzaOrderingSystem.UnitTests
 		[Test]
 		public async Task AddAddressAsyncShouldAddCorrectly()
 		{
-			var Address = new Address()
+			var address = new Address()
 			{
 				City = "A",
 				Street = "S",
@@ -29,15 +29,20 @@ namespace PizzaOrderingSystem.UnitTests
 				PostCode = "1234",
 			};
 
-			await this.addressService.AddAddressAsync(Address);
+			var addressCountBeforeTest = this.addressRepo.All().Count();
 
-			Assert.True(this.dbContext.Addresses.Count() == 2);
+			await this.addressService.AddAddressAsync(address);
+
+			var addressCountAfterTest = this.addressRepo.All().Count();
+
+			Assert.True(addressCountAfterTest == 2);
+			Assert.True(addressCountBeforeTest + 1 == addressCountAfterTest);
 		}
 
 		[Test]
 		public async Task AddAddressAsyncShouldAddCorrectAddress()
 		{
-            var Address = new Address()
+            var address = new Address()
             {
                 City = "B",
                 Street = "Sa",
@@ -46,9 +51,16 @@ namespace PizzaOrderingSystem.UnitTests
                 PostCode = "1334",
             };
 
-            await this.addressService.AddAddressAsync(Address);
+            await this.addressService.AddAddressAsync(address);
 
-			Assert.That(this.addressRepo.All().Any(a => a.City == Address.City), Is.True);
+			var newAddress = this.addressRepo.All().FirstOrDefault(a => a.Id == address.Id);
+
+            Assert.That(newAddress, Is.Not.Null);
+            Assert.That(newAddress.City, Is.EqualTo(address.City));
+			Assert.That(newAddress.Street, Is.EqualTo(address.Street));
+			Assert.That(newAddress.StreetNumber, Is.EqualTo(address.StreetNumber));
+			Assert.That(newAddress.Floor, Is.EqualTo(address.Floor));
+			Assert.That(newAddress.PostCode, Is.EqualTo(address.PostCode));
         }
 	}
 }

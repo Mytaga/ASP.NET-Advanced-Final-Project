@@ -27,15 +27,30 @@
 
 			await this.categoryService.AddCategoryAsync(category);
 
-			Assert.That(dbContext.Categories.Count(), Is.EqualTo(1));
+			Assert.That(dbContext.Categories.Count(), Is.EqualTo(2));
 		}
 
 		[Test]
+        public async Task AddCategoryAsyncShouldAddCorrectCategory()
+        {
+            CreateCategoryInputModel category = new CreateCategoryInputModel()
+            {
+                Name = "Category5",
+            };
+
+            await this.categoryService.AddCategoryAsync(category);
+
+			var dbCategory = await this.categoryRepo.All().FirstOrDefaultAsync(c => c.Name == category.Name);
+
+            Assert.That(dbCategory, Is.Not.Null);
+            Assert.That(dbCategory.Name, Is.EqualTo(category.Name));
+        }
+        [Test]
 		public async Task AllAsyncReturnsCorrectNumber() 
 		{
 			await this.FillUpCategories(4);
 			IEnumerable<ListProductCategoriesViewModel> categories = await this.categoryService.AllAsync();
-			Assert.That(categories.Count(), Is.EqualTo(5));
+			Assert.That(categories.Count(), Is.EqualTo(6));
 		}
 
 		[Test]
@@ -51,7 +66,7 @@
 		public async Task ExistByNameAsyncReturnsCorrectFalse()
 		{
 			await this.FillUpCategories(4);
-			string name = "Category5";
+			string name = "Category55";
 			bool result = await this.categoryService.ExistByNameAsync(name);
 			Assert.That(result, Is.EqualTo(false));
 		}
@@ -78,9 +93,9 @@
 		public async Task ExistByIdAsyncReturnsCorrectFalse()
 		{
 			await this.FillUpCategories(4);
-			int id = 6;
+			int id = 66;
 			bool result = await this.categoryService.ExistByIdAsync(id);
-			Assert.That(result == false, Is.False);
+			Assert.That(result == false, Is.True);
 		}
 
 		[Test]
