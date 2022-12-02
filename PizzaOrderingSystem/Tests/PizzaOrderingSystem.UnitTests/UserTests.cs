@@ -41,6 +41,63 @@
             Assert.That(usersCount, Is.EqualTo(0));
         }
 
+        [Test]
+        public void GetUserReturnsCorrectInfo()
+        {
+            var address = new Address()
+            {
+                City = "Sofia",
+                Street = "Street",
+                StreetNumber = 1,
+                Floor = 1,
+                PostCode = "1231",
+            };
+
+            var appUser = new ApplicationUser()
+            {
+                FirstName = "Hristo",
+                LastName = "Stoichkov",
+                Address = address,
+            };
+
+            var user = this.userService.GetUser(appUser);
+
+            Assert.That(user, Is.Not.Null);
+            Assert.That(user.FirstName, Is.EqualTo(appUser.FirstName));
+            Assert.That(user.LastName, Is.EqualTo(appUser.LastName));
+            Assert.That(user.Email, Is.EqualTo(appUser.Email));
+            Assert.That(user.PhoneNumber, Is.EqualTo(appUser.PhoneNumber));
+            Assert.That(user.City, Is.EqualTo(appUser.Address.City));
+            Assert.That(user.Street, Is.EqualTo(appUser.Address.Street));
+            Assert.That(user.StreetNumber, Is.EqualTo(appUser.Address.StreetNumber));
+            Assert.That(user.Floor, Is.EqualTo(appUser.Address.Floor));
+            Assert.That(user.PostCode, Is.EqualTo(appUser.Address.PostCode));
+        }
+
+        [Test]
+        public void GetUserReturnsCorrectInfoWithoutAddress()
+        {
+            var appUser = new ApplicationUser()
+            {
+                FirstName = "Hristo",
+                LastName = "Stoichkov",
+            };
+
+            var user = this.userService.GetUser(appUser);
+
+            Assert.That(user, Is.Not.Null);
+            Assert.That(user.FirstName, Is.EqualTo(appUser.FirstName));
+            Assert.That(user.LastName, Is.EqualTo(appUser.LastName));
+            Assert.That(user.Email, Is.EqualTo(appUser.Email));
+            Assert.That(user.PhoneNumber, Is.EqualTo(appUser.PhoneNumber));
+            Assert.That(user.City, Is.Null);
+            Assert.That(user.Street, Is.Null);
+            Assert.That(user.StreetNumber, Is.EqualTo(0));
+            Assert.That(user.Floor, Is.EqualTo(0));
+            Assert.That(user.PostCode, Is.Null);
+        }
+
+
         private async Task FillCollection()
         {
             this.users = new List<ApplicationUser>()
