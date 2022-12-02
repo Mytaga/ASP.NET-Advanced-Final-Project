@@ -122,8 +122,7 @@ namespace PizzaOrderingSystem.Services.Data
                 .All()
                 .Where(ci => ci.ShoppingCartId == this.shoppingCart.ShoppingCartId)
                 .Include(p => p.Product)
-                .ToList()
-                .Count();
+                .Sum(ci => ci.Quantity);               
         }
     }
 }
