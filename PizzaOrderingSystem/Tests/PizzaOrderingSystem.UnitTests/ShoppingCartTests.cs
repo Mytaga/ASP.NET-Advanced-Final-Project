@@ -31,23 +31,41 @@ namespace PizzaOrderingSystem.UnitTests
                 Description = "Test",
                 ImageUrl = "www.image.com",
                 Name = "Product",
+                CategoryId = 2,
             };
 
             this.dbContext.Products.Add(product);
-
-            var item = new CartItem()
-            {
-                ShoppingCartId = this.shoppingCart.ShoppingCartId,
-                Quantity = 1,
-                Product = product,
-                ProductId = product.Id,
-            };
+            await this.dbContext.SaveChangesAsync();
 
             await this.cartService.AddToCartAsync(product);
 
             Assert.That(dbContext.CartItems.Count(), Is.EqualTo(1));
         }
 
+        [Test]
+        public async Task AddToCartAsyncWorksCorrectWithSameProduct()
+        {
+            await this.ClearItems();
+
+            var product = new Product()
+            {
+                Description = "Test",
+                ImageUrl = "www.image.com",
+                Name = "Product",
+                CategoryId = 2,
+            };
+
+            this.dbContext.Products.Add(product);
+            await this.dbContext.SaveChangesAsync();
+
+            await this.cartService.AddToCartAsync(product);
+            await this.cartService.AddToCartAsync(product);
+
+            var item = await this.cartItemRepo.All().FirstOrDefaultAsync(ci => ci.ProductId == product.Id);
+
+            Assert.That(item.Quantity, Is.EqualTo(2));
+        }
+        
         [Test]
         public async Task ClearCartAsyncWorksCorrect()
         {
@@ -199,7 +217,7 @@ namespace PizzaOrderingSystem.UnitTests
 
             var total = this.cartService.GetShoppingCartItemCount();
 
-            Assert.That(total, Is.EqualTo(1));
+            Assert.That(total, Is.EqualTo(2));
         }
 
         [Test]
@@ -232,6 +250,7 @@ namespace PizzaOrderingSystem.UnitTests
                 ImageUrl = "www.image.com",
                 Name = "Product",
                 Price = 20M,
+                CategoryId = 2,
             };
 
             this.dbContext.Products.Add(product);
