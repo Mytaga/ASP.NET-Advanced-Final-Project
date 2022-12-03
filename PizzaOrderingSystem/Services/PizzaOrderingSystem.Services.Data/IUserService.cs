@@ -10,5 +10,7 @@ namespace PizzaOrderingSystem.Services.Data
         Task<int> GetUsersCountAsync();
 
         ProfileViewModel GetUser(ApplicationUser user);
+
+        UpdateProfileViewModel GetUpdateProfileView(ApplicationUser user);
     }
 }

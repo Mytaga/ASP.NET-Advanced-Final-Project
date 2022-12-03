@@ -16,6 +16,26 @@ namespace PizzaOrderingSystem.Services.Data
         {
             this.userRepo = userRepo;
         }
+
+        public UpdateProfileViewModel GetUpdateProfileView(ApplicationUser user)
+        {
+            var viewModel = new UpdateProfileViewModel()
+            {
+                PhoneNumber = user.PhoneNumber,
+            };
+
+            if (user.Address != null)
+            {
+                viewModel.City = user.Address.City;
+                viewModel.Street = user.Address.Street;
+                viewModel.StreetNumber = user.Address.StreetNumber;
+                viewModel.Floor = user.Address.Floor;
+                viewModel.PostCode = user.Address.PostCode;
+            }
+
+            return viewModel;
+        }
+
         public ProfileViewModel GetUser(ApplicationUser user)
         {
             var viewModel = new ProfileViewModel()
