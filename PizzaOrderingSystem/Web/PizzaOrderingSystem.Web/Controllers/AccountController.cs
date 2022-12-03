@@ -152,7 +152,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         public async Task<IActionResult> ViewProfile()
         {
             var user = await this.userManager.GetUserAsync(this.User);
-
+            
             var viewModel = this.userService.GetUser(user);
 
             return this.View(viewModel);
@@ -163,19 +163,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         {
             var user = await this.userManager.GetUserAsync(this.User);
 
-            var viewModel = new UpdateProfileViewModel()
-            {
-                PhoneNumber = user.PhoneNumber,
-            };
-
-            if (user.Address != null)
-            {
-                viewModel.City = user.Address.City;
-                viewModel.Street = user.Address.Street;
-                viewModel.StreetNumber = user.Address.StreetNumber;
-                viewModel.Floor = user.Address.Floor;
-                viewModel.PostCode = user.Address.PostCode;
-            }           
+            var viewModel = this.userService.GetUpdateProfileView(user);
 
             return this.View(viewModel);
         }
