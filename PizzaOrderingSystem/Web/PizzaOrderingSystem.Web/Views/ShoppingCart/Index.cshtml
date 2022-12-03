@@ -15,7 +15,7 @@
                                 <div class="p-5">
                                     <div class="d-flex justify-content-between align-items-center mb-5 text-white">
                                         <h2 class="fw-bold mb-0 text-white">Shopping Cart</h2>
-                                        <h6 class="mb-0 text-white">@Model.CartItems.Count items</h6>
+                                        <h6 class="mb-0 text-white">@Model.CartItems.Sum(ci => ci.Quantity) items</h6>
                                     </div>
                                     <hr class="my-4 bg-white">
                                     @foreach (var item in Model.CartItems)
