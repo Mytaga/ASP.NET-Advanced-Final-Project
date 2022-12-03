@@ -76,7 +76,15 @@ namespace PizzaOrderingSystem.Services.Data
 
             AllProductsViewModel viewModel = new AllProductsViewModel()
             {
-                Products = await products.To<ListAllProductsViewModel>().OrderByDescending(p => p.Price).ToListAsync(),
+                Products = await products.Select(p => new ListAllProductsViewModel()
+                {
+                    Name = p.Name,
+                    Description = p.Description,
+                    Price = p.Price,
+                    ImageUrl = p.ImageUrl,
+                })
+                .OrderByDescending(p => p.Price)
+                .ToListAsync(),
                 SearchQuery = searchName,
             };
 
@@ -96,7 +104,15 @@ namespace PizzaOrderingSystem.Services.Data
 
             AllProductsViewModel viewModel = new AllProductsViewModel()
             {
-                Products = await products.To<ListAllProductsViewModel>().OrderByDescending(p => p.Price).ToListAsync(),
+                Products = await products.Select(p => new ListAllProductsViewModel()
+                {
+                    Name = p.Name,
+                    Description = p.Description,
+                    Price = p.Price,
+                    ImageUrl = p.ImageUrl,
+                })
+                .OrderByDescending(p => p.Price)
+                .ToListAsync(),
                 SearchQuery = searchName,
             };
 
@@ -134,7 +150,14 @@ namespace PizzaOrderingSystem.Services.Data
 
         public DetailsProductViewModel GetProductDetails(Product product)
         {
-            DetailsProductViewModel viewModel = AutoMapperConfig.MapperInstance.Map<DetailsProductViewModel>(product);
+            DetailsProductViewModel viewModel = new DetailsProductViewModel()
+            {
+                Name= product.Name,
+                Price = product.Price,
+                Description = product.Description,
+                ImageUrl = product.ImageUrl,
+                CategoryName = product.Category.Name,
+            };
 
             return viewModel;
         }
