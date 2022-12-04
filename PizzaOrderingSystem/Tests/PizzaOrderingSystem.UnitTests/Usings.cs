@@ -9,3 +9,7 @@ global using Microsoft.EntityFrameworkCore;
 global using PizzaOrderingSystem.Web.ViewModels.CategoryViewModels;
 global using PizzaOrderingSystem.Web.ViewModels.ProductViewModels;
 global using PizzaOrderingSystem.Web.ViewModels.ShopViewModels;
+global using PizzaOrderingSystem.Web.ViewModels.PaymentCardViewModels;
+global using PizzaOrderingSystem.Web.ViewModels.ReviewViewModels;
+global using PizzaOrderingSystem.Web.ViewModels.CategoryViewModels;
+global using PizzaOrderingSystem.Web.ViewModels.OrderViewModels;
