@@ -6,9 +6,9 @@
 
 
 
-<div class="bg-success">
+<div class="bg-dark text-white" style="border-radius: 1rem;">
     <div class="mt-4">
-        <h1 class="text-dark ml-4 mt-4">Details</h1>
+        <h1 class="text-white ml-4 mt-4">Details</h1>
     </div>
     
     <hr />
@@ -43,26 +43,7 @@
             <img class="img-thumbnail mx-auto mt-4" style="width: 400px" src="~/img/@Model.ImageUrl" alt="@Model.Name" />
         </div>
         <div class="ml-4 mt-4 mb-4">
-            @if (Model.CategoryName == "Pizza")
-            {
-                <a class="btn btn-dark" asp-action="IndexPizza">Back</a>
-            }
-            else if (Model.CategoryName == "Dessert")
-            {
-                <a class="btn btn-dark" asp-action="IndexDesserts">Back</a>
-            }
-            else if (Model.CategoryName == "Salad")
-            {
-                <a class="btn btn-dark" asp-action="IndexSalads">Back</a>
-            }
-            else if (Model.CategoryName == "Sauce")
-            {
-                <a class="btn btn-dark" asp-action="IndexSauces">Back</a>
-            }
-            else
-            {
-                <a class="btn btn-dark" asp-action="IndexDrinks">Back</a>
-            }
+            <a class="btn btn-white" asp-action="Index">Back</a>
         </div>
     </dl>
 </div>
