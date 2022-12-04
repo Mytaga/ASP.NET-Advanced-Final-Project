@@ -22,6 +22,8 @@ namespace PizzaOrderingSystem.UnitTests
         [Test]
         public async Task AddAsyncAddsCorrect()
         {
+            await this.FlushCollection();
+
             Sale sale = new Sale();
 
             await this.saleService.AddAsync(sale);
