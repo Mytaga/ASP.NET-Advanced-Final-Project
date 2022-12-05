@@ -1,4 +1,6 @@
-﻿namespace PizzaOrderingSystem.Common
+﻿using System.Data;
+
+namespace PizzaOrderingSystem.Common
 {
     public static class GlobalConstants
     {
@@ -45,5 +47,7 @@
         public const string HomeImageUrl1 = "img/CarouselPhoto1.jpeg";
         public const string HomeImageUrl2 = "img/CarouselPhoto2.jpeg";
         public const string HomeImageUrl3 = "img/CarouselPhoto3.jpeg";
+
+        public const string TempDataSuccess = "successMessage";
     }
 }
