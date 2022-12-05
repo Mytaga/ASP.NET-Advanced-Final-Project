@@ -23,7 +23,7 @@
         /// <summary>
         /// Gets statistic counts info about the application useful for the admin.
         /// </summary>
-        /// <returns>Counts for : registered users, orders made, available products, reviews published.</returns>
+        /// <returns> Count for : registered users, orders made, available products, reviews published.</returns>
 
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -35,6 +35,14 @@
                 AvailableProducts = await this.productService.GetAllProductsCountAsync(),
                 ReviewsPublished = await this.reviewService.GetAllReviewsCountAsync(),
             };
+
+            return this.View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ShowRegisteredUsers()
+        {
+            var viewModel = await this.userService.GetAllRegisterdUsersAsync();
 
             return this.View(viewModel);
         }
