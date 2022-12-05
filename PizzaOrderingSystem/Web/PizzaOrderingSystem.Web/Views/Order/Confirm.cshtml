@@ -7,73 +7,64 @@
 }
 
 
-    <div class="container py-5">
-        <div class="card">
-            <div class="card-body bg-dark text-white">
-                <div class="row d-flex justify-content-center pb-5">
-                    <div class="col-md-7 col-xl-5 mb-4 mb-md-0">
-                        <div class="pt-2">
-                            <div class="p-2 me-3">
-                                <h4>Order Recap</h4>
+<div class="col-md-7 col-xl-5 mb-4 mb-md-0 justify-content-center bg-dark text-white" style="border-radius: 1rem;">
+    <div class="pt-2">
+        <div class="p-2 me-3">
+            <h4>CONFIRM ORDER</h4>
+        </div>
+        <form asp-action="Create" class="pb-3 mt-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <label asp-for="PaymentType" class="control-label">Payment Type</label>
+            <select asp-for="PaymentType" class="form-control mt-2" asp-items="Html.GetEnumSelectList<PaymentType>()"></select>
+            <div class="d-flex flex-row pb-3 mt-3">
+                @foreach (var card in Model.Cards)
+                {
+                    <div class="d-flex flex-row align-items-center mb-4 pb-1 text-white">
+                        <img class="img-fluid" src="@GlobalConstants.MasterCardLogo" />
+                        <div class="flex-fill mx-3 text-white">
+                            <div class="form-outline">
+                                <input type="text" id="formControlLgXc" class="form-control form-control-lg text-white"
+                                   value="@card.CardNumber" />
+                                <label class="form-label text-white" for="formControlLgXc">Card Number</label>
                             </div>
-                            <form asp-action="Create" class="pb-3 mt-3">
-                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                <label asp-for="PaymentType" class="control-label">Payment Type</label>
-                                <select asp-for="PaymentType" class="form-control mt-2" asp-items="Html.GetEnumSelectList<PaymentType>()"></select>
-                                <div class="d-flex flex-row pb-3 mt-3">
-                                    @foreach (var card in Model.Cards)
-                                    {
-                                        <div class="d-flex flex-row align-items-center mb-4 pb-1 text-white">
-                                            <img class="img-fluid" src="@GlobalConstants.MasterCardLogo"/>
-                                            <div class="flex-fill mx-3 text-white">
-                                                <div class="form-outline">
-                                                    <input type="text" id="formControlLgXc" class="form-control form-control-lg text-white"
-                                                       value="@card.CardNumber" />
-                                                    <label class="form-label text-white" for="formControlLgXc">Card Number</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="City" class="control-label">City</label>
-                                    <input asp-for="City" class="form-control mt-2" type="text" value="@Model.City" />
-                                    <span asp-validation-for="City" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="Street" class="control-label mt-2">Street</label>
-                                    <input asp-for="Street" class="form-control mt-2" type="text" value="@Model.Street" />
-                                    <span asp-validation-for="Street" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="StreetNumber" class="control-label mt-2">Street Number</label>
-                                    <input asp-for="StreetNumber" class="form-control mt-2" type="text" value="@Model.StreetNumber" />
-                                    <span asp-validation-for="StreetNumber" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="ExpectedDelivery" class="control-label mt-2">Expected Delivery</label>
-                                    <input asp-for="ExpectedDelivery" class="form-control mt-2" type="text" readonly="readonly" value="@Model.ExpectedDelivery" />
-                                    <span asp-validation-for="ExpectedDelivery" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="TotalPrice" class="control-label mt-2">Total Price</label>
-                                    <input asp-for="TotalPrice" class="form-control mt-2" type="text" readonly="readonly" value="@Model.TotalPrice" />
-                                    <span asp-validation-for="TotalPrice" class="text-danger"></span>
-                                </div>
-                                <div class="form-group visually-hidden">
-                                    <label asp-for="UserId" class="control-label mt-2">User Id</label>
-                                    <input asp-for="UserId" class="form-control mt-2 text-success" type="text" readonly="readonly" value="@Model.UserId" />
-                                    <span asp-validation-for="UserId" class="text-danger"></span>
-                                </div>
-                                <div class="form-group mt-5">
-                                    <input type="submit" value="Confirm Order" class="btn btn-white" />
-                                    <a class="btn btn-white" asp-controller="Product" asp-action="Index">Cancel and return to website</a>
-                                </div>
-                            </form>
                         </div>
                     </div>
-                </div>
+                }
             </div>
-        </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label">City</label>
+                <input asp-for="City" class="form-control mt-2" type="text" value="@Model.City" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Street" class="control-label mt-2">Street</label>
+                <input asp-for="Street" class="form-control mt-2" type="text" value="@Model.Street" />
+                <span asp-validation-for="Street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StreetNumber" class="control-label mt-2">Street Number</label>
+                <input asp-for="StreetNumber" class="form-control mt-2" type="text" value="@Model.StreetNumber" />
+                <span asp-validation-for="StreetNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpectedDelivery" class="control-label mt-2">Expected Delivery</label>
+                <input asp-for="ExpectedDelivery" class="form-control mt-2" type="text" readonly="readonly" value="@Model.ExpectedDelivery" />
+                <span asp-validation-for="ExpectedDelivery" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalPrice" class="control-label mt-2">Total Price</label>
+                <input asp-for="TotalPrice" class="form-control mt-2" type="text" readonly="readonly" value="@Model.TotalPrice" />
+                <span asp-validation-for="TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group visually-hidden">
+                <label asp-for="UserId" class="control-label mt-2">User Id</label>
+                <input asp-for="UserId" class="form-control mt-2 text-success" type="text" readonly="readonly" value="@Model.UserId" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-5">
+                <input type="submit" value="Confirm Order" class="btn btn-white" />
+                <a class="btn btn-white" asp-controller="Product" asp-action="Index">Cancel and return to website</a>
+            </div>
+        </form>
     </div>
-
+</div>
