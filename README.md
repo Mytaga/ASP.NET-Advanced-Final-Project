@@ -34,18 +34,20 @@
  - Update your profile information.
  - View products description.
  - Contact the manager directly if there is a problem with your order
+ - Search products through the menu.
  
   <strong> Administration Role : </strong>
- - Create new products
- - Create new product categories
- - Edit existing products
- - Delete products
- - Delete reviews
- - Create new restaurants
- - Get application statistics about : Orders place, available products on the menu and registered users
+ - Create new products.
+ - Create new product categories.
+ - Edit existing products.
+ - Delete products.
+ - Delete reviews.
+ - Create new restaurants.
+ - Get application statistics about : Orders place, available products on the menu and registered users.
  
  <strong> Manager Role : </strong>
  - Check your sales
+ - View everything 
 
 
 👉Instructions
