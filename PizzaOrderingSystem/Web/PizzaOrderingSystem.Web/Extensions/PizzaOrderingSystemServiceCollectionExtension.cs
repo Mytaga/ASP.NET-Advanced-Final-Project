@@ -20,7 +20,6 @@ namespace Microsoft.Extensions.DependencyInjection
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
-            services.AddTransient<ISettingsService, SettingsService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IReviewService, ReviewService>();
