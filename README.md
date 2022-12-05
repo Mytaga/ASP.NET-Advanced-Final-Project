@@ -44,6 +44,10 @@
  - Create new restaurants
  - Get application statistics about : Orders place, available products on the menu and registered users
  
+ <strong> Manager Role : </strong>
+ - Check your sales
+
+
 👉Instructions
 - 
 
