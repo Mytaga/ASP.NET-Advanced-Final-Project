@@ -1,6 +1,8 @@
 ﻿using PizzaOrderingSystem.Data;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Web.ViewModels.Account;
+using PizzaOrderingSystem.Web.ViewModels.Administration.Dashboard;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Services.Data
@@ -12,5 +14,7 @@ namespace PizzaOrderingSystem.Services.Data
         ProfileViewModel GetUser(ApplicationUser user);
 
         UpdateProfileViewModel GetUpdateProfileView(ApplicationUser user);
+
+        Task<IEnumerable<RegisteredUserViewModel>> GetAllRegisterdUsersAsync();
     }
 }

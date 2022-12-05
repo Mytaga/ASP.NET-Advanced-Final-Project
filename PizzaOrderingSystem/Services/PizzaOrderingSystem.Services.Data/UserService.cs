@@ -3,6 +3,8 @@ using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Web.ViewModels.Account;
+using PizzaOrderingSystem.Web.ViewModels.Administration.Dashboard;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -66,6 +68,22 @@ namespace PizzaOrderingSystem.Services.Data
                 .AllAsNoTracking()
                 .Where(u => u.Email != GlobalConstants.AdminEmail && u.Email != GlobalConstants.ManagerEmail)
                 .CountAsync();
+        }
+
+        public async Task<IEnumerable<RegisteredUserViewModel>> GetAllRegisterdUsersAsync()
+        {
+            return await this.userRepo
+                .AllAsNoTracking()
+                .Where(u => u.Email != GlobalConstants.AdminEmail && u.Email != GlobalConstants.ManagerEmail)
+                .Select(u => new RegisteredUserViewModel()
+                {
+                    UserName = u.UserName,
+                    FullName = u.FirstName + " " + u.LastName,
+                    Email = u.Email,
+                    PhoneNumber = u.PhoneNumber,
+                    OrdersMade = u.Orders.Count(),
+                })
+                .ToListAsync();
         }
     }
 }
