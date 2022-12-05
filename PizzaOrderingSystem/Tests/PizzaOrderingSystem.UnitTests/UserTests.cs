@@ -1,4 +1,6 @@
-﻿namespace PizzaOrderingSystem.UnitTests
+﻿using PizzaOrderingSystem.Data.Models;
+
+namespace PizzaOrderingSystem.UnitTests
 {
     [TestFixture]
     public class UserTests
@@ -10,13 +12,13 @@
         private IEnumerable<ApplicationUser> users;
 
         [SetUp]
-        public async Task SetUp()
+        public void SetUp()
         {
             this.options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase(databaseName: "PizzaTestDb");
             this.dbContext = new ApplicationDbContext(this.options.Options);
             this.userRepo = new EfDeletableEntityRepository<ApplicationUser>(this.dbContext);
-            this.userService = new UserService(userRepo);          
+            this.userService = new UserService(userRepo);
         }
 
         [Test]
@@ -27,7 +29,7 @@
             await this.FillCollection();
 
             var usersCount = await this.userService.GetUsersCountAsync();
-            
+
             Assert.That(usersCount, Is.EqualTo(3));
         }
 
@@ -97,6 +99,56 @@
             Assert.That(user.PostCode, Is.Null);
         }
 
+        [Test]
+        public void GetProfileViewModelReturnsCorrect()
+        {
+            var address = new Address()
+            {
+                City = "Sofia",
+                Street = "Street",
+                StreetNumber = 1,
+                Floor = 1,
+                PostCode = "1231",
+            };
+
+            var appUser = new ApplicationUser()
+            {
+                FirstName = "Hristo",
+                LastName = "Stoichkov",
+                PhoneNumber = "0898231282",
+                Address = address,
+            };
+
+            var user = this.userService.GetUpdateProfileView(appUser);
+            Assert.That(user, Is.Not.Null);
+            Assert.That(user.PhoneNumber, Is.EqualTo(appUser.PhoneNumber));
+            Assert.That(user.City, Is.EqualTo(appUser.Address.City));
+            Assert.That(user.Street, Is.EqualTo(appUser.Address.Street));
+            Assert.That(user.StreetNumber, Is.EqualTo(appUser.Address.StreetNumber));
+            Assert.That(user.Floor, Is.EqualTo(appUser.Address.Floor));
+            Assert.That(user.PostCode, Is.EqualTo(appUser.Address.PostCode));
+        }
+
+        [Test]
+        public async Task GetAllRegisteredUsersAsyncReturnsCorrect()
+        {
+            await this.FlushCollection();
+            await this.FillCollection();
+
+            var users = await this.userService.GetAllRegisterdUsersAsync();
+
+            Assert.That(users.Count, Is.EqualTo(3));
+        }
+
+        [Test]
+        public async Task GetAllRegisteredUsersAsyncReturnsCorrectWithEmptyCollection()
+        {
+            await this.FlushCollection();
+
+            var users = await this.userService.GetAllRegisterdUsersAsync();
+
+            Assert.That(users.Count, Is.EqualTo(0));
+        }
 
         private async Task FillCollection()
         {
@@ -110,7 +162,6 @@
             this.dbContext.Users.AddRange(users);
             await this.dbContext.SaveChangesAsync();
         }
-
         private async Task FlushCollection()
         {
             var users = await this.userRepo.All().ToListAsync();

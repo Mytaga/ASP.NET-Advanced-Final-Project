@@ -95,7 +95,7 @@ namespace PizzaOrderingSystem.UnitTests
         }
 
         [Test]
-        public async Task GetOrderDetailsAsync()
+        public async Task GetOrderDetailsAsyncWorksCorrect()
         {
             await this.FlushCollection();
             await this.FillCollection();
@@ -110,6 +110,23 @@ namespace PizzaOrderingSystem.UnitTests
             Assert.That(detailsModel.Status, Is.EqualTo(order.Status.ToString()));
             Assert.That(detailsModel.PaymentType, Is.EqualTo(order.PaymentType.ToString()));
             Assert.That(detailsModel.RecipientCity, Is.EqualTo(order.User.Address.City));
+        }
+
+        [Test]
+        public async Task GetUserOrderDetailsAsyncWorksCorrect()
+        {
+            await this.FlushCollection();
+            await this.FillCollection();
+
+            var order = await this.orderService.GetLastOrderAsync();
+            var detailsModel = await this.orderService.GetUserOrderDetailsAsync(order.UserId, order.Id);
+
+            Assert.That(detailsModel.OrderId, Is.EqualTo(order.Id));
+            Assert.That(detailsModel.TimeOfOrder, Is.EqualTo(order.TimeOfOrder.ToString("f", CultureInfo.InvariantCulture)));
+            Assert.That(detailsModel.TotalPrice, Is.EqualTo(order.TotalPrice.ToString("C")));
+            Assert.That(detailsModel.DeliveryType, Is.EqualTo(order.DeliveryType.ToString()));
+            Assert.That(detailsModel.Status, Is.EqualTo(order.Status.ToString()));
+            Assert.That(detailsModel.PaymentType, Is.EqualTo(order.PaymentType.ToString()));
         }
 
         private CreateOrderViewModel CreateModel()
