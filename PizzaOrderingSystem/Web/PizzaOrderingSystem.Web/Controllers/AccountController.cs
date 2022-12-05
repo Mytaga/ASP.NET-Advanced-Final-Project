@@ -76,7 +76,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 this.ModelState.AddModelError(string.Empty, item.Description);
             }
 
-            TempData["message"] = "Congratulations you have successfully registered as a user!";
+            TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.RegisterUser;
 
             return this.View(model);
         }
@@ -131,8 +131,6 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             this.ModelState.AddModelError(string.Empty, ErrorConstants.InvalidLogin);
 
-            TempData["message"] = "You have successfully logged in!";
-
             return this.View(model);
         }
 
@@ -142,7 +140,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         {
             await this.signInManager.SignOutAsync();
 
-            TempData["message"] = "You have successfully logged out!";
+            TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.Logout;
 
             return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController);
         }
@@ -202,7 +200,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             await this.userManager.UpdateAsync(user);
 
-            TempData["message"] = "You have successfully updated your user info!";
+            TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.UpdatedUser;
 
             return this.RedirectToAction(GlobalConstants.ViewProfileAction, GlobalConstants.AccountController);
         }
