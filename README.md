@@ -3,8 +3,7 @@
  ![android-chrome-192x192](https://user-images.githubusercontent.com/86414839/199828892-fca4e184-f11c-48f8-aa8f-77eb050aeade.png) - ![image](https://user-images.githubusercontent.com/86414839/194778195-9af4bdc8-3ac8-4557-abd1-f9948d4d6d85.png)
 
  
- 
-⚒️ Built With
+⚒️  <strong> Built With : </strong>
  - ASP.NET Core 6.0
  - Entity Framework Core 6.0
  - Microsoft SQL Server Express
@@ -22,5 +21,30 @@
  - MDB Bootstrap 5.0
  - jQuery
 
+💬 <strong> App Info : </strong> \
+ <br />
+ This is an online pizza restaurant where you can do several things depending on your role.\
+ <br />
+  <strong> User Role :  </strong>
+ - Order products from the menu.
+ - See all orders placed by you.
+ - Add/Remove payment cards.
+ - Download your order invoice on PDF.
+ - Write reviews.
+ - Update your profile information.
+ - View products description.
+ - Contact the manager directly if there is a problem with your order
+ 
+  <strong> Administration Role : </strong>
+ - Create new products
+ - Create new product categories
+ - Edit existing products
+ - Delete products
+ - Delete reviews
+ - Create new restaurants
+ - Get application statistics about : Orders place, available products on the menu and registered users
+ 
+👉Instructions
+- 
 
-![image](https://user-images.githubusercontent.com/86414839/196005846-0e1f4c31-5e50-428c-8a06-8460bdaa22ea.png)
+
