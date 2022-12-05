@@ -104,6 +104,8 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
 
             await this.productService.AddProductAsync(model, uniqueFileName);
 
+            TempData["message"] = "You have successfully added a new product!";
+
             return this.RedirectToAction(nameof(this.Index));
         }
 
@@ -140,6 +142,8 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
 
             await this.productService.EditProductAsync(model, id, uniqueFileName);
 
+            TempData["message"] = "You have successfully edited this product!";
+
             return this.RedirectToAction(GlobalConstants.IndexAction);
         }
 
@@ -155,6 +159,8 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
             }
 
             await this.productService.DeleteProductAsync(product);
+
+            TempData["message"] = "You have successfully deleted this product!";
 
             return this.RedirectToAction(GlobalConstants.IndexAction);
         }

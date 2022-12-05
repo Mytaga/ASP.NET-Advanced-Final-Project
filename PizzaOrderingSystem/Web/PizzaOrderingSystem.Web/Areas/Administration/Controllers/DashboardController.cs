@@ -23,7 +23,9 @@
         /// <summary>
         /// Gets statistic counts info about the application useful for the admin.
         /// </summary>
-        /// <returns> Count for : registered users, orders made, available products, reviews published.</returns>
+        /// <returns> 
+        /// Count for : registered users, orders made, available products, reviews published.
+        /// </returns>
 
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -39,6 +41,12 @@
             return this.View(viewModel);
         }
 
+        /// <summary>
+        /// Shows all registered users that are not in roles : Manager or Admin
+        /// </summary>
+        /// <returns>
+        /// Table with information about registered users.
+        /// </returns>
         [HttpGet]
         public async Task<IActionResult> ShowRegisteredUsers()
         {

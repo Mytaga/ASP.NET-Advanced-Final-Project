@@ -12,7 +12,7 @@
                     <h5 class="card-title">$ @item.Price</h5>
                     <p class="card-text">@item.Description</p>
                     <div class="mt-4">
-                        <a class="btn btn-white" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a class="btn btn-white" asp-area="Manager" asp-action="Details" asp-route-id="@item.Id">Details</a>
                     </div>
                 </div>
             </div>

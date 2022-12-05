@@ -1,0 +1,40 @@
+﻿@model IEnumerable<PizzaOrderingSystem.Web.ViewModels.Administration.Dashboard.RegisteredUserViewModel>
+
+@{
+    this.ViewData["Title"] = "Registered Users";
+}
+
+@{
+    int counter = 0;
+}
+
+<table class="table bg-dark text-white" style="border-radius: 1rem;">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">USERNAME</th>
+            <th scope="col">FULLNAME</th>
+            <th scope="col">EMAIL</th>
+            <th scope="col">PHONE NUMBER</th>
+            <th scope="col">ORDERS MADE</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            counter++;
+            <tr>
+                <th scope="row">@counter</th>
+                <td>@user.UserName</td>
+                <td>@user.FullName</td>
+                <td>@user.Email</td>
+                <td>@user.PhoneNumber</td>
+                <td>@user.OrdersMade</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-area="Administration" asp-controller="Home" asp-action="Index" class="btn btn-dark btn-lg">Back</a>
+</div>

@@ -6,12 +6,10 @@
     using PizzaOrderingSystem.Web.ViewModels.Manager.Dashboard;
 
     public class DashboardController : ManagerController
-    {
-        private readonly ISettingsService settingsService;
-
-        public DashboardController(ISettingsService settingsService)
+    {    
+        public DashboardController()
         {
-            this.settingsService = settingsService;
+            
         }
 
         public IActionResult Index()

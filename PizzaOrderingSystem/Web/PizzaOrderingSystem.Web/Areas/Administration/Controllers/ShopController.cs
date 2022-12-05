@@ -43,6 +43,8 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
 
             await this.shopService.CreateAsync(viewModel);
 
+            TempData["message"] = "You have successfully added a new restaurant!";
+
             return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ShopController);
         }
     }
