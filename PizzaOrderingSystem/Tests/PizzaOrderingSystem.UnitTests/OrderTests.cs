@@ -129,6 +129,49 @@ namespace PizzaOrderingSystem.UnitTests
             Assert.That(detailsModel.PaymentType, Is.EqualTo(order.PaymentType.ToString()));
         }
 
+        [Test]
+        public async Task GetUserOrdersAsyncWorksCorrect()
+        {
+            await this.FlushCollection();
+
+            var address = new Address()
+            {
+                City = "sofia",
+                Street = "street",
+                StreetNumber = 2,
+                Floor = 1,
+                PostCode = "1",
+            };
+
+            await this.dbContext.Addresses.AddAsync(address);
+
+            var user = new ApplicationUser()
+            {
+                FirstName = "Test",
+                LastName = "Test",
+                Address = address,
+            };
+
+            await this.dbContext.Users.AddAsync(user);
+
+            var model = new CreateOrderViewModel()
+            {
+                TotalPrice = "20",
+                PaymentType = Data.Models.Enums.PaymentType.Cash,
+                City = "sofia",
+                Street = "street",
+                StreetNumber = 2,
+                Floor = 2,
+                UserId = user.Id,
+            };
+
+            await this.orderService.AddAsync(model);
+
+            var orders = await this.orderService.GetUserOrdersAsync(user.Id);
+
+            Assert.That(orders.Count(), Is.EqualTo(1));
+        }
+
         private CreateOrderViewModel CreateModel()
         {
             var model = new CreateOrderViewModel()
