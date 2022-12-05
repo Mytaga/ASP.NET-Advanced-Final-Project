@@ -7,13 +7,13 @@
 <ul class="list-group list-group-light ">
     @foreach (var sale in Model)
     {
-        <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-white ">
+        <li class="list-group-item d-flex justify-content-between align-items-center bg-white text-dark">
             <div class="d-flex align-items-center">
                 <div class="ms-4">
                     <p class="fw-bold mb-1">Sale Number: @sale.Id</p>
                     <p class="fw-bold mb-1">Payment Type: @sale.PaymentType</p>
                     <p class="fw-bold mb-1">Sale Date: @sale.SaleDate</p>
-                    <p class="text-white mb-0">Amount : @sale.Amount</p>
+                    <p class="text-dark mb-0">Amount : @sale.Amount</p>
                 </div>
             </div>
         </li>
