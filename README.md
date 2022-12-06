@@ -1,4 +1,4 @@
-<strong> Pizza Ordering System Final Project SoftUni </strong>
+<strong> Pizza Ordering System - Final Project SoftUni </strong>
 
   
 ⚒️  <strong> Built With : </strong>
