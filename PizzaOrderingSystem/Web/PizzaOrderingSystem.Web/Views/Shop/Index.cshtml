@@ -22,19 +22,26 @@
     </div>
 </div>
 
-<div class="row row-cols-1 row-cols-md-3 g-4 ">
-    @foreach (var shop in Model)
-    {
-        <div class="col">
-            <div class="card h-100 bg-dark text-white">
-                <img src=@shop.ImageUrl class="card-img-top" alt="Image" />
-                <div class="card-body">
-                    <h4 class="card-title text-white">@shop.Name</h4>
-                    <h5 class="card-title mt-3">@shop.Description</h5>
-                    <h5 class="card-title mt-3">Phone Number: @shop.PhoneNumber</h5>
-                    <h5 class="card-title mt-3">Address: @shop.City - bul @shop.Street  @shop.StreetNumber</h5>
+@if (Model.Any())
+{
+    <div class="row row-cols-1 row-cols-md-3 g-4 ">
+        @foreach (var shop in Model)
+        {
+            <div class="col">
+                <div class="card h-100 bg-dark text-white">
+                    <img src=@shop.ImageUrl class="card-img-top" alt="Image" />
+                    <div class="card-body">
+                        <h4 class="card-title text-white">@shop.Name</h4>
+                        <h5 class="card-title mt-3">@shop.Description</h5>
+                        <h5 class="card-title mt-3">Phone Number: @shop.PhoneNumber</h5>
+                        <h5 class="card-title mt-3">Address: @shop.City - bul @shop.Street  @shop.StreetNumber</h5>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+}
+else
+{
+    <h1 class="text-black">Currently no restaurants are open in town. Check again in a few weeks ....</h1>
+}
