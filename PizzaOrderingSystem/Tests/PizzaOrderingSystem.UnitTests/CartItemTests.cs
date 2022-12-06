@@ -15,8 +15,7 @@
 				.UseInMemoryDatabase(databaseName: "PizzaTestDb");
 			this.dbContext = new ApplicationDbContext(this.options.Options);
 			this.cartItemRepo = new EfDeletableEntityRepository<CartItem>(this.dbContext);
-			this.cartItemService = new CartItemService(cartItemRepo);
-			
+			this.cartItemService = new CartItemService(cartItemRepo);			
 		}
 		
 		[Test]
