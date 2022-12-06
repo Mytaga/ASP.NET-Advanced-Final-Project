@@ -14,7 +14,7 @@ namespace PizzaOrderingSystem.Common
         public const string AdministrationArea = "Administration";
         public const string ManagerArea = "Manager";
 
-        public const string AdminEmail = "mitko.kralev@abv.bg";
+        public const string AdminEmail = "admin@onlinepizza.bg";
         public const string ManagerEmail = "manager@onlinepizza.bg";
 
         public const string PizzaCategory = "Pizza";
