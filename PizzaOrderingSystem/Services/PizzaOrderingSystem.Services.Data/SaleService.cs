@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
-using PizzaOrderingSystem.Web.ViewModels.SaleViewModels;
+using PizzaOrderingSystem.Web.ViewModels.Manager.Sales;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
