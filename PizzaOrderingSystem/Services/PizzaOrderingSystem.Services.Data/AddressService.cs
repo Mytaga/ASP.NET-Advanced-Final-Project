@@ -13,7 +13,7 @@ namespace PizzaOrderingSystem.Services.Data
             this.addressRepo = addressRepo;
         }
 
-        public async Task AddAddress(Address address)
+        public async Task AddAddressAsync(Address address)
         {
             await this.addressRepo.AddAsync(address);
             await this.addressRepo.SaveChangesAsync();

@@ -5,6 +5,6 @@ namespace PizzaOrderingSystem.Services.Data
 {
     public interface IAddressService
     {
-        Task AddAddress(Address address);
+        Task AddAddressAsync(Address address);
     }
 }
