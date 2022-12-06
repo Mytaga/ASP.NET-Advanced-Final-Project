@@ -22,6 +22,8 @@ namespace PizzaOrderingSystem.Web.Areas.Manager.Controllers
         {
             await this.signInManager.SignOutAsync();
 
+            TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.Logout;
+
             return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController, new { area = string.Empty });
         }
     }
