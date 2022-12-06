@@ -44,9 +44,9 @@ namespace PizzaOrderingSystem.Common
         public const string ShopImageExternalUrl = "C:/Users/mitko/Downloads/ASP.NET-Advanced-Final-Project/PizzaOrderingSystem/Web/PizzaOrderingSystem.Web/wwwroot/img/PizzaShopLogo.jpg";
         public const string MasterCardLogo = "https://img.icons8.com/color/48/000000/mastercard-logo.png";
 
-        public const string HomeImageUrl1 = "img/CarouselPhoto1.jpeg";
-        public const string HomeImageUrl2 = "img/CarouselPhoto2.jpeg";
-        public const string HomeImageUrl3 = "img/CarouselPhoto3.jpeg";
+        public const string HomeImageUrl1 = "img/CarouselPhoto.jpg";
+        public const string HomeImageUrl2 = "img/C1.jpg";
+        public const string HomeImageUrl3 = "img/C2.jpg";
 
         public const string TempDataSuccess = "successMessage";
     }
