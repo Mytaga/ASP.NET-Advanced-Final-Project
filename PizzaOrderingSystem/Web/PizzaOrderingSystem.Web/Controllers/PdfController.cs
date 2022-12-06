@@ -6,6 +6,7 @@ using Syncfusion.Drawing;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Web.Controllers
@@ -62,7 +63,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             // Draws the heading on the page
             PdfLayoutResult result = element.Draw(page, new PointF(10, bounds.Top + 8));
-            string currentDate = order.TimeOfOrder.ToString("F");
+            string currentDate = order.TimeOfOrder.ToString();
 
             // Measures the width of the text to place it in the correct location
             SizeF textSize = subHeadingFont.MeasureString(currentDate);
@@ -76,10 +77,16 @@ namespace PizzaOrderingSystem.Web.Controllers
             element = new PdfTextElement("BILL TO : " + order.User.FirstName.ToUpper() + " " + order.User.LastName.ToUpper(), timesRoman);
             element.Brush = new PdfSolidBrush(new PdfColor(126, 155, 203));
             result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 25));
+            element = new PdfTextElement("ADDRESS : " + order.User.Address.City.ToUpper() + " " + order.User.Address.Street.ToUpper() + " " + order.User.Address.StreetNumber, timesRoman);
+            element.Brush = new PdfSolidBrush(new PdfColor(126, 155, 203));
+            result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 25));
             element = new PdfTextElement("TOTAL PRICE WITH VAT : " + order.TotalPrice.ToString("C"), timesRoman);
             element.Brush = new PdfSolidBrush(new PdfColor(126, 155, 203));
             result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 25));
             element = new PdfTextElement("PAYMENT TYPE : " + order.PaymentType.ToString().ToUpper(), timesRoman);
+            element.Brush = new PdfSolidBrush(new PdfColor(126, 155, 203));
+            result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 25));
+            element = new PdfTextElement("PRODUCTS : " + order.OrderProducts.Count().ToString().ToUpper(), timesRoman);
             element.Brush = new PdfSolidBrush(new PdfColor(126, 155, 203));
             result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 25));
             PdfPen linePen = new PdfPen(new PdfColor(126, 151, 173), 0.70f);
