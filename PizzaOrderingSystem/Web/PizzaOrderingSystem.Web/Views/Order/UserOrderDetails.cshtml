@@ -48,7 +48,7 @@
                                             </div>
                                         </td>
                                         <td>@product.Quantity</td>
-                                        <td class="text-end">$@product.Product.Price</td>
+                                        <td class="text-end">@product.Product.Price лв.</td>
                                     </tr>
                                 }
                             </tbody>
@@ -59,7 +59,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2">Shipping</td>
-                                    <td class="text-end">$0.00</td>
+                                    <td class="text-end">0.00лв.</td>
                                 </tr>
                                 <tr class="fw-bold">
                                     <td colspan="2">TOTAL</td>
@@ -79,7 +79,7 @@
                                     @Model.PaymentType <br>
                                     Total: @Model.TotalPrice <span class="badge bg-success rounded-pill">@Model.PaymentType</span>
                                 </p>
-                                <a class="btn btn-white mt-3" asp-controller="Order" asp-action="UserOrders">Back</a>
+                                <a class="btn btn-lg btn-white mt-3" asp-controller="Order" asp-action="UserOrders">Back</a>
                             </div>
                         </div>
                     </div>

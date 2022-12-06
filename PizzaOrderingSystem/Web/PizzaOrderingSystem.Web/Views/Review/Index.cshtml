@@ -23,27 +23,34 @@
                 <li>
                     <h4 class="m-0 text-white">@Model.Reviews.Count Reviews</h4>
                 </li>
-                @foreach (var item in Model.Reviews)
+                @if (Model.Reviews.Any())
                 {
-                    <li>
-                        <div class="d-flex">
-                            <div class="right">
-                                <h4 class="text-white">
-                                    @item.AuthorName
-                                </h4>
-                                <div class="review-description text-white">
-                                    <p>
-                                        @item.Content
-                                    </p>
+                    foreach (var item in Model.Reviews)
+                    {
+                        <li>
+                            <div class="d-flex">
+                                <div class="right">
+                                    <h4 class="text-white">
+                                        @item.AuthorName
+                                    </h4>
+                                    <div class="review-description text-white">
+                                        <p>
+                                            @item.Content
+                                        </p>
+                                    </div>
+                                    <span class="publish py-3 d-inline-block w-100 text-white">@item.PublishedOn</span>
                                 </div>
-                                <span class="publish py-3 d-inline-block w-100 text-white">@item.PublishedOn</span>
                             </div>
-                        </div>
-                        @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
-                        {
-                            <partial name="_DeleteReviewModalPartial" model="item" />
-                        }
-                    </li>
+                            @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+                            {
+                                <partial name="_DeleteReviewModalPartial" model="item" />
+                            }
+                        </li>
+                    }
+                }
+                else
+                {
+                    <h1 class="text-white">Currently there aren't any reviews. Be the first to publish one.</h1>
                 }
             </ul>
         </div>
