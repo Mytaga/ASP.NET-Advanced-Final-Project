@@ -40,6 +40,8 @@ namespace PizzaOrderingSystem.Web.Controllers
             model.UserId = this.User.Id();
             await this.paymentCardService.AddAsync(model);
 
+            TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.AddCreditCard;
+
             return this.RedirectToAction(GlobalConstants.AddAction, GlobalConstants.PaymentCardController);
         }
 
@@ -55,6 +57,8 @@ namespace PizzaOrderingSystem.Web.Controllers
             }
 
             await this.paymentCardService.Delete(card);
+
+            TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.DeleteCreditCard;
 
             return this.RedirectToAction(GlobalConstants.AddAction, GlobalConstants.PaymentCardController);
         }

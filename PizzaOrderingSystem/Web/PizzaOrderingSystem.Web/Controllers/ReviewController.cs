@@ -53,6 +53,8 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             await this.reviewService.AddReview(model, userId);
 
+            TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.AddReview;
+
             return this.RedirectToAction(GlobalConstants.IndexAction);
         }
     }
