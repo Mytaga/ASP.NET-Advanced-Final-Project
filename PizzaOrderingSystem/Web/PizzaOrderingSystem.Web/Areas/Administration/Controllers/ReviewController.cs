@@ -35,7 +35,7 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
 
             await this.reviewService.DeleteReview(review);
 
-            TempData["message"] = "You have successfully deleted this review!";
+            TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.DeleteReview; ;
 
             return this.RedirectToAction(GlobalConstants.IndexAction);
         }

@@ -40,7 +40,7 @@ namespace PizzaOrderingSystem.Web.Areas.Manager.Controllers
 
             await this.categoryService.AddCategoryAsync(model);
 
-            TempData["message"] = "You have successfully added a new category!";
+            TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.CreateCategory;
 
             return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ProductController);
         }
