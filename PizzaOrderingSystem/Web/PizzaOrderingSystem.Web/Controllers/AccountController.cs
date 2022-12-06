@@ -66,9 +66,8 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             if (result.Succeeded)
             {
-                await this.signInManager.SignInAsync(user, isPersistent: false);
                 await this.userManager.AddToRoleAsync(user, GlobalConstants.UserRoleName);
-                return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController);
+                return this.RedirectToAction(GlobalConstants.LoginAction);
             }
 
             foreach (var item in result.Errors)
