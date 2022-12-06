@@ -1,4 +1,4 @@
-                                           Pizza Ordering System Final Project SoftUni 
+                                          <strong> Pizza Ordering System Final Project SoftUni </strong>
  
  ![android-chrome-192x192](https://user-images.githubusercontent.com/86414839/199828892-fca4e184-f11c-48f8-aa8f-77eb050aeade.png) - ![image](https://user-images.githubusercontent.com/86414839/194778195-9af4bdc8-3ac8-4557-abd1-f9948d4d6d85.png)
 
