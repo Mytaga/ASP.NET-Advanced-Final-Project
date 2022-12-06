@@ -28,6 +28,6 @@ namespace PizzaOrderingSystem.Web.ViewModels.PaymentCardViewModels
 
         public string UserId { get; set; }
 
-        public virtual ICollection<PaymentCardViewModel> SavedCards { get; set; }
+        public virtual IEnumerable<PaymentCardViewModel> SavedCards { get; set; }
     }
 }
