@@ -49,7 +49,7 @@
  - View everything 
  - Manager : ✉ manager@onlinepizza.bg - Pass: 123456 
 
-👉Instructions
+👉 Instructions
 - 
 
 
