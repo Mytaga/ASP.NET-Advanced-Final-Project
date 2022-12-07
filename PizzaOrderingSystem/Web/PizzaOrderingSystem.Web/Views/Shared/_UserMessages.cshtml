@@ -1,0 +1,21 @@
+﻿@using PizzaOrderingSystem.Common
+
+@if (TempData[GlobalConstants.TempDataSuccess] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" , role="alert">
+        @TempData[GlobalConstants.TempDataSuccess]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" area-label="Close">
+            <span aria-hidden="true"> </span>
+        </button>
+    </div>
+}
+
+@if (TempData[GlobalConstants.TempDataError] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" , role="alert">
+        @TempData[GlobalConstants.TempDataError]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" area-label="Close">
+            <span aria-hidden="true"> </span>
+        </button>
+    </div>
+}
