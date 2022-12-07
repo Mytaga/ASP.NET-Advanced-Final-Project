@@ -67,6 +67,7 @@ namespace PizzaOrderingSystem.Web.Controllers
             if (result.Succeeded)
             {
                 await this.userManager.AddToRoleAsync(user, GlobalConstants.UserRoleName);
+                TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.RegisterUser;
                 return this.RedirectToAction(GlobalConstants.LoginAction);
             }
 
@@ -75,7 +76,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 this.ModelState.AddModelError(string.Empty, item.Description);
             }
 
-            TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.RegisterUser;
+            TempData[GlobalConstants.TempDataError] = ErrorConstants.RegisterFail;
 
             return this.View(model);
         }

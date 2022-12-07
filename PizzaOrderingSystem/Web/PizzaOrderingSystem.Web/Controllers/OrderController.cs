@@ -34,20 +34,24 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             var user = await this.userManager.FindByIdAsync(userId);
 
-            this.guard.AgainstNull(user.Address, ErrorConstants.AddressMissing);
-
-            CreateOrderViewModel viewModel = new CreateOrderViewModel()
+            if (user.Address != null)
             {
-                TotalPrice = this.cartService.GetShoppingCartTotal().ToString("F"),
-                UserId = userId,
-                Cards = user.CreditCards,
-                City = user.Address.City,
-                Street = user.Address.Street,
-                StreetNumber = user.Address.StreetNumber,
-                Floor = user.Address.Floor,
-            };
+                CreateOrderViewModel viewModel = new CreateOrderViewModel()
+                {
+                    TotalPrice = this.cartService.GetShoppingCartTotal().ToString("F"),
+                    UserId = userId,
+                    Cards = user.CreditCards,
+                    City = user.Address.City,
+                    Street = user.Address.Street,
+                    StreetNumber = user.Address.StreetNumber,
+                    Floor = user.Address.Floor,
+                };
 
-            return this.View(viewModel);
+                return this.View(viewModel);
+            }
+
+            TempData[GlobalConstants.TempDataError] = ErrorConstants.AddressMissing;     
+            return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ShoppingCartController);
         }
 
         [HttpPost]
@@ -60,7 +64,7 @@ namespace PizzaOrderingSystem.Web.Controllers
             }
 
             await this.orderService.AddAsync(viewModel);
-
+            TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.OrderPlaced;
             return this.RedirectToAction(GlobalConstants.OrderDetailsAction, GlobalConstants.OrderController);
         }
 
