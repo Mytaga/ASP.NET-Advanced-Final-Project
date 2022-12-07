@@ -29,6 +29,7 @@ namespace PizzaOrderingSystem.Common
         public const string AccountController = "Account";
         public const string OrderController = "Order";
         public const string ShopController = "Shop";
+        public const string ShoppingCartController = "ShoppingCart";
 
         public const string IndexAction = "Index";
         public const string CreateAction = "Create";
@@ -41,7 +42,7 @@ namespace PizzaOrderingSystem.Common
         public const string LoginAction = "Login";
 
         public const string ShopImageUrl = "/img/PizzaShopLogo.jpg";
-        public const string ShopImageExternalUrl = "C:/Users/mitko/Downloads/ASP.NET-Advanced-Final-Project/PizzaOrderingSystem/Web/PizzaOrderingSystem.Web/wwwroot/img/PizzaShopLogo.jpg";
+        public const string ShopImageExternalUrl = "https://static.vecteezy.com/system/resources/thumbnails/006/886/615/small/pizza-logo-cartoon-this-logo-is-highly-suitable-for-any-pizza-related-restaurant-fast-food-delivery-bistro-catering-and-italian-food-related-businesses-vector.jpg";
         public const string MasterCardLogo = "https://img.icons8.com/color/48/000000/mastercard-logo.png";
 
         public const string HomeImageUrl1 = "img/CarouselPhoto.jpg";
@@ -49,5 +50,6 @@ namespace PizzaOrderingSystem.Common
         public const string HomeImageUrl3 = "img/C2.jpg";
 
         public const string TempDataSuccess = "successMessage";
+        public const string TempDataError = "errorMessage";
     }
 }
