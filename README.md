@@ -51,6 +51,8 @@
  - Manager : ✉ manager@onlinepizza.bg - Pass: 123456 
 
 👉 Instructions
-- 
+ - Register and create an account
+ - Add your address so that you can make orders
+ - Enjoy your pizza ;)
 
 
