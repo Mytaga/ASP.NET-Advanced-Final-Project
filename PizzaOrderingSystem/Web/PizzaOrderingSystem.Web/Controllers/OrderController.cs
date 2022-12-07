@@ -30,6 +30,12 @@ namespace PizzaOrderingSystem.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Confirm()
         {
+            if (this.cartService.GetShoppingCartItemCount() == 0)
+            {
+                TempData[GlobalConstants.TempDataError] = ErrorConstants.EmptyCart;
+                return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ShoppingCartController);
+            }
+
             var userId = this.User.Id();
 
             var user = await this.userManager.FindByIdAsync(userId);
@@ -48,7 +54,7 @@ namespace PizzaOrderingSystem.Web.Controllers
                 };
 
                 return this.View(viewModel);
-            }
+            }           
 
             TempData[GlobalConstants.TempDataError] = ErrorConstants.AddressMissing;     
             return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ShoppingCartController);

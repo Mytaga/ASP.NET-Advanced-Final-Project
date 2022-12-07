@@ -55,6 +55,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         {
             if (!this.User.Identity.IsAuthenticated)
             {
+                TempData[GlobalConstants.TempDataError] = ErrorConstants.UnauthorizedAction;
                 return this.RedirectToAction(GlobalConstants.LoginAction, GlobalConstants.AccountController);
             }
 
@@ -64,6 +65,8 @@ namespace PizzaOrderingSystem.Web.Controllers
             {
                 await this.cartService.AddToCartAsync(product);
             }
+
+            TempData[GlobalConstants.TempDataError] = ErrorConstants.UnexistingProduct;
 
             return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ProductController);
         }
