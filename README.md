@@ -1,7 +1,7 @@
 <strong> Pizza Ordering System - Final Project SoftUni </strong>
 
   
-⚒️  <strong> Built With : </strong>
+  ⚒️  <strong> Built With : </strong>
  - ASP.NET Core 6.0
  - Entity Framework Core 6.0
  - Microsoft SQL Server Express
@@ -50,9 +50,10 @@
  - View everything 
  - Manager : ✉ manager@onlinepizza.bg - Pass: 123456 
 
-👉 Instructions
+👉 <strong> Instructions : </strong>
  - Register and create an account
  - Add your address so that you can make orders
+ - Add your payment card so that you have that payment option
  - Enjoy your pizza ;)
 
 
