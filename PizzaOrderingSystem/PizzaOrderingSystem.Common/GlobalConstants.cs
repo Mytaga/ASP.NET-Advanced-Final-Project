@@ -35,6 +35,7 @@ namespace PizzaOrderingSystem.Common
         public const string CreateAction = "Create";
         public const string ErrorAction = "Error";
         public const string AddAction = "Add";
+        public const string EditAction = "Edit";
         public const string ViewProfileAction = "ViewProfile";
         public const string ConfirmOrderAction = "Confirm";
         public const string OrderDetailsAction = "Details";
