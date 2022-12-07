@@ -35,7 +35,8 @@ namespace PizzaOrderingSystem.Web.Areas.Manager.Controllers
 
             if (await this.categoryService.ExistByNameAsync(model.Name))
             {
-                return this.RedirectToAction(nameof(this.Create));
+                TempData[GlobalConstants.TempDataError] = ErrorConstants.ExistingCategory;
+                return this.RedirectToAction(GlobalConstants.CreateAction);
             }
 
             await this.categoryService.AddCategoryAsync(model);

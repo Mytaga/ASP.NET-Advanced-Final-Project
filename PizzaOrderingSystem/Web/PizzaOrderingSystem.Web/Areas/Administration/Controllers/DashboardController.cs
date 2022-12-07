@@ -45,7 +45,7 @@
         /// Shows all registered users that are not in roles : Manager or Admin
         /// </summary>
         /// <returns>
-        /// Table with information about registered users.
+        /// Table with information about registered users in descending order by orders made.
         /// </returns>
         [HttpGet]
         public async Task<IActionResult> ShowRegisteredUsers()

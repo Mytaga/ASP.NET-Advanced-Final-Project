@@ -92,12 +92,13 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return this.RedirectToAction(nameof(this.Create));
+                return this.RedirectToAction(GlobalConstants.CreateAction);
             }
 
             if (!await this.categoryService.ExistByIdAsync(model.CategoryId))
             {
-                return this.RedirectToAction(nameof(this.Create));
+                TempData[GlobalConstants.TempDataError] = ErrorConstants.UnexistingCategory;
+                return this.RedirectToAction(GlobalConstants.CreateAction);
             }
 
             string uniqueFileName = this.UploadFile(model);
@@ -106,7 +107,7 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
 
             TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.CreateProduct;
 
-            return this.RedirectToAction(nameof(this.Index));
+            return this.RedirectToAction(GlobalConstants.IndexAction);
         }
 
         [HttpGet]
@@ -130,12 +131,13 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return this.RedirectToAction(nameof(this.Edit));
+                return this.RedirectToAction(GlobalConstants.EditAction);
             }
 
             if (!await this.categoryService.ExistByIdAsync(model.CategoryId))
             {
-                return this.RedirectToAction(nameof(this.Edit));
+                TempData[GlobalConstants.TempDataError] = ErrorConstants.UnexistingCategory;
+                return this.RedirectToAction(GlobalConstants.EditAction);
             }
 
             string uniqueFileName = this.UploadFile(model);
