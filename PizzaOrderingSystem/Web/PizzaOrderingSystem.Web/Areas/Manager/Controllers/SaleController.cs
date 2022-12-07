@@ -24,6 +24,7 @@
         public async Task<IActionResult> UpdateSales()
         {
             await this.saleService.UpdateAsync();
+            TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.UpdatedSales;
             return this.RedirectToAction(GlobalConstants.IndexAction);
         }
     }
