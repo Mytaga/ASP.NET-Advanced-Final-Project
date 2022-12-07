@@ -14,6 +14,7 @@
  - Dependency Injection
  - Data Validation, both Client-side and Server-side
  - Data Validation in the Models and Input View Models
+ - NUnit Tests /100 % covered services that hold the business logic/
  - Syncfusion PDF
  - Responsive Design
  - MDB Bootstrap 5.0
