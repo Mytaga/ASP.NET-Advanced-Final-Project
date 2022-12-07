@@ -42,6 +42,8 @@
  - Delete reviews.
  - Create new restaurants.
  - Get application statistics about : Orders place, available products on the menu and registered users.
+ Admin :
+ ✉ admin@onlinepizza.bg Pass: 123456
  
  <strong> Manager Role : </strong>
  - Check your sales
