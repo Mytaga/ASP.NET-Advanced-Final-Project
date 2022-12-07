@@ -45,7 +45,10 @@ namespace PizzaOrderingSystem.Services.Data
 
         public async Task AddCategoryAsync(CreateCategoryInputModel model)
         {
-            var category = AutoMapperConfig.MapperInstance.Map<Category>(model);
+            var category = new Category()
+            {
+                Name = model.Name,
+            };
 
             await this.categoryRepo.AddAsync(category);
             await this.categoryRepo.SaveChangesAsync();
