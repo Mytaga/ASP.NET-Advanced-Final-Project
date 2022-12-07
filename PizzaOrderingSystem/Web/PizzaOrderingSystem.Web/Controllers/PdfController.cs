@@ -7,6 +7,7 @@ using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Web.Controllers
@@ -41,8 +42,12 @@ namespace PizzaOrderingSystem.Web.Controllers
             PdfPage page = document.Pages.Add();
             PdfGraphics graphics = page.Graphics;
 
+            WebClient webClient = new WebClient();
+
+            byte[] imageBytes = webClient.DownloadData(GlobalConstants.ShopImageExternalUrl);
+
             // Loads the image as stream
-            FileStream imageStream = new FileStream(GlobalConstants.ShopImageExternalUrl, FileMode.Open, FileAccess.Read);
+            Stream imageStream = new MemoryStream(imageBytes);
             RectangleF bounds = new RectangleF(176, 0, 390, 130);
             PdfImage image = PdfImage.FromStream(imageStream);
 
@@ -63,7 +68,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             // Draws the heading on the page
             PdfLayoutResult result = element.Draw(page, new PointF(10, bounds.Top + 8));
-            string currentDate = order.TimeOfOrder.ToString();
+            string currentDate = order.TimeOfOrder.ToString("MM/dd/yyyy");
 
             // Measures the width of the text to place it in the correct location
             SizeF textSize = subHeadingFont.MeasureString(currentDate);
@@ -79,14 +84,14 @@ namespace PizzaOrderingSystem.Web.Controllers
             result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 25));
             element = new PdfTextElement("ADDRESS : " + order.User.Address.City.ToUpper() + " " + order.User.Address.Street.ToUpper() + " " + order.User.Address.StreetNumber, timesRoman);
             element.Brush = new PdfSolidBrush(new PdfColor(126, 155, 203));
-            result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 25));
-            element = new PdfTextElement("TOTAL PRICE WITH VAT : " + order.TotalPrice.ToString("C"), timesRoman);
+            result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 25));                   
+            element = new PdfTextElement("PRODUCTS : " + order.OrderProducts.Count().ToString().ToUpper(), timesRoman);
             element.Brush = new PdfSolidBrush(new PdfColor(126, 155, 203));
             result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 25));
             element = new PdfTextElement("PAYMENT TYPE : " + order.PaymentType.ToString().ToUpper(), timesRoman);
             element.Brush = new PdfSolidBrush(new PdfColor(126, 155, 203));
             result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 25));
-            element = new PdfTextElement("PRODUCTS : " + order.OrderProducts.Count().ToString().ToUpper(), timesRoman);
+            element = new PdfTextElement("TOTAL PRICE WITH VAT : " + order.TotalPrice.ToString("C"), timesRoman);
             element.Brush = new PdfSolidBrush(new PdfColor(126, 155, 203));
             result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 25));
             PdfPen linePen = new PdfPen(new PdfColor(126, 151, 173), 0.70f);
