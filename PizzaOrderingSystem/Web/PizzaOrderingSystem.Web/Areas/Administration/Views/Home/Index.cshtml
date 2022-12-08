@@ -1,0 +1,57 @@
+﻿@model PizzaOrderingSystem.Web.ViewModels.Administration.Home.IndexViewModel
+@using PizzaOrderingSystem.Common
+
+@{
+    this.ViewData["Title"] = "Home Page";
+}
+
+<div class="mt-4 p-5 bg-dark text-white text-center" style="border-radius: 1rem;">
+    <h1>Hello, Admin!</h1>
+    <p class="lead mb-1 mt-3">
+        This is your administrator area - you can <b>read</b>, <b>create</b>,
+        <b>delete</b> and <b>edit</b> products.
+        <br />You can <b>add</b> and <b>delete</b> categories, too!
+    </p>
+    <p class="lead mt-1">
+        You can also add <b>new restaurants</b> and <b>delete reviews</b> that are unappropriate.
+    </p>
+    <hr class="my-4">
+    <a asp-area="Administration" asp-controller="Product" asp-action="Create" class="btn btn-white btn-lg">Create Product</a>
+    <a asp-area="Administration" asp-controller="Category" asp-action="Create" class="btn btn-white btn-lg">Create Category</a>
+    <a asp-area="Administration" asp-controller="Shop" asp-action="Create" class="btn btn-white btn-lg">Create Restaurant</a>
+    <a asp-area="Administration" asp-controller="Home" asp-action="ShowRegisteredUsers" class="btn btn-white btn-lg">Show Registered Users</a>
+</div>
+
+<div class="container py-5 bg-dark text-white mt-2" style="border-radius: 1rem;">
+    <h1 class="ml-4 mb-6 text-center">Statistics</h1>
+    <div class="row ml-4 fa-2x">
+        <div class="four col-md-3">
+            <div class="counter-box colored">
+                <i class="fa fa-thumbs-o-up"></i>
+                <span class="counter">@Model.ReviewsPublished</span>
+                <p>Reviews Published</p>
+            </div>
+        </div>
+        <div class="four col-md-3">
+            <div class="counter-box">
+                <i class="fa fa-group"></i>
+                <span class="counter">@Model.RegisteredUsers</span>
+                <p>Registered Clients</p>
+            </div>
+        </div>
+        <div class="four col-md-3">
+            <div class="counter-box">
+                <i class="fa  fa-shopping-cart"></i>
+                <span class="counter">@Model.AvailableProducts</span>
+                <p>Available Products</p>
+            </div>
+        </div>
+        <div class="four col-md-3">
+            <div class="counter-box">
+                <i class="fa  fa-user"></i>
+                <span class="counter">@Model.OrdersMade</span>
+                <p>Orders placed</p>
+            </div>
+        </div>
+    </div>
+</div>
