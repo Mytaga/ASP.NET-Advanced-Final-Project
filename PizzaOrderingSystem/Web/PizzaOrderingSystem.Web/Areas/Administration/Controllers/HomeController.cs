@@ -2,24 +2,60 @@
 using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Web.ViewModels;
+using PizzaOrderingSystem.Web.ViewModels.Administration.Home;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
 {
-    public class HomeController : DashboardController
+    public class HomeController : AdministrationController
     {
-		public HomeController(IUserService userService, IOrderService orderService, IProductService productService, IReviewService reviewService) 
-            : base(userService, orderService, productService, reviewService)
-		{
+        private readonly IUserService userService;
+        private readonly IOrderService orderService;
+        private readonly IProductService productService;
+        private readonly IReviewService reviewService;
 
-		}
-
-        [AllowAnonymous]
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public HomeController(IUserService userService, IOrderService orderService, IProductService productService, IReviewService reviewService)
         {
-            return this.View(
-                new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
+            this.userService = userService;
+            this.orderService = orderService;
+            this.productService = productService;
+            this.reviewService = reviewService;
+        }
+
+        /// <summary>
+        /// Gets statistic counts info about the application useful for the admin.
+        /// </summary>
+        /// <returns> 
+        /// Count for : registered users, orders made, available products, reviews published.
+        /// </returns>
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            var viewModel = new IndexViewModel()
+            {
+                RegisteredUsers = await this.userService.GetUsersCountAsync(),
+                OrdersMade = await this.orderService.GetAllOrdersAsync(),
+                AvailableProducts = await this.productService.GetAllProductsCountAsync(),
+                ReviewsPublished = await this.reviewService.GetAllReviewsCountAsync(),
+            };
+
+            return this.View(viewModel);
+        }
+
+        /// <summary>
+        /// Shows all registered users that are not in roles : Manager or Admin
+        /// </summary>
+        /// <returns>
+        /// Table with information about registered users in descending order by orders made.
+        /// </returns>
+        [HttpGet]
+        public async Task<IActionResult> ShowRegisteredUsers()
+        {
+            var viewModel = await this.userService.GetAllRegisterdUsersAsync();
+
+            return this.View(viewModel);
         }
     }
 }
