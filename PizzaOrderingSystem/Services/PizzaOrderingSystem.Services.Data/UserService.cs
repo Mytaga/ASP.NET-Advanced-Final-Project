@@ -3,7 +3,7 @@ using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Web.ViewModels.Account;
-using PizzaOrderingSystem.Web.ViewModels.Administration.Dashboard;
+using PizzaOrderingSystem.Web.ViewModels.Administration.Home;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -83,6 +83,7 @@ namespace PizzaOrderingSystem.Services.Data
                     PhoneNumber = u.PhoneNumber,
                     OrdersMade = u.Orders.Count(),
                 })
+                .OrderByDescending(u => u.OrdersMade)
                 .ToListAsync();
         }
     }

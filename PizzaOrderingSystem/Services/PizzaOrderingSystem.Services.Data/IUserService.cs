@@ -1,7 +1,7 @@
 ﻿using PizzaOrderingSystem.Data;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Web.ViewModels.Account;
-using PizzaOrderingSystem.Web.ViewModels.Administration.Dashboard;
+using PizzaOrderingSystem.Web.ViewModels.Administration.Home;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
