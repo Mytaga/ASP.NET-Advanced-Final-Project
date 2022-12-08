@@ -34,6 +34,13 @@ namespace PizzaOrderingSystem.Web.Controllers
             this.userService = userService;
         }
 
+        /// <summary>
+        /// Creates a register view model
+        /// </summary>
+        /// <returns>
+        /// Register form view
+        /// </returns>
+
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register()
@@ -43,6 +50,15 @@ namespace PizzaOrderingSystem.Web.Controllers
             return this.View(model);
         }
 
+        /// <summary>
+        /// Retrieves data from the register form and creates application user in DB. 
+        /// Automatically sets a User role if the email is not : admin or manager. 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>
+        /// Login form view
+        /// </returns>
+        /// 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -81,6 +97,13 @@ namespace PizzaOrderingSystem.Web.Controllers
             return this.View(model);
         }
 
+        /// <summary>
+        /// Creates a login view model
+        /// </summary>
+        /// <returns>
+        /// Login form view
+        /// </returns>
+
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Login(string returnUrl = null)
@@ -92,6 +115,14 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             return this.View(model);
         }
+
+        /// <summary>
+        /// Checks if the user email is registered in the database /authentication/.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>
+        /// Home page view if login is successfull. Based on user role redirects to a specific area.
+        /// </returns> 
 
         [HttpPost]
         [AllowAnonymous]
@@ -134,6 +165,13 @@ namespace PizzaOrderingSystem.Web.Controllers
             return this.View(model);
         }
 
+        /// <summary>
+        /// Logs out the user from the application.
+        /// </summary>
+        /// <returns>
+        /// Home page view for unauthenticated users.
+        /// </returns>
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
@@ -144,6 +182,13 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController);
         }
+
+        /// <summary>
+        /// Creates user details view model
+        /// </summary>
+        /// <returns>
+        /// User details page with form with info
+        /// </returns>
 
         [HttpGet]
         [Authorize(Roles = GlobalConstants.UserRoleName)]
