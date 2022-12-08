@@ -23,5 +23,6 @@ namespace PizzaOrderingSystem.Common
         public const string DeleteCreditCard = "You have successfully deleted this credit card!";
         public const string OrderPlaced = "Your order is placed and registered!";
         public const string UpdatedSales = "Your sales are updated!";
+        public const string AddToCart = "Your have successfully added to cart!";
     }
 }
