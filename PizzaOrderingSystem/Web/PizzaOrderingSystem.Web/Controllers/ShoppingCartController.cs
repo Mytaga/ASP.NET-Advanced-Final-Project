@@ -61,12 +61,14 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             var product = await this.productService.GetByIdАsync(id);
 
-            if (product != null)
+            if (product == null)
             {
-                await this.cartService.AddToCartAsync(product);
+                TempData[GlobalConstants.TempDataError] = ErrorConstants.UnexistingProduct;
+                return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ProductController);
             }
 
-            TempData[GlobalConstants.TempDataError] = ErrorConstants.UnexistingProduct;
+            await this.cartService.AddToCartAsync(product);
+            TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.AddToCart;
 
             return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ProductController);
         }
