@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Common;
@@ -222,7 +223,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             var user = await this.userManager.GetUserAsync(this.User);
 
-            string uniqueFileName = this.UploadFile(model);
+            string uniqueFileName = this.UploadFile(model.ImageUrl);
 
             var address = new Address()
             {
@@ -273,18 +274,18 @@ namespace PizzaOrderingSystem.Web.Controllers
             return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController);
         }
 
-        private string UploadFile(UpdateProfileViewModel model)
+        private string UploadFile(IFormFile imageUrl)
         {
             string uniqueFileName = null;
 
-            if (model.ImageUrl != null)
+            if (imageUrl != null)
             {
                 string uploadsFolder = Path.Combine(this.webHostEnvironment.WebRootPath, "img");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ImageUrl.FileName;
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + imageUrl.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                    model.ImageUrl.CopyTo(fileStream);
+                    imageUrl.CopyTo(fileStream);
                 }
             }
 
