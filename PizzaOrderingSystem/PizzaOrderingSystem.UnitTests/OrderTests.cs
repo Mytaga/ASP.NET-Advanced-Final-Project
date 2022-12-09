@@ -95,7 +95,7 @@ namespace PizzaOrderingSystem.UnitTests
         }
 
         [Test]
-        public async Task GetOrderDetailsAsyncWorksCorrect()
+        public async Task GetOrderDetailsWorksCorrect()
         {
             await this.FlushCollection();
             await this.FillCollection();
@@ -170,6 +170,43 @@ namespace PizzaOrderingSystem.UnitTests
             var orders = await this.orderService.GetUserOrdersAsync(user.Id);
 
             Assert.That(orders.Count(), Is.EqualTo(1));
+        }
+
+        [Test]
+        public async Task GetOrderViewReturningCorrect()
+        {
+            await this.FlushCollection();
+
+            var address = new Address()
+            {
+                City = "sofia",
+                Street = "street",
+                StreetNumber = 2,
+                Floor = 1,
+                PostCode = "1",
+            };
+
+            await this.dbContext.Addresses.AddAsync(address);
+
+            var user = new ApplicationUser()
+            {
+                FirstName = "Test",
+                LastName = "Test",
+                Address = address,
+            };
+
+            await this.dbContext.Users.AddAsync(user);
+
+
+
+            var model = this.orderService.GetOrderView(user);
+
+            Assert.That(model, Is.Not.Null);
+            Assert.That(model.UserId, Is.EqualTo(user.Id));
+            Assert.That(model.City, Is.EqualTo(user.Address.City));
+            Assert.That(model.Street, Is.EqualTo(user.Address.Street));
+            Assert.That(model.StreetNumber, Is.EqualTo(user.Address.StreetNumber));
+            Assert.That(model.Floor, Is.EqualTo(user.Address.Floor));
         }
 
         private CreateOrderViewModel CreateModel()
