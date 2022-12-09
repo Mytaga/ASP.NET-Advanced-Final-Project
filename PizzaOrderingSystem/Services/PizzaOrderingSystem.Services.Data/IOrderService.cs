@@ -17,6 +17,8 @@ namespace PizzaOrderingSystem.Services.Data
 
         OrderDetailsViewModel GetOrderDetails(Order order);
 
+        CreateOrderViewModel GetOrderView(ApplicationUser user);
+
         Task<int> GetAllOrdersAsync();
     }
 }

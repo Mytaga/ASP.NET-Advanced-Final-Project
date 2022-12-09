@@ -83,6 +83,22 @@ namespace PizzaOrderingSystem.Services.Data
             return viewModel;
         }
 
+        public CreateOrderViewModel GetOrderView(ApplicationUser user)
+        {
+            CreateOrderViewModel viewModel = new CreateOrderViewModel()
+            {
+                TotalPrice = this.cartService.GetShoppingCartTotal().ToString("F"),
+                UserId = user.Id,
+                Cards = user.CreditCards,
+                City = user.Address.City,
+                Street = user.Address.Street,
+                StreetNumber = user.Address.StreetNumber,
+                Floor = user.Address.Floor,
+            };
+
+            return viewModel;
+        }
+
         public async Task<OrderDetailsViewModel> GetUserOrderDetailsAsync(string userId, string orderId)
         {
             var order = await this.orderRepo.All().FirstOrDefaultAsync(o => o.UserId == userId && o.Id == orderId);
