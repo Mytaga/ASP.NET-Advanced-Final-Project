@@ -1,4 +1,5 @@
 ﻿using PizzaOrderingSystem.Data.Models;
+using PizzaOrderingSystem.Web.ViewModels.ShoppingCart;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -23,5 +24,7 @@ namespace PizzaOrderingSystem.Services.Data
         Task<IEnumerable<CartItem>> GetCartProductsAsync();
 
         int GetShoppingCartItemCount();
+
+        ShoppingCartViewModel GetShoppingCart(IEnumerable<CartItem> items);
     }
 }

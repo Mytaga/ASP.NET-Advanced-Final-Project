@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
+using PizzaOrderingSystem.Web.ViewModels.ShoppingCart;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace PizzaOrderingSystem.Services.Data
 
         public CartService(IDeletableEntityRepository<CartItem> cartItemRepo, ShoppingCart shoppingCart)
         {
-            this.cartItemRepo = cartItemRepo;
+            this.cartItemRepo = cartItemRepo;   
             this.shoppingCart = shoppingCart;
         }
 
@@ -123,6 +124,31 @@ namespace PizzaOrderingSystem.Services.Data
                 .Where(ci => ci.ShoppingCartId == this.shoppingCart.ShoppingCartId)
                 .Include(p => p.Product)
                 .Sum(ci => ci.Quantity);               
+        }
+
+        public ShoppingCartViewModel GetShoppingCart(IEnumerable<CartItem> items)
+        {
+            ShoppingCartViewModel viewModel = new ShoppingCartViewModel();
+
+            var allViewItems = new HashSet<CartItemViewModel>();
+
+            foreach (var item in items)
+            {
+                var viewItem = new CartItemViewModel()
+                {
+                    Id = item.Id,
+                    ItemName = item.Product.Name,
+                    ItemPrice = item.Product.Price,
+                    Quantity = item.Quantity,
+                    ImageUrl = item.Product.ImageUrl,
+                };
+
+                allViewItems.Add(viewItem);
+            }
+
+            viewModel.CartItems = allViewItems;
+
+            return viewModel;
         }
     }
 }
