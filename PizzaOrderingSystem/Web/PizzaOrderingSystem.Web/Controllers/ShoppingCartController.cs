@@ -27,25 +27,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         {
             var allItems = await this.cartService.GetCartItemsAsync();
 
-            ShoppingCartViewModel viewModel = new ShoppingCartViewModel();
-
-            var allViewItems = new HashSet<CartItemViewModel>();
-
-            foreach (var item in allItems)
-            {
-                var viewItem = new CartItemViewModel()
-                {
-                    Id = item.Id,
-                    ItemName = item.Product.Name,
-                    ItemPrice = item.Product.Price,
-                    Quantity = item.Quantity,
-                    ImageUrl = item.Product.ImageUrl,
-                };
-
-                allViewItems.Add(viewItem);
-            }
-
-            viewModel.CartItems = allViewItems;
+            var viewModel = this.cartService.GetShoppingCart(allItems);
 
             return this.View(viewModel);
         }
