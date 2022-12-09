@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Data;
@@ -42,16 +43,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             if (user.Address != null)
             {
-                CreateOrderViewModel viewModel = new CreateOrderViewModel()
-                {
-                    TotalPrice = this.cartService.GetShoppingCartTotal().ToString("F"),
-                    UserId = userId,
-                    Cards = user.CreditCards,
-                    City = user.Address.City,
-                    Street = user.Address.Street,
-                    StreetNumber = user.Address.StreetNumber,
-                    Floor = user.Address.Floor,
-                };
+                CreateOrderViewModel viewModel = this.orderService.GetOrderView(user);
 
                 return this.View(viewModel);
             }           
