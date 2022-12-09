@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
@@ -101,7 +102,7 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
                 return this.RedirectToAction(GlobalConstants.CreateAction);
             }
 
-            string uniqueFileName = this.UploadFile(model);
+            string uniqueFileName = this.UploadFile(model.ImageUrl);
 
             await this.productService.AddProductAsync(model, uniqueFileName);
 
@@ -140,7 +141,7 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
                 return this.RedirectToAction(GlobalConstants.EditAction);
             }
 
-            string uniqueFileName = this.UploadFile(model);
+            string uniqueFileName = this.UploadFile(model.ImageUrl);
 
             await this.productService.EditProductAsync(model, id, uniqueFileName);
 
@@ -182,36 +183,18 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
             return this.View(viewModel);
         }
 
-        private string UploadFile(CreateProductInputModel model)
+        private string UploadFile(IFormFile imageUrl)
         {
             string uniqueFileName = null;
 
-            if (model.ImageUrl != null)
+            if (imageUrl != null)
             {
                 string uploadsFolder = Path.Combine(this.webHostEnvironment.WebRootPath, "img");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ImageUrl.FileName;
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + imageUrl.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                    model.ImageUrl.CopyTo(fileStream);
-                }
-            }
-
-            return uniqueFileName;
-        }
-
-        private string UploadFile(EditProductInputModel model)
-        {
-            string uniqueFileName = null;
-
-            if (model.ImageUrl != null)
-            {
-                string uploadsFolder = Path.Combine(this.webHostEnvironment.WebRootPath, "img");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ImageUrl.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    model.ImageUrl.CopyTo(fileStream);
+                    imageUrl.CopyTo(fileStream);
                 }
             }
 
