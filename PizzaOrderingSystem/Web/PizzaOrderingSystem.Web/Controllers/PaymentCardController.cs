@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Castle.Core.Logging;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Web.Extensions;
 using PizzaOrderingSystem.Web.ViewModels.PaymentCardViewModels;
+using System;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Web.Controllers
@@ -12,10 +15,12 @@ namespace PizzaOrderingSystem.Web.Controllers
     public class PaymentCardController : Controller
     {
         private readonly IPaymentCardService paymentCardService;
+        private readonly ILogger<PaymentCardController> logger;
 
-        public PaymentCardController(IPaymentCardService paymentCardService)
+        public PaymentCardController(IPaymentCardService paymentCardService, ILogger<PaymentCardController> logger)
         {
             this.paymentCardService = paymentCardService;
+            this.logger = logger;
         }
 
         [HttpGet]
@@ -37,9 +42,17 @@ namespace PizzaOrderingSystem.Web.Controllers
                 return this.RedirectToAction(GlobalConstants.AddAction, GlobalConstants.PaymentCardController);
             }
 
-            model.UserId = this.User.Id();
-            await this.paymentCardService.AddAsync(model);
-
+            try
+            {
+                model.UserId = this.User.Id();
+                await this.paymentCardService.AddAsync(model);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(GlobalConstants.AddAction, ex);
+                throw new ApplicationException(ErrorConstants.ExceptionMessage, ex);
+            }
+            
             TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.AddCreditCard;
 
             return this.RedirectToAction(GlobalConstants.AddAction, GlobalConstants.PaymentCardController);
@@ -56,8 +69,16 @@ namespace PizzaOrderingSystem.Web.Controllers
                 return this.NotFound();
             }
 
-            await this.paymentCardService.Delete(card);
-
+            try
+            {
+                await this.paymentCardService.Delete(card);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(GlobalConstants.DeleteAction, ex);
+                throw new ApplicationException(ErrorConstants.ExceptionMessage, ex);
+            }
+           
             TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.DeleteCreditCard;
 
             return this.RedirectToAction(GlobalConstants.AddAction, GlobalConstants.PaymentCardController);

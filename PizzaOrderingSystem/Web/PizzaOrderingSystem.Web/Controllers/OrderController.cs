@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Castle.Core.Logging;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.Extensions.Logging;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Services.Exceptions;
 using PizzaOrderingSystem.Web.Extensions;
 using PizzaOrderingSystem.Web.ViewModels.OrderViewModels;
+using System;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Web.Controllers
@@ -19,13 +22,15 @@ namespace PizzaOrderingSystem.Web.Controllers
         private readonly ICartService cartService;
         private readonly IOrderService orderService;
         private readonly IGuard guard;
+        private readonly ILogger<OrderController> logger;
 
-        public OrderController(UserManager<ApplicationUser> userManager, ICartService cartService, IOrderService orderService, IGuard guard)
+        public OrderController(UserManager<ApplicationUser> userManager, ICartService cartService, IOrderService orderService, IGuard guard, ILogger<OrderController> logger)
         {
             this.userManager = userManager;
             this.cartService = cartService;
             this.orderService = orderService;
             this.guard = guard;
+            this.logger = logger;
         }
 
         [HttpGet]
@@ -37,17 +42,25 @@ namespace PizzaOrderingSystem.Web.Controllers
                 return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ShoppingCartController);
             }
 
-            var userId = this.User.Id();
-
-            var user = await this.userManager.FindByIdAsync(userId);
-
-            if (user.Address != null)
+            try
             {
-                CreateOrderViewModel viewModel = this.orderService.GetOrderView(user);
+                var userId = this.User.Id();
 
-                return this.View(viewModel);
-            }           
+                var user = await this.userManager.FindByIdAsync(userId);
 
+                if (user.Address != null)
+                {
+                    CreateOrderViewModel viewModel = this.orderService.GetOrderView(user);
+
+                    return this.View(viewModel);
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(GlobalConstants.ConfirmOrderAction, ex);
+                throw new ApplicationException(ErrorConstants.ExceptionMessage, ex);
+            }
+            
             TempData[GlobalConstants.TempDataError] = ErrorConstants.AddressMissing;     
             return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ShoppingCartController);
         }
@@ -61,7 +74,16 @@ namespace PizzaOrderingSystem.Web.Controllers
                 return this.RedirectToAction(GlobalConstants.ConfirmOrderAction, GlobalConstants.OrderController);
             }
 
-            await this.orderService.AddAsync(viewModel);
+            try
+            {
+                await this.orderService.AddAsync(viewModel);              
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(GlobalConstants.CreateAction, ex);
+                throw new ApplicationException(ErrorConstants.ExceptionMessage, ex);
+            }
+
             TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.OrderPlaced;
             return this.RedirectToAction(GlobalConstants.OrderDetailsAction, GlobalConstants.OrderController);
         }
@@ -69,22 +91,38 @@ namespace PizzaOrderingSystem.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Details()
         {
-            var order = await this.orderService.GetLastOrderAsync();
+            try
+            {
+                var order = await this.orderService.GetLastOrderAsync();
 
-            var viewModel = this.orderService.GetOrderDetails(order);
+                var viewModel = this.orderService.GetOrderDetails(order);
 
-            await this.cartService.ClearCartAsync();
+                await this.cartService.ClearCartAsync();
 
-            return this.View(viewModel);
+                return this.View(viewModel);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(GlobalConstants.DetailsAction, ex);
+                throw new ApplicationException(ErrorConstants.ExceptionMessage, ex);
+            }           
         }
 
         [HttpGet]
         public async Task<IActionResult> UserOrders()
         {
-            var userId = this.User.Id();
-            var viewModel = await this.orderService.GetUserOrdersAsync(userId);
+            try
+            {
+                var userId = this.User.Id();
+                var viewModel = await this.orderService.GetUserOrdersAsync(userId);
 
-            return this.View(viewModel);
+                return this.View(viewModel);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(GlobalConstants.UserOrdersAction, ex);
+                throw new ApplicationException(ErrorConstants.ExceptionMessage, ex);
+            }
         }
 
         [HttpGet]

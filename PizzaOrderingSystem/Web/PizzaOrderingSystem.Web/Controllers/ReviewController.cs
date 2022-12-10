@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Services.Mapping;
 using PizzaOrderingSystem.Web.Extensions;
 using PizzaOrderingSystem.Web.ViewModels.ReviewViewModels;
+using System;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Web.Controllers
@@ -13,10 +15,12 @@ namespace PizzaOrderingSystem.Web.Controllers
     public class ReviewController : BaseController
     {
         private readonly IReviewService reviewService;
+        private readonly ILogger<ReviewController> logger;
 
-        public ReviewController(IReviewService reviewService)
+        public ReviewController(IReviewService reviewService, ILogger<ReviewController> logger)
         {
             this.reviewService = reviewService;
+            this.logger = logger;
         }
 
         [HttpGet]
@@ -46,15 +50,21 @@ namespace PizzaOrderingSystem.Web.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return this.RedirectToAction(nameof(this.Create));
+                return this.RedirectToAction(GlobalConstants.CreateAction);
             }
 
-            string userId = this.User.Id();
-
-            await this.reviewService.AddReview(model, userId);
+            try
+            {
+                string userId = this.User.Id();
+                await this.reviewService.AddReview(model, userId);                           
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(GlobalConstants.CreateAction, ex);
+                throw new ApplicationException(ErrorConstants.ExceptionMessage);
+            }
 
             TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.AddReview;
-
             return this.RedirectToAction(GlobalConstants.IndexAction);
         }
     }
