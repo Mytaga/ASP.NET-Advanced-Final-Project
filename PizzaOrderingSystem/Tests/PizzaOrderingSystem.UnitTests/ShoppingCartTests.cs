@@ -24,7 +24,7 @@ namespace PizzaOrderingSystem.UnitTests
         [Test]
         public async Task AddToCartAsyncWorksCorrect()
         {
-            await this.ClearItems();
+            await this.FlushCollection();
 
             var product = new Product()
             {
@@ -45,7 +45,7 @@ namespace PizzaOrderingSystem.UnitTests
         [Test]
         public async Task AddToCartAsyncWorksCorrectWithSameProduct()
         {
-            await this.ClearItems();
+            await this.FlushCollection();
 
             var product = new Product()
             {
@@ -78,7 +78,7 @@ namespace PizzaOrderingSystem.UnitTests
         [Test]
         public async Task DecreaseQtyWorkingCorrectWithItemQtyBiggerThenOne()
         {
-            await this.ClearItems();
+            await this.FlushCollection();
 
             var item = await this.CreateItem();
 
@@ -90,7 +90,7 @@ namespace PizzaOrderingSystem.UnitTests
         [Test]
         public async Task DecreaseQtyWorkingCorrectWithItemQtyEqualToOne()
         {
-            await this.ClearItems();
+            await this.FlushCollection();
 
             var item = await this.CreateItem();
 
@@ -103,7 +103,7 @@ namespace PizzaOrderingSystem.UnitTests
         [Test]
         public async Task IncreaseQtyWorkingCorrect()
         {
-            await this.ClearItems();
+            await this.FlushCollection();
 
             var item = await this.CreateItem();
 
@@ -115,7 +115,7 @@ namespace PizzaOrderingSystem.UnitTests
         [Test]
         public async Task GetCartItemsAsyncWorkingCorrect()
         {
-            await this.ClearItems();
+            await this.FlushCollection();
             var item = await this.CreateItem();
 
             var items = await this.cartService.GetCartItemsAsync();
@@ -130,7 +130,7 @@ namespace PizzaOrderingSystem.UnitTests
         [Test]
         public async Task GetCartItemsAsyncWorkingCorrectWithEmptyCollection()
         {
-            await this.ClearItems();
+            await this.FlushCollection();
 
             var items = await this.cartService.GetCartItemsAsync();
 
@@ -144,7 +144,7 @@ namespace PizzaOrderingSystem.UnitTests
         [Test]
         public async Task GetCartProductsAsyncWorkingCorrect()
         {
-            await this.ClearItems();
+            await this.FlushCollection();
 
             var item = await this.CreateItem();
 
@@ -159,7 +159,7 @@ namespace PizzaOrderingSystem.UnitTests
         [Test]
         public async Task GetCartProductsAsyncWorkingtWithEmptyCollection()
         {
-            await this.ClearItems();
+            await this.FlushCollection();
 
             var items = await this.cartService.GetCartProductsAsync();
 
@@ -173,7 +173,7 @@ namespace PizzaOrderingSystem.UnitTests
         [Test]
         public async Task RemoveFromCartAsyncWorkingCorrect()
         {
-            await this.ClearItems();
+            await this.FlushCollection();
 
             var item = await this.CreateItem();
 
@@ -188,7 +188,7 @@ namespace PizzaOrderingSystem.UnitTests
         [Test]
         public async Task GetShoppingCartTotalReturnsCorrectValue()
         {
-            await this.ClearItems();
+            await this.FlushCollection();
 
             await this.CreateItem();
 
@@ -201,7 +201,7 @@ namespace PizzaOrderingSystem.UnitTests
         [Test]
         public async Task GetShoppingCartTotalReturnsCorrectZero()
         {
-            await this.ClearItems();
+            await this.FlushCollection();
 
             var total = this.cartService.GetShoppingCartTotal();
 
@@ -211,7 +211,7 @@ namespace PizzaOrderingSystem.UnitTests
         [Test]
         public async Task GetShoppingCartItemsCountReturnsCorrect()
         {
-            await this.ClearItems();
+            await this.FlushCollection();
 
             await this.CreateItem();
 
@@ -223,14 +223,28 @@ namespace PizzaOrderingSystem.UnitTests
         [Test]
         public async Task GetShoppingCartItemsCountReturnsCorrectZero()
         {
-            await this.ClearItems();
+            await this.FlushCollection();
 
             var total = this.cartService.GetShoppingCartItemCount();
 
             Assert.That(total, Is.EqualTo(0));
         }
 
-        private async Task ClearItems()
+        [Test]
+        public async Task GetShoppingCartWorkingCorrect()
+        {
+            await this.FlushCollection();
+            await this.CreateItem();
+
+            var items = await cartItemRepo.All().ToListAsync();
+
+            var model = this.cartService.GetShoppingCart(items);
+
+            Assert.That(model.CartItems.Count, Is.EqualTo(1));
+
+        }
+
+        private async Task FlushCollection()
         {
             var items = await this.dbContext.CartItems.ToListAsync();
 
