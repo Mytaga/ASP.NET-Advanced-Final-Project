@@ -13,5 +13,7 @@ namespace PizzaOrderingSystem.Common
         public const string EmptyCart = "Shopping cart is empty! Please add products to confirm your order!";
         public const string ExistingCategory = "Category name already exists! Choose a different one!";
         public const string UnexistingCategory = "Category doesn't exist!";
+
+        public const string ExceptionMessage = "Something went wrong!";
     }
 }

@@ -41,6 +41,8 @@ namespace PizzaOrderingSystem.Common
         public const string OrderDetailsAction = "Details";
         public const string UpdateProfileAction = "Update";
         public const string LoginAction = "Login";
+        public const string DetailsAction = "Details";
+        public const string UserOrdersAction = "UserOrders";
 
         public const string ShopImageUrl = "/img/PizzaShopLogo.jpg";
         public const string ShopImageExternalUrl = "https://static.vecteezy.com/system/resources/thumbnails/006/886/615/small/pizza-logo-cartoon-this-logo-is-highly-suitable-for-any-pizza-related-restaurant-fast-food-delivery-bistro-catering-and-italian-food-related-businesses-vector.jpg";
