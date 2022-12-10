@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Data;
@@ -18,6 +19,7 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
         private readonly IProductService productService;
         private readonly ICategoryService categoryService;
         private readonly IWebHostEnvironment webHostEnvironment;
+        private readonly ILogger<ProductController> logger;
 
         public ProductController(IProductService productService, ICategoryService categoryService, IWebHostEnvironment webHostEnvironment)
         {
@@ -96,16 +98,24 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
                 return this.RedirectToAction(GlobalConstants.CreateAction);
             }
 
-            if (!await this.categoryService.ExistByIdAsync(model.CategoryId))
+            try
             {
-                TempData[GlobalConstants.TempDataError] = ErrorConstants.UnexistingCategory;
-                return this.RedirectToAction(GlobalConstants.CreateAction);
+                if (!await this.categoryService.ExistByIdAsync(model.CategoryId))
+                {
+                    TempData[GlobalConstants.TempDataError] = ErrorConstants.UnexistingCategory;
+                    return this.RedirectToAction(GlobalConstants.CreateAction);
+                }
+
+                string uniqueFileName = this.UploadFile(model.ImageUrl);
+
+                await this.productService.AddProductAsync(model, uniqueFileName);
             }
-
-            string uniqueFileName = this.UploadFile(model.ImageUrl);
-
-            await this.productService.AddProductAsync(model, uniqueFileName);
-
+            catch (Exception ex)
+            {
+                this.logger.LogError(GlobalConstants.CreateAction, ex);
+                throw new ApplicationException(ErrorConstants.ExceptionMessage, ex);
+            }
+            
             TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.CreateProduct;
 
             return this.RedirectToAction(GlobalConstants.IndexAction);
@@ -135,16 +145,24 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
                 return this.RedirectToAction(GlobalConstants.EditAction);
             }
 
-            if (!await this.categoryService.ExistByIdAsync(model.CategoryId))
+            try
             {
-                TempData[GlobalConstants.TempDataError] = ErrorConstants.UnexistingCategory;
-                return this.RedirectToAction(GlobalConstants.EditAction);
+                if (!await this.categoryService.ExistByIdAsync(model.CategoryId))
+                {
+                    TempData[GlobalConstants.TempDataError] = ErrorConstants.UnexistingCategory;
+                    return this.RedirectToAction(GlobalConstants.EditAction);
+                }
+
+                string uniqueFileName = this.UploadFile(model.ImageUrl);
+
+                await this.productService.EditProductAsync(model, id, uniqueFileName);
             }
-
-            string uniqueFileName = this.UploadFile(model.ImageUrl);
-
-            await this.productService.EditProductAsync(model, id, uniqueFileName);
-
+            catch (Exception ex)
+            {
+                this.logger.LogError(GlobalConstants.EditAction, ex);
+                throw new ApplicationException(ErrorConstants.ExceptionMessage, ex);
+            }
+            
             TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.EditProduct;
 
             return this.RedirectToAction(GlobalConstants.IndexAction);
@@ -161,7 +179,15 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
                 return this.NotFound();
             }
 
-            await this.productService.DeleteProductAsync(product);
+            try
+            {
+                await this.productService.DeleteProductAsync(product);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(GlobalConstants.DeleteAction, ex); 
+                throw new ApplicationException(ErrorConstants.ExceptionMessage, ex);
+            }
 
             TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.DeleteProduct;
 

@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Castle.Core.Logging;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Services.Data;
+using System;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
@@ -8,10 +11,12 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
     public class ReviewController : AdministrationController
     {
         private readonly IReviewService reviewService;
+        private readonly ILogger<ReviewController> logger;
 
-        public ReviewController(IReviewService reviewService)
+        public ReviewController(IReviewService reviewService, ILogger<ReviewController> logger)
         {
             this.reviewService = reviewService;
+            this.logger = logger;
         }
 
         [HttpGet]
@@ -33,9 +38,17 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
                 return this.NotFound();
             }
 
-            await this.reviewService.DeleteReview(review);
+            try
+            {
+                await this.reviewService.DeleteReview(review);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(GlobalConstants.DeleteAction, ex);
+                throw new ApplicationException(ErrorConstants.ExceptionMessage, ex);
+            }
 
-            TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.DeleteReview; ;
+            TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.DeleteReview; 
 
             return this.RedirectToAction(GlobalConstants.IndexAction);
         }

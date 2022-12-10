@@ -1,8 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Web.ViewModels;
 using PizzaOrderingSystem.Web.ViewModels.Administration.Home;
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -14,13 +18,15 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
         private readonly IOrderService orderService;
         private readonly IProductService productService;
         private readonly IReviewService reviewService;
+        private readonly ILogger<HomeController> logger;
 
-        public HomeController(IUserService userService, IOrderService orderService, IProductService productService, IReviewService reviewService)
+        public HomeController(IUserService userService, IOrderService orderService, IProductService productService, IReviewService reviewService, ILogger<HomeController> logger)
         {
             this.userService = userService;
             this.orderService = orderService;
             this.productService = productService;
             this.reviewService = reviewService;
+            this.logger = logger;
         }
 
         /// <summary>
@@ -33,15 +39,23 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var viewModel = new IndexViewModel()
+            try
             {
-                RegisteredUsers = await this.userService.GetUsersCountAsync(),
-                OrdersMade = await this.orderService.GetAllOrdersAsync(),
-                AvailableProducts = await this.productService.GetAllProductsCountAsync(),
-                ReviewsPublished = await this.reviewService.GetAllReviewsCountAsync(),
-            };
+                var viewModel = new IndexViewModel()
+                {
+                    RegisteredUsers = await this.userService.GetUsersCountAsync(),
+                    OrdersMade = await this.orderService.GetAllOrdersAsync(),
+                    AvailableProducts = await this.productService.GetAllProductsCountAsync(),
+                    ReviewsPublished = await this.reviewService.GetAllReviewsCountAsync(),
+                };
 
-            return this.View(viewModel);
+                return this.View(viewModel);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(GlobalConstants.IndexAction, ex);
+                throw new ApplicationException(ErrorConstants.ExceptionMessage, ex);
+            }          
         }
 
         /// <summary>
@@ -50,12 +64,24 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
         /// <returns>
         /// Table with information about registered users in descending order by orders made.
         /// </returns>
+        
         [HttpGet]
         public async Task<IActionResult> ShowRegisteredUsers()
         {
             var viewModel = await this.userService.GetAllRegisterdUsersAsync();
 
             return this.View(viewModel);
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            var feature = this.HttpContext.Features.Get<IExceptionHandlerFeature>();
+
+            this.logger.LogError(feature.Error, "TraceIdentifier: {0}", HttpContext.TraceIdentifier);
+
+            return this.View(
+                new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }
     }
 }
