@@ -1458,19 +1458,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PTO\\.nuget\\packages\\": {}
+    "C:\\Users\\mitko\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Web\\PizzaOrderingSystem.Web.ViewModels\\PizzaOrderingSystem.Web.ViewModels.csproj",
+      "projectUniqueName": "C:\\Users\\mitko\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Web\\PizzaOrderingSystem.Web.ViewModels\\PizzaOrderingSystem.Web.ViewModels.csproj",
       "projectName": "PizzaOrderingSystem.Web.ViewModels",
-      "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Web\\PizzaOrderingSystem.Web.ViewModels\\PizzaOrderingSystem.Web.ViewModels.csproj",
-      "packagesPath": "C:\\Users\\PTO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Web\\PizzaOrderingSystem.Web.ViewModels\\obj\\",
+      "projectPath": "C:\\Users\\mitko\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Web\\PizzaOrderingSystem.Web.ViewModels\\PizzaOrderingSystem.Web.ViewModels.csproj",
+      "packagesPath": "C:\\Users\\mitko\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mitko\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Web\\PizzaOrderingSystem.Web.ViewModels\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\PTO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mitko\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1484,11 +1484,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Models\\PizzaOrderingSystem.Data.Models.csproj": {
-              "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Models\\PizzaOrderingSystem.Data.Models.csproj"
+            "C:\\Users\\mitko\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Models\\PizzaOrderingSystem.Data.Models.csproj": {
+              "projectPath": "C:\\Users\\mitko\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Data\\PizzaOrderingSystem.Data.Models\\PizzaOrderingSystem.Data.Models.csproj"
             },
-            "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Mapping\\PizzaOrderingSystem.Services.Mapping.csproj": {
-              "projectPath": "C:\\Users\\PTO\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Mapping\\PizzaOrderingSystem.Services.Mapping.csproj"
+            "C:\\Users\\mitko\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Mapping\\PizzaOrderingSystem.Services.Mapping.csproj": {
+              "projectPath": "C:\\Users\\mitko\\Downloads\\ASP.NET-Advanced-Final-Project\\PizzaOrderingSystem\\Services\\PizzaOrderingSystem.Services.Mapping\\PizzaOrderingSystem.Services.Mapping.csproj"
             }
           }
         }
