@@ -41,7 +41,7 @@ namespace PizzaOrderingSystem.Services.Data
 
         public async Task<AllReviewsViewModel> GetAllAsync()
         {
-            var reviews = this.reviewRepo.AllAsNoTracking();
+            var reviews = this.reviewRepo.AllAsNoTracking().OrderByDescending(r => r.PublishedOn);
 
             AllReviewsViewModel viewModel = new AllReviewsViewModel()
             {
