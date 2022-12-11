@@ -19,6 +19,7 @@
  - Responsive Design
  - MDB Bootstrap 5.0
  - jQuery
+ - Microsoft Azure App Services
 
 💬 <strong> App Info : </strong> \
  <br />
