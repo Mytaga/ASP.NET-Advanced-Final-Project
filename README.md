@@ -51,7 +51,7 @@
  - Manager : ✉ manager@onlinepizza.bg - Pass: 123456 
 
 👉 <strong> Instructions : </strong>
- - Visit : https://pizzaorderingsystemweb20221211134926.azurewebsites.net
+ - Visit : https://pizzaorderingsystemweb20221211154242.azurewebsites.net
  - Register and create an account
  - Add your address so that you can make orders
  - Add your payment card so that you have that payment option
