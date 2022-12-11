@@ -1,5 +1,6 @@
 <strong> Pizza Ordering System - Final Project SoftUni </strong>
 
+https://pizzaorderingsystemweb20221211154242.azurewebsites.net/
   
   ⚒️  <strong> Built With : </strong>
  - ASP.NET Core 6.0
