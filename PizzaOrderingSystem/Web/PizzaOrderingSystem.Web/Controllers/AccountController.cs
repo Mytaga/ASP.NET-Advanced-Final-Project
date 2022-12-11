@@ -83,7 +83,11 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             if (result.Succeeded)
             {
-                await this.userManager.AddToRoleAsync(user, GlobalConstants.UserRoleName);
+                if (user.Email != GlobalConstants.AdminEmail && user.Email != GlobalConstants.ManagerEmail)
+                {
+                    await this.userManager.AddToRoleAsync(user, GlobalConstants.UserRoleName);
+                }
+              
                 TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.RegisterUser;
                 return this.RedirectToAction(GlobalConstants.LoginAction);
             }
@@ -251,6 +255,8 @@ namespace PizzaOrderingSystem.Web.Controllers
             return this.RedirectToAction(GlobalConstants.ViewProfileAction, GlobalConstants.AccountController);
         }
 
+
+        [AllowAnonymous]
         public async Task<IActionResult> CreateRoles()
         {
             await this.roleManager.CreateAsync(new ApplicationRole(GlobalConstants.AdministratorRoleName));
@@ -260,6 +266,7 @@ namespace PizzaOrderingSystem.Web.Controllers
             return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController);
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> AddUsersToRoles()
         {
             string adminEmail = GlobalConstants.AdminEmail;
