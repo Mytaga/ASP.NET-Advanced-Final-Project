@@ -227,7 +227,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             var user = await this.userManager.GetUserAsync(this.User);
 
-            string uniqueFileName = this.UploadFile(model.ImageUrl);
+            string uniqueFileName = await this.UploadPhoto(model.ImageUrl);
 
             var address = new Address()
             {
@@ -241,7 +241,7 @@ namespace PizzaOrderingSystem.Web.Controllers
 
             user.PhoneNumber = model.PhoneNumber;
 
-            if (uniqueFileName != null)
+            if (uniqueFileName != "")
             {
                 user.ImageUrl = uniqueFileName;
             }
@@ -281,22 +281,22 @@ namespace PizzaOrderingSystem.Web.Controllers
             return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController);
         }
 
-        private string UploadFile(IFormFile imageUrl)
-        {
-            string uniqueFileName = null;
+        //private string UploadFile(IFormFile imageUrl)
+        //{
+        //    string uniqueFileName = null;
 
-            if (imageUrl != null)
-            {
-                string uploadsFolder = Path.Combine(this.webHostEnvironment.WebRootPath, "img");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + imageUrl.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    imageUrl.CopyTo(fileStream);
-                }
-            }
+        //    if (imageUrl != null)
+        //    {
+        //        string uploadsFolder = Path.Combine(this.webHostEnvironment.WebRootPath, "img");
+        //        uniqueFileName = Guid.NewGuid().ToString() + "_" + imageUrl.FileName;
+        //        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+        //        using (var fileStream = new FileStream(filePath, FileMode.Create))
+        //        {
+        //            imageUrl.CopyTo(fileStream);
+        //        }
+        //    }
 
-            return uniqueFileName;
-        }
+        //    return uniqueFileName;
+        //}
     }
 }
