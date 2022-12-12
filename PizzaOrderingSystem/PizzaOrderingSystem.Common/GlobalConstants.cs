@@ -56,5 +56,8 @@ namespace PizzaOrderingSystem.Common
 
         public const string TempDataSuccess = "successMessage";
         public const string TempDataError = "errorMessage";
+
+        public const string BlobConnectionString = "DefaultEndpointsProtocol=https;AccountName=pizzaorderingsystem;AccountKey=wyq1dgqhETYTrOZGWqF0+Z/tBpT3j9NTL4nGEUN1EXrsiTb4GOjWPl6lzEFUtIHc+/pijBVdwbdg+AStep4DjQ==;EndpointSuffix=core.windows.net";
+        public const string BlobContainer = "pizzaorderingsystem";
     }
 }
