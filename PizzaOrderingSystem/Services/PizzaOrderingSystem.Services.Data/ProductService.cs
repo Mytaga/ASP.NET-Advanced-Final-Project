@@ -52,7 +52,7 @@ namespace PizzaOrderingSystem.Services.Data
             product.Description = model.Description;
             product.Category = category;
 
-            if (imageUrl != null)
+            if (imageUrl != "")
             {
                 product.ImageUrl = imageUrl;
             }
@@ -78,6 +78,7 @@ namespace PizzaOrderingSystem.Services.Data
             {
                 Products = await products.Select(p => new ListAllProductsViewModel()
                 {
+                    Id = p.Id,
                     Name = p.Name,
                     Description = p.Description,
                     Price = p.Price,
@@ -106,6 +107,7 @@ namespace PizzaOrderingSystem.Services.Data
             {
                 Products = await products.Select(p => new ListAllProductsViewModel()
                 {
+                    Id = p.Id,
                     Name = p.Name,
                     Description = p.Description,
                     Price = p.Price,
