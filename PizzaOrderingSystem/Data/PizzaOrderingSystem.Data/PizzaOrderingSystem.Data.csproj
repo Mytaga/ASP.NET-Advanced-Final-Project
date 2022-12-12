@@ -8,6 +8,7 @@
 
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
+    <UserSecretsId>e205c079-0b92-405c-b1bb-bf4629f2918a</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
