@@ -1,6 +1,6 @@
 <strong> Pizza Ordering System - Final Project SoftUni </strong>
 
-
+https://pizzaorderingsystemweb20221212205727.azurewebsites.net/
   
   ⚒️  <strong> Built With : </strong>
  - ASP.NET Core 6.0
@@ -54,7 +54,7 @@
  - Manager : ✉ manager@onlinepizza.bg - Pass: 123456 
 
 👉 <strong> Instructions : </strong>
- - Visit : 
+ - Visit : https://pizzaorderingsystemweb20221212205727.azurewebsites.net/
  - Register and create an account
  - Add your address so that you can make orders
  - Add your payment card so that you have that payment option
