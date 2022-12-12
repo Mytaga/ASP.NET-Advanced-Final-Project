@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Azure.Storage.Blobs;
+using Azure;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using System.Security.Policy;
 
 namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
 {
@@ -106,7 +109,7 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
                     return this.RedirectToAction(GlobalConstants.CreateAction);
                 }
 
-                string uniqueFileName = this.UploadFile(model.ImageUrl);
+                string uniqueFileName = await this.UploadPhoto(model.ImageUrl);
 
                 await this.productService.AddProductAsync(model, uniqueFileName);
             }
@@ -153,7 +156,7 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
                     return this.RedirectToAction(GlobalConstants.EditAction);
                 }
 
-                string uniqueFileName = this.UploadFile(model.ImageUrl);
+                string uniqueFileName = await this.UploadPhoto(model.ImageUrl);
 
                 await this.productService.EditProductAsync(model, id, uniqueFileName);
             }
@@ -209,22 +212,65 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
             return this.View(viewModel);
         }
 
-        private string UploadFile(IFormFile imageUrl)
+        //private string UploadFile(IFormFile imageUrl)
+        //{
+        //    string uniqueFileName = null;
+
+        //    if (imageUrl != null)
+        //    {
+        //        string uploadsFolder = Path.Combine(this.webHostEnvironment.WebRootPath, "img");
+        //        uniqueFileName = Guid.NewGuid().ToString() + "_" + imageUrl.FileName;
+        //        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+        //        using (var fileStream = new FileStream(filePath, FileMode.Create))
+        //        {
+        //            imageUrl.CopyTo(fileStream);
+        //        }
+        //    }
+
+        //    return uniqueFileName;
+        //}
+
+        private async Task<string> UploadPhoto(IFormFile imageUrl)
         {
-            string uniqueFileName = null;
+            string fileUrl = string.Empty;
 
             if (imageUrl != null)
             {
-                string uploadsFolder = Path.Combine(this.webHostEnvironment.WebRootPath, "img");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + imageUrl.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                string connectionString = GlobalConstants.BlobConnectionString;
+                string containerName = GlobalConstants.BlobContainer;
+
+                var fileName = GenerateFileName(imageUrl);
+
+                BlobContainerClient container = new BlobContainerClient(connectionString, containerName);
+                var blob = container.GetBlobClient(imageUrl.FileName);
+                using (Stream stream = imageUrl.OpenReadStream())
                 {
-                    imageUrl.CopyTo(fileStream);
+                    await blob.UploadAsync(stream);
                 }
+
+                fileUrl = blob.Uri.AbsoluteUri;                
             }
 
-            return uniqueFileName;
+            return fileUrl;
+        }
+
+        private string GenerateFileName(IFormFile imageUrl)
+        {
+            string fileName = imageUrl.FileName;
+            
+            try
+            {
+                string strFileName = string.Empty;
+                string[] strName = fileName.Split('.');
+                strFileName = DateTime.Now.ToUniversalTime().ToString("yyyy-MM-dd") + "/"
+                   + DateTime.Now.ToUniversalTime().ToString("yyyyMMdd\\THHmmssfff") + "." +
+                   strName[strName.Length - 1];
+                return strFileName;
+            }
+            catch (Exception ex)
+            {
+                return fileName;
+            }
         }
     }
 }
