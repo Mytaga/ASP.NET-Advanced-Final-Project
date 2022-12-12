@@ -1,6 +1,6 @@
 <strong> Pizza Ordering System - Final Project SoftUni </strong>
 
-https://pizzaorderingsystemweb20221211154242.azurewebsites.net/
+
   
   ⚒️  <strong> Built With : </strong>
  - ASP.NET Core 6.0
@@ -21,6 +21,7 @@ https://pizzaorderingsystemweb20221211154242.azurewebsites.net/
  - MDB Bootstrap 5.0
  - jQuery
  - Microsoft Azure App Services
+ - Microsoft Azure Blob Services
 
 💬 <strong> App Info : </strong> \
  <br />
@@ -53,7 +54,7 @@ https://pizzaorderingsystemweb20221211154242.azurewebsites.net/
  - Manager : ✉ manager@onlinepizza.bg - Pass: 123456 
 
 👉 <strong> Instructions : </strong>
- - Visit : https://pizzaorderingsystemweb20221211154242.azurewebsites.net
+ - Visit : 
  - Register and create an account
  - Add your address so that you can make orders
  - Add your payment card so that you have that payment option
