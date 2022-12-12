@@ -56,7 +56,7 @@ namespace PizzaOrderingSystem.Data.Models
 
         public virtual ICollection<CreditCard> CreditCards { get; set; }
 
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual IEnumerable<Order> Orders { get; set; }
 
         public virtual ICollection<Review> Reviews { get; set; }
     }

@@ -1,9 +1,8 @@
-﻿using static PizzaOrderingSystem.Common.ModelValidationConstants.ShopValidation;
-using PizzaOrderingSystem.Data.Common.Models;
+﻿using PizzaOrderingSystem.Data.Common.Models;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static PizzaOrderingSystem.Common.ModelValidationConstants.ShopValidation;
 
 namespace PizzaOrderingSystem.Data.Models
 {
@@ -12,7 +11,6 @@ namespace PizzaOrderingSystem.Data.Models
         public Shop()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.Sales = new HashSet<Sale>();
         }
 
         [Required]
@@ -31,7 +29,5 @@ namespace PizzaOrderingSystem.Data.Models
         public string AddressId { get; set; }
 
         public virtual Address Address { get; set; }
-
-        public virtual ICollection<Sale> Sales { get; set; }
     }
 }
