@@ -2,6 +2,8 @@
 
 https://pizzaorderingsystemweb20221212205727.azurewebsites.net/
   
+![DBSnapshot](https://user-images.githubusercontent.com/86414839/207626479-44f5c26f-d83c-4b41-9b1c-e2dfc4a1b11d.png)
+
   ⚒️  <strong> Built With : </strong>
  - ASP.NET Core 6.0
  - Entity Framework Core 6.0
