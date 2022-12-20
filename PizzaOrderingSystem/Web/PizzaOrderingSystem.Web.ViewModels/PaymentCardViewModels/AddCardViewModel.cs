@@ -9,6 +9,7 @@ namespace PizzaOrderingSystem.Web.ViewModels.PaymentCardViewModels
         [Required(ErrorMessage = CardNumberRequiredError)]
         [MinLength(CardNumberMinLength, ErrorMessage = CardNumberMinLengthError)]
         [MaxLength(CardNumberMaxLength, ErrorMessage = CardNumberMaxLengthError)]
+        [CreditCard(ErrorMessage = CardNumberValidError)]
         public string CardNumber { get; set; }
 
         [Required(ErrorMessage = ExpirationDateRequiredError)]
