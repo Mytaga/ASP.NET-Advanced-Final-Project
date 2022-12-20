@@ -80,6 +80,7 @@ namespace PizzaOrderingSystem.Common
             public const string CvcRequiredError = "Cvc code is required";
             public const string CvcMinLengthError = "Cvc code must be at least 3 digits";
             public const string CvcMaxLengthError = "Cvc code must be no more than 3 digits";
+            public const string CardNumberValidError = "Card number is not valid";
         }
 
         public static class ReviewValidation
