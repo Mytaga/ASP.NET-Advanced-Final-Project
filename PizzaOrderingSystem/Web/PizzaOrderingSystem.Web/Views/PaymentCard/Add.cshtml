@@ -4,7 +4,6 @@
     ViewData["Title"] = "Payment Settings";
 }
 
-
 <section class="p-4 p-md-5">
     <div class="row d-flex justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-5">
@@ -71,3 +70,9 @@
         </div>
     </div>
 </section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
