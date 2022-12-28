@@ -22,6 +22,7 @@ namespace PizzaOrderingSystem.Common
         public const string DessertCategory = "Dessert";
         public const string DrinkCategory = "Drink";
         public const string SauceCategory = "Sauce";
+        public const string PastaCategory = "Pasta";
 
         public const string ProductController = "Product";
         public const string HomeController = "Home";
