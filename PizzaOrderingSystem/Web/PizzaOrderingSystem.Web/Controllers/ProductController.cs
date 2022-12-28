@@ -76,6 +76,7 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> IndexPasta(string search)
         {
             var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.PastaCategory, search);
