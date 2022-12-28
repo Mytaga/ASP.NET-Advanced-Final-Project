@@ -33,7 +33,7 @@
                 var blob = container.GetBlobClient(imageUrl.FileName);
                 using (Stream stream = imageUrl.OpenReadStream())
                 {
-                    await blob.UploadAsync(stream);
+                    await blob.UploadAsync(stream, overwrite: true);
                 }
 
                 fileUrl = blob.Uri.AbsoluteUri;
