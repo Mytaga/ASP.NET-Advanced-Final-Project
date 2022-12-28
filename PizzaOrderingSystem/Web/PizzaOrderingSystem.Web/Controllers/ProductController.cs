@@ -76,6 +76,14 @@ namespace PizzaOrderingSystem.Web.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> IndexPasta(string search)
+        {
+            var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.PastaCategory, search);
+
+            return this.View(viewModel);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Details(string id)
         {
             Product product = await this.productService.GetByIdАsync(id);
