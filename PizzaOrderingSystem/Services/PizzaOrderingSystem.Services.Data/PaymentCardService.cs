@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Mapping;
@@ -51,6 +52,7 @@ namespace PizzaOrderingSystem.Services.Data
                 {
                     CardNumber = c.CardNumber,
                     Id = c.Id,
+                    ImageUrl = c.CardNumber.StartsWith("4") ? GlobalConstants.VisaCardLogo : GlobalConstants.MasterCardLogo,
                 })
                 .ToListAsync(),
             };
