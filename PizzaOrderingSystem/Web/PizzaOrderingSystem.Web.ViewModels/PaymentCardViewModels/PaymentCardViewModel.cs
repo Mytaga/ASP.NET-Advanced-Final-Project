@@ -9,7 +9,6 @@ namespace PizzaOrderingSystem.Web.ViewModels.PaymentCardViewModels
 
         public string CardNumber { get; set; }
 
-        public string ImageUrl => "https://img.icons8.com/color/48/000000/mastercard-logo.png";
-
+        public string ImageUrl { get; set; }
     }
 }
