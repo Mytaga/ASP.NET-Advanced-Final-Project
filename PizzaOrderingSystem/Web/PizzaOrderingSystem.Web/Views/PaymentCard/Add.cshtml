@@ -41,7 +41,7 @@
                         <div class="row mb-4">
                             <div class="col-7">
                                 <div class="form-outline">
-                                    <input asp-for="CardNumber" type="text" id="formControlLgXM" class="form-control form-control-lg text-white" />
+                                    <input asp-for="CardNumber" type="text" minlength="16" maxlength="16" id="formControlLgXM" class="form-control form-control-lg text-white" />
                                     <label asp-for="CardNumber" class="form-label text-white" for="formControlLgXM">Card Number</label>
                                     <span asp-validation-for="CardNumber" class="text-danger"></span>
                                 </div>

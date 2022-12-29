@@ -20,7 +20,15 @@
                 @foreach (var card in Model.Cards)
                 {
                     <div class="d-flex flex-row align-items-center mb-4 pb-1 text-white">
-                        <img class="img-fluid" src="@GlobalConstants.MasterCardLogo" />
+                        @if (card.CardNumber.StartsWith("4"))
+                        {
+                            <img class="img-fluid" src="@GlobalConstants.VisaCardLogo"/>
+                        }
+                        else
+                        {
+                            <img class="img-fluid" src="@GlobalConstants.MasterCardLogo"/>
+                        }
+                        
                         <div class="flex-fill mx-3 text-white">
                             <div class="form-outline">
                                 <input type="text" id="formControlLgXc" class="form-control form-control-lg text-white"

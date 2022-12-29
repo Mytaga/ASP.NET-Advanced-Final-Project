@@ -1,18 +1,16 @@
 ﻿@using PizzaOrderingSystem.Common
 @model PizzaOrderingSystem.Web.ViewModels.ReviewViewModels.AllReviewsViewModel
 
-
 @{
     ViewData["Title"] = "Reviews";
 }
-
 
 <div class="container mt-0 bg-dark" style="border-radius: 1rem;">
     <hr />
     <div class="mt-3 ml-4 text-white">
         <h1 class="mt-4">Reviews</h1>
     </div>
-    <hr class="bg-white"/>
+    <hr class="bg-white" />
     @if (User.IsInRole(GlobalConstants.UserRoleName))
     {
         <a class="btn btn-white mt-4 ml-4" asp-controller="Review" asp-action="Create">Add Review</a>
