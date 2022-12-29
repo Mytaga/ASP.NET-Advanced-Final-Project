@@ -59,8 +59,8 @@ namespace PizzaOrderingSystem.Common
 
         public static class CreditCardValidation
         {
-            public const int CardNumberMinLength = 13;
-            public const int CardNumberMaxLength = 19;
+            public const int CardNumberMinLength = 16;
+            public const int CardNumberMaxLength = 16;
             public const int ExpirationDateMinLength = 5;
             public const int ExpirationDateMaxLength = 5;
             public const int CardHolderMinLength = 5;
@@ -69,8 +69,8 @@ namespace PizzaOrderingSystem.Common
             public const int CvcMaxLength = 3;
 
             public const string CardNumberRequiredError = "Card number is required";
-            public const string CardNumberMinLengthError = "Last name must be at least 13 digits";
-            public const string CardNumberMaxLengthError = "Last name must be no more than 19 digits";
+            public const string CardNumberMinLengthError = "Last name must be at least 16 digits";
+            public const string CardNumberMaxLengthError = "Last name must be no more than 16 digits";
             public const string CardHolderRequiredError = "Card holder name is required";
             public const string CardHolderMinLengthError = "Card holder name must be at least 5 letters";
             public const string CardHolderMaxLengthError = "Card holder name must be no more than 61 letters";
