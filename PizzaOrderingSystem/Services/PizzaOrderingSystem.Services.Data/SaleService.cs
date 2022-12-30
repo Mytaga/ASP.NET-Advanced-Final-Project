@@ -2,6 +2,7 @@
 using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Web.ViewModels.Manager.Sales;
+using PizzaOrderingSystem.Web.ViewModels.Manager.SaleViewModels;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -42,7 +43,7 @@ namespace PizzaOrderingSystem.Services.Data
                 .Select(s => new SaleViewModel
                 {
                     Id = s.Id,
-                    Amount = s.Amount.ToString("C"),
+                    Amount = s.Amount.ToString() + "лв.",
                     SaleDate = s.SaleDate,
                     PaymentType = s.PaymentType.ToString(),
                 })
@@ -54,6 +55,34 @@ namespace PizzaOrderingSystem.Services.Data
         {
             await this.saleRepo.AddAsync(sale);
             await this.saleRepo.SaveChangesAsync();
+        }
+
+        public async Task<decimal> GetTotalAmountAsync()
+        {
+            return await this.saleRepo
+                .AllAsNoTracking()
+                .SumAsync(s => s.Amount);
+        }
+
+        public async Task<int> GetTotalCountAsync()
+        {
+            return await this.saleRepo
+                .AllAsNoTracking()
+                .CountAsync();
+        }
+
+        public async Task<SalesInfoViewModel> GetStatisticsAsync()
+        {
+            var totalAmount = await this.GetTotalAmountAsync();
+            var totalCount = await this.GetTotalCountAsync();
+
+            var viewModel = new SalesInfoViewModel
+            {
+                TotalAmount = totalAmount.ToString() + "лв.",
+                TotalCount = totalCount.ToString(),
+            };
+
+            return viewModel;
         }
     }
 }
