@@ -1,0 +1,25 @@
+﻿@model PizzaOrderingSystem.Web.ViewModels.Manager.SaleViewModels.SalesInfoViewModel
+
+@{
+    ViewData["Title"] = "Sales Info";
+}
+
+<div class="container py-5 bg-white text-dark mt-2" style="border-radius: 1rem;">
+    <h1 class="ml-4 mb-6 text-center">Statistics</h1>
+    <div class="row ml-4 fa-2x">
+        <div class="four col-md-3">
+            <div class="counter-box colored">
+                <i class="fas fa-money-bill"></i>
+                <span class="counter">@Model.TotalAmount</span>
+                <p>Sales Amount</p>
+            </div>
+        </div>
+        <div class="four col-md-3">
+            <div class="counter-box">
+                <i class="fas fa-chart-line"></i>
+                <span class="counter">@Model.TotalCount</span>
+                <p>Sales Count</p>
+            </div>
+        </div>
+    </div>
+</div>
