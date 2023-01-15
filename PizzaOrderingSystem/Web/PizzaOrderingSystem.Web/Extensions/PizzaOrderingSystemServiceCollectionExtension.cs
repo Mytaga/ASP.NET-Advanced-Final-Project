@@ -1,4 +1,5 @@
-﻿using PizzaOrderingSystem.Data;
+﻿using PizzaOrderingSystem.Common;
+using PizzaOrderingSystem.Data;
 using PizzaOrderingSystem.Data.Common;
 using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
@@ -19,7 +20,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
-            services.AddTransient<IEmailSender, SendGridEmailSender>();
+            services.AddTransient<IEmailSender>(
+               serviceProvider => new SendGridEmailSender(GlobalConstants.SendGridApiKey));
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IReviewService, ReviewService>();
