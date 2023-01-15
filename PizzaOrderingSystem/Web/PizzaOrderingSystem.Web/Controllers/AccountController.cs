@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Data;
+using PizzaOrderingSystem.Services.Messaging;
 using PizzaOrderingSystem.Web.ViewModels.Account;
 using System;
 using System.IO;
@@ -20,19 +21,22 @@ namespace PizzaOrderingSystem.Web.Controllers
         private readonly RoleManager<ApplicationRole> roleManager;
         private readonly IWebHostEnvironment webHostEnvironment;
         private readonly IUserService userService;
+        private readonly IEmailSender emailSender;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             RoleManager<ApplicationRole> roleManager,
             IWebHostEnvironment webHostEnvironment,
-            IUserService userService)
+            IUserService userService,
+            IEmailSender emailSender)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
             this.webHostEnvironment = webHostEnvironment;
             this.userService = userService;
+            this.emailSender = emailSender;
         }
 
         /// <summary>
@@ -87,7 +91,10 @@ namespace PizzaOrderingSystem.Web.Controllers
                 {
                     await this.userManager.AddToRoleAsync(user, GlobalConstants.UserRoleName);
                 }
-              
+
+                await this.emailSender
+                    .SendEmailAsync(GlobalConstants.SendGridEmail, GlobalConstants.AdministratorRoleName, user.Email, GlobalConstants.RegisterConfirmSubject, GlobalConstants.RegisterConfirmContent);
+
                 TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.RegisterUser;
                 return this.RedirectToAction(GlobalConstants.LoginAction);
             }
