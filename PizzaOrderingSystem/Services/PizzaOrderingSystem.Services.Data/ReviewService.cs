@@ -51,6 +51,7 @@ namespace PizzaOrderingSystem.Services.Data
                     Content = r.Content,
                     PublishedOn = r.PublishedOn.ToString("f", CultureInfo.InvariantCulture),
                     UserId = r.UserId,
+                    Id = r.Id,
                 })
                 .ToListAsync(),
             };
