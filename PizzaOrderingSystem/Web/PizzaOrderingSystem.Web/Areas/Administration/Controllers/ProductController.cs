@@ -24,11 +24,12 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
         private readonly IWebHostEnvironment webHostEnvironment;
         private readonly ILogger<ProductController> logger;
 
-        public ProductController(IProductService productService, ICategoryService categoryService, IWebHostEnvironment webHostEnvironment)
+        public ProductController(IProductService productService, ICategoryService categoryService, IWebHostEnvironment webHostEnvironment, ILogger logger)
         {
             this.productService = productService;
             this.categoryService = categoryService;
             this.webHostEnvironment = webHostEnvironment;
+            this.logger = logger;
         }
 
         [HttpGet]
@@ -75,6 +76,14 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
         public async Task<IActionResult> IndexSauces(string search)
         {
             var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.SauceCategory, search);
+
+            return this.View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> IndexPasta(string search)
+        {
+            var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.PastaCategory, search);
 
             return this.View(viewModel);
         }
