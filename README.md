@@ -24,6 +24,7 @@ https://pizzaorderingsystemweb20221212205727.azurewebsites.net/
  - jQuery
  - Microsoft Azure App Services
  - Microsoft Azure Blob Services
+ - SendGrid
 
 💬 <strong> App Info : </strong> \
  <br />
