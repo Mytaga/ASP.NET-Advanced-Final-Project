@@ -7,6 +7,7 @@ using PizzaOrderingSystem.Data.Repositories;
 using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Services.Exceptions;
 using PizzaOrderingSystem.Services.Messaging;
+using System;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -21,7 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             // Application services
             services.AddTransient<IEmailSender>(
-               serviceProvider => new SendGridEmailSender(GlobalConstants.SendGridApiKey));
+               serviceProvider => new SendGridEmailSender(Environment.GetEnvironmentVariable("SENDGRID_API_KEY")));
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IReviewService, ReviewService>();
