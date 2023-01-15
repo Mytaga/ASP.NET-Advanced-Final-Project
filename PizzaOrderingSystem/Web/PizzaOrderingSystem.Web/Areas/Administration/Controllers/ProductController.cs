@@ -24,7 +24,7 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
         private readonly IWebHostEnvironment webHostEnvironment;
         private readonly ILogger<ProductController> logger;
 
-        public ProductController(IProductService productService, ICategoryService categoryService, IWebHostEnvironment webHostEnvironment, ILogger logger)
+        public ProductController(IProductService productService, ICategoryService categoryService, IWebHostEnvironment webHostEnvironment, ILogger<ProductController> logger)
         {
             this.productService = productService;
             this.categoryService = categoryService;
