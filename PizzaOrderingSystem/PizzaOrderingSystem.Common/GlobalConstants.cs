@@ -63,5 +63,7 @@ namespace PizzaOrderingSystem.Common
         public const string BlobContainer = "pizzaorderingsystem";
 
         public const string SendGridApiKey = "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";
+        public const string RegisterConfirmContent = "Congratulations! You have registered succesfully to our Online Pizza!";
+        public const string RegisterConfirmSubject = "Registration Confirm";
     }
 }
