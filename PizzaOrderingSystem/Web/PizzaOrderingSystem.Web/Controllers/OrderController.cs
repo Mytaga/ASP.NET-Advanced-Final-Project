@@ -8,6 +8,7 @@ using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Data.Models;
 using PizzaOrderingSystem.Services.Data;
 using PizzaOrderingSystem.Services.Exceptions;
+using PizzaOrderingSystem.Services.Messaging;
 using PizzaOrderingSystem.Web.Extensions;
 using PizzaOrderingSystem.Web.ViewModels.OrderViewModels;
 using System;
@@ -23,14 +24,22 @@ namespace PizzaOrderingSystem.Web.Controllers
         private readonly IOrderService orderService;
         private readonly IGuard guard;
         private readonly ILogger<OrderController> logger;
+        private readonly IEmailSender emailSender;
 
-        public OrderController(UserManager<ApplicationUser> userManager, ICartService cartService, IOrderService orderService, IGuard guard, ILogger<OrderController> logger)
+        public OrderController(
+            UserManager<ApplicationUser> userManager, 
+            ICartService cartService, 
+            IOrderService orderService, 
+            IGuard guard, 
+            ILogger<OrderController> logger,
+            IEmailSender emailSender)
         {
             this.userManager = userManager;
             this.cartService = cartService;
             this.orderService = orderService;
             this.guard = guard;
             this.logger = logger;
+            this.emailSender = emailSender;
         }
 
         [HttpGet]
@@ -85,6 +94,15 @@ namespace PizzaOrderingSystem.Web.Controllers
             }
 
             TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.OrderPlaced;
+
+            var userId = this.User.Id();
+
+            var user = await this.userManager.FindByIdAsync(userId);
+
+            await this.emailSender
+                    .SendEmailAsync(GlobalConstants.SendGridEmail, GlobalConstants.AdministratorRoleName, user.Email,
+                    GlobalConstants.OrderPlacedSubject, GlobalConstants.OrderPlacedContent);
+
             return this.RedirectToAction(GlobalConstants.OrderDetailsAction, GlobalConstants.OrderController);
         }
 
