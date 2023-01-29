@@ -16,10 +16,14 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index([FromQuery] AllSalesQueryModel model)
         {
-            var viewModel = await this.saleService.GetAllSalesAsync();
-            return this.View(viewModel);
+            var result = await this.saleService.GetQuerySalesAsync(model.CurrentPage, AllSalesQueryModel.SalesPerPage);
+
+            model.TotalSalesCount = result.TotalSales;
+            model.Sales = result.Sales;
+
+            return this.View(model);
         }
 
         [HttpGet]

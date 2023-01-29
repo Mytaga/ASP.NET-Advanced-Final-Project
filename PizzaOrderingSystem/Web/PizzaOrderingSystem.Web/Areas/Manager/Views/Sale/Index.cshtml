@@ -1,12 +1,13 @@
-﻿@model IEnumerable<PizzaOrderingSystem.Web.ViewModels.Manager.Sales.SaleViewModel>
+﻿@using PizzaOrderingSystem.Web.ViewModels.Manager.SaleViewModels;
+@model PizzaOrderingSystem.Web.ViewModels.Manager.SaleViewModels.AllSalesQueryModel
 
 @{
     ViewData["Title"] = "Sales";
 }
 
 
-<ul class="list-group list-group-light" style="width: 800px">
-    @foreach (var sale in Model)
+<ul class="list-group list-group-light" style="width: auto">
+    @foreach (var sale in Model.Sales)
     {
         <li class="list-group-item d-flex justify-content-between align-items-center bg-white text-dark">
             <div class="d-flex align-items-center">
@@ -21,12 +22,36 @@
     }
 </ul>
 
+@{
+    var previousPage = Model.CurrentPage - 1;
 
+    if(previousPage < 1)
+    {
+        previousPage = 1;
+    }
 
+    var maxPage = Math.Ceiling((double)Model.TotalSalesCount / AllSalesQueryModel.SalesPerPage);
+}
+
+@{
+    var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
+    !Model.Sales.Any();
+}
+
+<nav aria-label="Sales results" class="mt-4">
+    <ul class="pagination pagination-lg bg-white text-dark fw-bold">
+        <li class="page-item"><a class="page-link @(Model.CurrentPage == 1 ? "disabled" : string.Empty)" asp-controller="Sale" asp-action="Index" asp-route-currentPage="@previousPage">Previous</a></li>
+        @for (int i = 1; i <= (int)maxPage; i++)
+        {
+            <li class="page-item"><a class="page-link" asp-controller="Sale" asp-action="Index" asp-route-currentPage="@i">@i</a></li>
+        }   
+        <li class="page-item"><a class="page-link @(shouldButtonBeDisabled ? "disabled" : string.Empty)" asp-controller="Sale" asp-action="Index" asp-route-currentPage="@(Model.CurrentPage + 1)">Next</a></li>
+  </ul>
+</nav>
 
 <div>
     <a class="btn btn-dark btn-lg mt-3" asp-area="Manager" asp-controller="Home" asp-action="Index">Back</a>
     <a class="btn btn-dark btn-lg mt-3" asp-area="Manager" asp-controller="Sale" asp-action="UpdateSales">Update</a>
     <a class="btn btn-dark btn-lg mt-3" asp-area="Manager" asp-controller="Sale" asp-action="SalesInfo">Sales Info</a>
 </div>
-
+    
