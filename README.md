@@ -52,7 +52,7 @@ https://pizzaorderingsystemweb20221212205727.azurewebsites.net/
  - Admin : ✉ admin@onlinepizza.bg - Pass: 123456  
  
  <strong> Manager Role : </strong>
- - Check all made sales
+ - Check all made sales. Paginated list.
  - View everything 
  - Manager : ✉ manager@onlinepizza.bg - Pass: 123456 
 
