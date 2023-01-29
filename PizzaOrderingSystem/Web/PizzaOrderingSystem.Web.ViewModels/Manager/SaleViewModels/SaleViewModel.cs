@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PizzaOrderingSystem.Web.ViewModels.Manager.Sales
+namespace PizzaOrderingSystem.Web.ViewModels.Manager.SaleViewModels
 {
     public class SaleViewModel
     {
