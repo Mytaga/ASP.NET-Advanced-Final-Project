@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PizzaOrderingSystem.Data.Common.Repositories;
 using PizzaOrderingSystem.Data.Models;
+using PizzaOrderingSystem.Services.Helpers;
 using PizzaOrderingSystem.Web.ViewModels.Manager.Sales;
 using PizzaOrderingSystem.Web.ViewModels.Manager.SaleViewModels;
 using System;
@@ -83,6 +84,31 @@ namespace PizzaOrderingSystem.Services.Data
             };
 
             return viewModel;
+        }
+
+        public async Task<SalesQueryModel> GetQuerySalesAsync(int currentPage = 1, int salesPerPage = 1)
+        {
+            var result = new SalesQueryModel();
+
+            var sales = await this.saleRepo
+                .AllAsNoTracking()
+                .Where(s => s.Amount != 0.00M)
+                .Select(s => new SaleViewModel
+                {
+                    Id = s.Id,
+                    Amount = s.Amount.ToString() + "лв.",
+                    SaleDate = s.SaleDate,
+                    PaymentType = s.PaymentType.ToString(),
+                })
+                .OrderByDescending(s => s.SaleDate)
+                .ToListAsync();
+
+            result.Sales = sales.Skip((currentPage - 1) * salesPerPage)
+                .Take(salesPerPage);
+
+            result.TotalSales = sales.Count();
+
+            return result;
         }
     }
 }
