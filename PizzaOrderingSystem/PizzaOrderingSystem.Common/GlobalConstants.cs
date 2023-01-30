@@ -4,6 +4,7 @@ namespace PizzaOrderingSystem.Common
 {
     public static class GlobalConstants
     {
+        //Application
         public const string SystemName = "PIZZA ORDERING SYSTEM";
         public const string SystemNameAdmin = "PIZZA ORDERING SYSTEM ADMINISTRATION AREA";
 
@@ -59,9 +60,11 @@ namespace PizzaOrderingSystem.Common
         public const string TempDataSuccess = "successMessage";
         public const string TempDataError = "errorMessage";
 
+        //Blob
         public const string BlobConnectionString = "DefaultEndpointsProtocol=https;AccountName=pizzaorderingsystem;AccountKey=wyq1dgqhETYTrOZGWqF0+Z/tBpT3j9NTL4nGEUN1EXrsiTb4GOjWPl6lzEFUtIHc+/pijBVdwbdg+AStep4DjQ==;EndpointSuffix=core.windows.net";
         public const string BlobContainer = "pizzaorderingsystem";
 
+        //SendGrid
         public const string SendGridApiKey = "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";
         public const string RegisterConfirmContent = "Congratulations! You have registered succesfully to our Online Pizza!";
         public const string RegisterConfirmSubject = "Registration Confirm";
