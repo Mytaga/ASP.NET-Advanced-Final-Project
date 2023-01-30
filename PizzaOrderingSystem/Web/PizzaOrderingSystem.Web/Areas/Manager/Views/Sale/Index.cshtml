@@ -6,7 +6,7 @@
 }
 
 
-<ul class="list-group list-group-light" style="width: auto">
+<ul class="list-group list-group-light" style="width: 1000px">
     @foreach (var sale in Model.Sales)
     {
         <li class="list-group-item d-flex justify-content-between align-items-center bg-white text-dark">
@@ -39,7 +39,7 @@
 }
 
 <nav aria-label="Sales results" class="mt-4">
-    <ul class="pagination pagination-lg bg-white text-dark fw-bold">
+    <ul class="pagination pagination-lg bg-white text-dark fw-bold" style="width: 1000px">
         <li class="page-item"><a class="page-link @(Model.CurrentPage == 1 ? "disabled" : string.Empty)" asp-controller="Sale" asp-action="Index" asp-route-currentPage="@previousPage">Previous</a></li>
         @for (int i = 1; i <= (int)maxPage; i++)
         {
