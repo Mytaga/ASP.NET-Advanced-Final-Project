@@ -61,8 +61,10 @@ namespace PizzaOrderingSystem.Services.Data
             await this.productRepo.SaveChangesAsync();
         }
 
-        public async Task<AllProductsViewModel> GetAllByCategoryAsync(string categoryName = EmptyString, string searchName = EmptyString)
+        public async Task<ProductsQueryModel> GetAllByCategoryAsync(string categoryName = EmptyString, string searchName = EmptyString, int currentPage = 1, int productsPerPage = 1)
         {
+            var viewModel = new ProductsQueryModel();
+
             var products = this.productRepo.AllAsNoTracking()
                 .Where(p => p.Category.Name == categoryName);
 
@@ -74,26 +76,29 @@ namespace PizzaOrderingSystem.Services.Data
                     .OrderByDescending(p => p.CreatedOn);
             }
 
-            AllProductsViewModel viewModel = new AllProductsViewModel()
+            viewModel.Products = await products
+                .Skip((currentPage - 1) * productsPerPage)
+                .Take(productsPerPage)
+                .Select(p => new ListAllProductsViewModel()
             {
-                Products = await products.Select(p => new ListAllProductsViewModel()
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Description = p.Description,
-                    Price = p.Price,
-                    ImageUrl = p.ImageUrl,
-                })
-                .OrderByDescending(p => p.Price)
-                .ToListAsync(),
-                SearchQuery = searchName,
-            };
+                Id = p.Id,
+                Name = p.Name,
+                Description = p.Description,
+                Price = p.Price,
+                ImageUrl = p.ImageUrl,
+            })
+            .OrderByDescending(p => p.Price)
+            .ToListAsync();
+
+            viewModel.TotalProducts = await products.CountAsync();
 
             return viewModel;
         }
 
-        public async Task<AllProductsViewModel> GetAllByNameAsync(string searchName = EmptyString)
+        public async Task<ProductsQueryModel> GetAllByNameAsync(string searchName = EmptyString, int currentPage = 1, int productsPerPage = 1)
         {
+            var viewModel = new ProductsQueryModel();
+
             var products = this.productRepo.AllAsNoTracking();
 
             if (searchName != null)
@@ -103,20 +108,21 @@ namespace PizzaOrderingSystem.Services.Data
                     .OrderByDescending(p => p.CreatedOn);
             }
 
-            AllProductsViewModel viewModel = new AllProductsViewModel()
+            viewModel.Products = await products
+                .Skip((currentPage - 1) * productsPerPage)
+                .Take(productsPerPage)
+                .Select(p => new ListAllProductsViewModel()
             {
-                Products = await products.Select(p => new ListAllProductsViewModel()
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Description = p.Description,
-                    Price = p.Price,
-                    ImageUrl = p.ImageUrl,
-                })
-                .OrderByDescending(p => p.Price)
-                .ToListAsync(),
-                SearchQuery = searchName,
-            };
+                Id = p.Id,
+                Name = p.Name,
+                Description = p.Description,
+                Price = p.Price,
+                ImageUrl = p.ImageUrl,
+            })
+            .OrderByDescending(p => p.Price)
+            .ToListAsync();
+
+            viewModel.TotalProducts = await products.CountAsync();
 
             return viewModel;
         }

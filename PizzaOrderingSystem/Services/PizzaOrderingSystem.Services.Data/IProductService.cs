@@ -6,9 +6,9 @@ namespace PizzaOrderingSystem.Services.Data
 {
     public interface IProductService
     {
-        Task<AllProductsViewModel> GetAllByNameAsync(string searchName = "");
+        Task<ProductsQueryModel> GetAllByNameAsync(string searchName = "", int currentPage = 1, int productsPerPage = 1);
 
-        Task<AllProductsViewModel> GetAllByCategoryAsync(string categoryName = "", string searchName = "");
+        Task<ProductsQueryModel> GetAllByCategoryAsync(string categoryName = "", string searchName = "", int currentPage = 1, int productsPerPage = 1);
 
         Task<Product> GetByIdАsync(string id);
 
