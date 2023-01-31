@@ -1,5 +1,4 @@
-﻿using Castle.Core.Logging;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PizzaOrderingSystem.Common;
 using PizzaOrderingSystem.Services.Data;
@@ -56,7 +55,7 @@ namespace PizzaOrderingSystem.Web.Areas.Manager.Controllers
             
             TempData[GlobalConstants.TempDataSuccess] = SuccessConstants.CreateCategory;
 
-            return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.ProductController);
+            return this.RedirectToAction(GlobalConstants.IndexAction, GlobalConstants.HomeController);
         }
     }
 }

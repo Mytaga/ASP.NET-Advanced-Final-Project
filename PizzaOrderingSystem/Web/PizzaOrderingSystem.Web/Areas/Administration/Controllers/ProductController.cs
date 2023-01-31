@@ -33,59 +33,74 @@ namespace PizzaOrderingSystem.Web.Areas.Administration.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(string search)
+        public async Task<IActionResult> Index([FromQuery] string search, AllProductsQueryModel model)
         {
-            var viewModel = await this.productService.GetAllByNameAsync(search);
+            var viewModel = await this.productService.GetAllByNameAsync(search, model.CurrentPage, AllProductsQueryModel.ProductsPerPage);
 
-            return this.View(viewModel);
+            model.TotalProductsCount = viewModel.TotalProducts;
+            model.Products = viewModel.Products;
+
+            return this.View(model);
         }
 
         [HttpGet]
-        public async Task<IActionResult> IndexPizza(string search)
+        public async Task<IActionResult> IndexPizza([FromQuery] string search, AllProductsQueryModel model)
         {
-            var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.PizzaCategory, search);
+            var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.PizzaCategory, search, model.CurrentPage, AllProductsQueryModel.ProductsPerPage);
+            model.TotalProductsCount = viewModel.TotalProducts;
+            model.Products = viewModel.Products;
 
-            return this.View(viewModel);
+            return this.View(model);
         }
 
         [HttpGet]
-        public async Task<IActionResult> IndexSalads(string search)
+        public async Task<IActionResult> IndexSalads([FromQuery] string search, AllProductsQueryModel model)
         {
-            var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.SaladCategory, search);
+            var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.SaladCategory, search, model.CurrentPage, AllProductsQueryModel.ProductsPerPage);
+            model.TotalProductsCount = viewModel.TotalProducts;
+            model.Products = viewModel.Products;
 
-            return this.View(viewModel);
+            return this.View(model);
         }
 
         [HttpGet]
-        public async Task<IActionResult> IndexDesserts(string search)
+        public async Task<IActionResult> IndexDesserts([FromQuery] string search, AllProductsQueryModel model)
         {
-            var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.DessertCategory, search);
+            var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.DessertCategory, search, model.CurrentPage, AllProductsQueryModel.ProductsPerPage);
+            model.TotalProductsCount = viewModel.TotalProducts;
+            model.Products = viewModel.Products;
 
-            return this.View(viewModel);
+            return this.View(model);
         }
 
         [HttpGet]
-        public async Task<IActionResult> IndexDrinks(string search)
+        public async Task<IActionResult> IndexDrinks([FromQuery] string search, AllProductsQueryModel model)
         {
-            var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.DrinkCategory, search);
+            var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.DrinkCategory, search, model.CurrentPage, AllProductsQueryModel.ProductsPerPage);
+            model.TotalProductsCount = viewModel.TotalProducts;
+            model.Products = viewModel.Products;
 
-            return this.View(viewModel);
+            return this.View(model);
         }
 
         [HttpGet]
-        public async Task<IActionResult> IndexSauces(string search)
+        public async Task<IActionResult> IndexSauces([FromQuery] string search, AllProductsQueryModel model)
         {
-            var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.SauceCategory, search);
+            var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.SauceCategory, search, model.CurrentPage, AllProductsQueryModel.ProductsPerPage);
+            model.TotalProductsCount = viewModel.TotalProducts;
+            model.Products = viewModel.Products;
 
-            return this.View(viewModel);
+            return this.View(model);
         }
 
         [HttpGet]
-        public async Task<IActionResult> IndexPasta(string search)
+        public async Task<IActionResult> IndexPasta([FromQuery] string search, AllProductsQueryModel model)
         {
-            var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.PastaCategory, search);
+            var viewModel = await this.productService.GetAllByCategoryAsync(GlobalConstants.PastaCategory, search, model.CurrentPage, AllProductsQueryModel.ProductsPerPage);
+            model.TotalProductsCount = viewModel.TotalProducts;
+            model.Products = viewModel.Products;
 
-            return this.View(viewModel);
+            return this.View(model);
         }
 
         [HttpGet]
