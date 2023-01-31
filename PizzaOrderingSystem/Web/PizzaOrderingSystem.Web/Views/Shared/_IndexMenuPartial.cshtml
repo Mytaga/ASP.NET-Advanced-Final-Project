@@ -98,13 +98,13 @@ else
     !Model.Products.Any();
 }
 
-<nav aria-label="Products results" class="mt-4 bg-dark text-white">
+<nav aria-label="Products results" class="mt-4">
     <ul class="pagination pagination-lg justify-content-center" style="width: auto;font-size:18px">
-        <li class="page-item text-white"><a class="page-link @(Model.CurrentPage == 1 ? "disabled" : string.Empty)" asp-controller="Product" asp-action="Index" asp-route-currentPage="@previousPage">Previous</a></li>
+        <li class="page-item bg-white text-dark"><a class="page-link @(Model.CurrentPage == 1 ? "disabled" : string.Empty)" asp-controller="Product" asp-action="Index" asp-route-currentPage="@previousPage">Previous</a></li>
         @for (int i = 1; i <= (int)maxPage; i++)
         {
-            <li class="page-item text-white"><a class="page-link" asp-controller="Product" asp-action="Index" asp-route-currentPage="@i">@i</a></li>
+            <li class="page-item  bg-white text-dark"><a class="page-link" asp-controller="Product" asp-action="Index" asp-route-currentPage="@i">@i</a></li>
         }
-        <li class="page-item text-white"><a class="page-link @(shouldButtonBeDisabled ? "disabled" : string.Empty)" asp-controller="Product" asp-action="Index" asp-route-currentPage="@(Model.CurrentPage + 1)">Next</a></li>
+        <li class="page-item  bg-white text-dark"><a class="page-link @(shouldButtonBeDisabled ? "disabled" : string.Empty)" asp-controller="Product" asp-action="Index" asp-route-currentPage="@(Model.CurrentPage + 1)">Next</a></li>
     </ul>
-</nav>
+</nav>  
