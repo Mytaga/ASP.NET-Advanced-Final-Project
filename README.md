@@ -31,7 +31,7 @@ https://pizzaorderingsystemweb20221212205727.azurewebsites.net/
  This is an online pizza restaurant where you can do several things depending on your role.\
  <br />
   <strong> User Role :  </strong>
- - Order products from the menu.
+ - Order products from the paged menu.
  - See all orders placed by you.
  - Add/Remove payment cards.
  - Download your order invoice on PDF.
